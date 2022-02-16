@@ -1,11 +1,25 @@
 <?php
 
-namespace app\parent\rest;
+namespace seog\rest;
 
+use Yii;
+use yii\web\Request;
+use yii\web\Response;
 use yii\rest\Controller as BaseController;
 
 abstract class Controller extends BaseController
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct(
+        $id, 
+        $module, 
+        $config = []
+    ) {
+        parent::__construct($id, $module, $config);
+    }
+
     /**
      * Configuring authenticator and set cosr pre-flight filter in order to deal with api requests right
      * Chrome asking for OPTIONS pre-flight requests, so corsFilter must be set
@@ -30,7 +44,7 @@ abstract class Controller extends BaseController
     }
 
     /**
-     * Gets the authenticator class
+     * Returns the authenticator class
      *
      * @return string
      */
@@ -40,7 +54,7 @@ abstract class Controller extends BaseController
     }
 
     /**
-     * Gets the access rules
+     * Return the access rules
      * 	`return [
      *	`	'class' => \yii\filters\AccessControl::className(),
      *	`	'rules' => [

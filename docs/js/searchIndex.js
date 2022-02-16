@@ -383,17 +383,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\app\\controllers\\SiteController\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "\u007B\u0040inheritdoc\u007D",
             "url": "classes/app-controllers-SiteController.html#method___construct"
         },                {
             "fqsen": "\\app\\controllers\\SiteController\u003A\u003Aaccess\u0028\u0029",
             "name": "access",
-            "summary": "\u007B\u0040inheritdoc\u007D",
+            "summary": "Return\u0020the\u0020access\u0020rules\n\t\u0060return\u0020\u005B\n\u0060\t\u0027class\u0027\u0020\u003D\u003E\u0020\\yii\\filters\\AccessControl\u003A\u003AclassName\u0028\u0029,\n\u0060\t\u0027rules\u0027\u0020\u003D\u003E\u0020\u005B\n\u0060\t\u005D\n\u0020\u0060\u005D\u003B",
             "url": "classes/app-controllers-SiteController.html#method_access"
         },                {
             "fqsen": "\\app\\controllers\\SiteController\u003A\u003Aauth\u0028\u0029",
             "name": "auth",
-            "summary": "",
+            "summary": "Auth\u0020configuration\u0020of\u0020only\u0020and\u0020except\u0020blocks",
             "url": "classes/app-controllers-SiteController.html#method_auth"
         },                {
             "fqsen": "\\app\\controllers\\SiteController\u003A\u003Averbs\u0028\u0029",
@@ -841,30 +841,35 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/src-listeners-SignupSuccessEventListener.html#method_handle"
         },                {
-            "fqsen": "\\app\\parent\\rest\\Controller",
+            "fqsen": "\\seog\\rest\\Controller",
             "name": "Controller",
             "summary": "",
-            "url": "classes/app-parent-rest-Controller.html"
+            "url": "classes/seog-rest-Controller.html"
         },                {
-            "fqsen": "\\app\\parent\\rest\\Controller\u003A\u003Abehaviors\u0028\u0029",
+            "fqsen": "\\seog\\rest\\Controller\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "\u007B\u0040inheritdoc\u007D",
+            "url": "classes/seog-rest-Controller.html#method___construct"
+        },                {
+            "fqsen": "\\seog\\rest\\Controller\u003A\u003Abehaviors\u0028\u0029",
             "name": "behaviors",
             "summary": "Configuring\u0020authenticator\u0020and\u0020set\u0020cosr\u0020pre\u002Dflight\u0020filter\u0020in\u0020order\u0020to\u0020deal\u0020with\u0020api\u0020requests\u0020right\nChrome\u0020asking\u0020for\u0020OPTIONS\u0020pre\u002Dflight\u0020requests,\u0020so\u0020corsFilter\u0020must\u0020be\u0020set",
-            "url": "classes/app-parent-rest-Controller.html#method_behaviors"
+            "url": "classes/seog-rest-Controller.html#method_behaviors"
         },                {
-            "fqsen": "\\app\\parent\\rest\\Controller\u003A\u003AgetAuthenticatorClass\u0028\u0029",
+            "fqsen": "\\seog\\rest\\Controller\u003A\u003AgetAuthenticatorClass\u0028\u0029",
             "name": "getAuthenticatorClass",
-            "summary": "Gets\u0020the\u0020authenticator\u0020class",
-            "url": "classes/app-parent-rest-Controller.html#method_getAuthenticatorClass"
+            "summary": "Returns\u0020the\u0020authenticator\u0020class",
+            "url": "classes/seog-rest-Controller.html#method_getAuthenticatorClass"
         },                {
-            "fqsen": "\\app\\parent\\rest\\Controller\u003A\u003Aaccess\u0028\u0029",
+            "fqsen": "\\seog\\rest\\Controller\u003A\u003Aaccess\u0028\u0029",
             "name": "access",
-            "summary": "Gets\u0020the\u0020access\u0020rules\n\t\u0060return\u0020\u005B\n\u0060\t\u0027class\u0027\u0020\u003D\u003E\u0020\\yii\\filters\\AccessControl\u003A\u003AclassName\u0028\u0029,\n\u0060\t\u0027rules\u0027\u0020\u003D\u003E\u0020\u005B\n\u0060\t\u005D\n\u0020\u0060\u005D\u003B",
-            "url": "classes/app-parent-rest-Controller.html#method_access"
+            "summary": "Return\u0020the\u0020access\u0020rules\n\t\u0060return\u0020\u005B\n\u0060\t\u0027class\u0027\u0020\u003D\u003E\u0020\\yii\\filters\\AccessControl\u003A\u003AclassName\u0028\u0029,\n\u0060\t\u0027rules\u0027\u0020\u003D\u003E\u0020\u005B\n\u0060\t\u005D\n\u0020\u0060\u005D\u003B",
+            "url": "classes/seog-rest-Controller.html#method_access"
         },                {
-            "fqsen": "\\app\\parent\\rest\\Controller\u003A\u003Aauth\u0028\u0029",
+            "fqsen": "\\seog\\rest\\Controller\u003A\u003Aauth\u0028\u0029",
             "name": "auth",
             "summary": "Auth\u0020configuration\u0020of\u0020only\u0020and\u0020except\u0020blocks",
-            "url": "classes/app-parent-rest-Controller.html#method_auth"
+            "url": "classes/seog-rest-Controller.html#method_auth"
         },                {
             "fqsen": "\\",
             "name": "\\",
@@ -926,20 +931,20 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/app-parent-db.html"
         },                {
-            "fqsen": "\\app\\parent\\rest",
+            "fqsen": "\\seog\\rest",
             "name": "rest",
             "summary": "",
-            "url": "namespaces/app-parent-rest.html"
-        },                {
-            "fqsen": "\\seog\\web",
-            "name": "web",
-            "summary": "",
-            "url": "namespaces/seog-web.html"
+            "url": "namespaces/seog-rest.html"
         },                {
             "fqsen": "\\seog",
             "name": "seog",
             "summary": "",
             "url": "namespaces/seog.html"
+        },                {
+            "fqsen": "\\seog\\web",
+            "name": "web",
+            "summary": "",
+            "url": "namespaces/seog-web.html"
         },                {
             "fqsen": "\\app\\rbac",
             "name": "rbac",

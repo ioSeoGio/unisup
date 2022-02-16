@@ -31,3 +31,15 @@ tests/_support/_generated
 
 #vagrant folder
 /.vagrant
+
+#====CUSTOM====
+
+# database
+/database
+
+# Loaded data
+/web/loaded/*
+
+# Giiant genenerated files
+/gii/*
+.phptidy-cache

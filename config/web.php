@@ -69,6 +69,7 @@ $config = array_merge_recursive($common, [
             'showScriptName' => false,
             'rules' => [
                 // ['class' => 'yii\rest\UrlRule'],
+                
                 '' => 'site/index',
                 '<controller:[\w-]+>' => '<controller>/index',
                 '<controller:[\w-]+>/<id:\d+>' => '<controller>/view',

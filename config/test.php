@@ -27,9 +27,6 @@ return array_merge($languages, [
             'enableSession' => false,
         ],
         'request' => [
-            // 'cookieValidationKey' => 'test',
-            // 'enableCsrfValidation' => false,
-            // 'enableCrsfCookie' => false,
         ],
     ],
     'params' => $params,

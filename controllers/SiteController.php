@@ -44,8 +44,8 @@ class SiteController extends BaseController
                     'roles' => ['@'],
                 ],
                 [
-                    'actions' => ['test'],
-                    'allow' => false,
+                    'actions' => ['test', 'index'],
+                    'allow' => true,
                 ]
             ],
         ];
@@ -55,7 +55,7 @@ class SiteController extends BaseController
     {
         return array_merge_recursive(parent::auth(), [
             'only' => [],
-            'except' => ['signup', 'test'],
+            'except' => ['signup', 'test', 'index'],
         ]);
     }
 
@@ -77,7 +77,7 @@ class SiteController extends BaseController
 
     public function actionTest()
     {
-        return ;
+        // return ;
     }
 
     /**

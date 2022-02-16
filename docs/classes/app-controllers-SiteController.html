@@ -93,6 +93,10 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
+                <a href="namespaces/seog-rest.html" class="">rest</a>
+                
+            </li>
+                    <li>
                 <a href="namespaces/seog-web.html" class="">web</a>
                 
             </li>
@@ -165,7 +169,7 @@
     SiteController
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\seog\rest\Controller">Controller</abbr>
+        extends <a href="classes/seog-rest-Controller.html"><abbr title="\seog\rest\Controller">Controller</abbr></a>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -213,14 +217,19 @@
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd></dd>
+<dd>{@inheritdoc}</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/app-controllers-SiteController.html#method_access">access()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>{@inheritdoc}</dd>
+<dd>Return the access rules
+	`return [
+`	&#039;class&#039; =&gt; \yii\filters\AccessControl::className(),
+`	&#039;rules&#039; =&gt; [
+`	]
+ `];</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/app-controllers-SiteController.html#method_actionIndex">actionIndex()</a>
@@ -286,6 +295,14 @@
 <dd>Verify email address</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/seog-rest-Controller.html#method_behaviors">behaviors()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Configuring authenticator and set cosr pre-flight filter in order to deal with api requests right
+Chrome asking for OPTIONS pre-flight requests, so corsFilter must be set</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/app-controllers-SiteController.html#method_verbs">verbs()</a>
     <span>
                                 &nbsp;: mixed    </span>
@@ -295,9 +312,16 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/app-controllers-SiteController.html#method_auth">auth()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd></dd>
+<dd>Auth configuration of only and except blocks</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a href="classes/seog-rest-Controller.html#method_getAuthenticatorClass">getAuthenticatorClass()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Returns the authenticator class</dd>
 
         </dl>
 
@@ -369,13 +393,13 @@
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">{@inheritdoc}</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$module</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/src-actions-SignupAction.html"><abbr title="\src\actions\SignupAction">SignupAction</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$signupAction</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -437,18 +461,23 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">{@inheritdoc}</p>
+        <p class="phpdocumentor-summary">Return the access rules
+	`return [
+`	&#039;class&#039; =&gt; \yii\filters\AccessControl::className(),
+`	&#039;rules&#039; =&gt; [
+`	]
+ `];</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">access</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">access</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
         
     
@@ -804,6 +833,40 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_behaviors">
+        behaviors()
+        <a href="classes/seog-rest-Controller.html#method_behaviors" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="parent/rest/Controller.php"><a href="files/parent-rest-controller.html"><abbr title="parent/rest/Controller.php">Controller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">29</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Configuring authenticator and set cosr pre-flight filter in order to deal with api requests right
+Chrome asking for OPTIONS pre-flight requests, so corsFilter must be set</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">behaviors</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_verbs">
         verbs()
         <a href="classes/app-controllers-SiteController.html#method_verbs" class="headerlink"><i class="fas fa-link"></i></a>
@@ -848,18 +911,51 @@
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Auth configuration of only and except blocks</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__name">auth</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">auth</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getAuthenticatorClass">
+        getAuthenticatorClass()
+        <a href="classes/seog-rest-Controller.html#method_getAuthenticatorClass" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="parent/rest/Controller.php"><a href="files/parent-rest-controller.html"><abbr title="parent/rest/Controller.php">Controller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">51</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns the authenticator class</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                <span class="phpdocumentor-signature__name">getAuthenticatorClass</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
         
     
