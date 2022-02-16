@@ -5,7 +5,7 @@ use app\parent\db\Migration;;
 use app\rbac\UserRule;
 use app\rbac\ModeratorRule;
 use app\rbac\AdminRule;
-
+use app\rbac\Rbac;
 
 class m210131_172431_rbac_setup extends Migration
 {
@@ -20,15 +20,15 @@ class m210131_172431_rbac_setup extends Migration
         $auth->add($moderatorRule);
         $auth->add($userRule);
 
-        $admin = $auth->createRole('admin');
+        $admin = $auth->createRole(Rbac::ADMIN);
         $admin->ruleName = $adminRule->name;
         $auth->add($admin);
 
-        $moderator = $auth->createRole('moderator');
+        $moderator = $auth->createRole(Rbac::MODERATOR);
         $moderator->ruleName = $moderatorRule->name;
         $auth->add($moderator);
 
-        $user = $auth->createRole('user');
+        $user = $auth->createRole(Rbac::USER);
         $user->ruleName = $userRule->name;
         $auth->add($user);
 
@@ -38,12 +38,12 @@ class m210131_172431_rbac_setup extends Migration
     {
         $auth = Yii::$app->authManager;
         
-        $user = $auth->getRole('user');
-        $moderator = $auth->getRole('moderator');
-        $admin = $auth->getRole('admin');
-        $userRule = $auth->getRule((new UserRule())->name);
-        $moderatorRule = $auth->getRule((new ModeratorRule())->name);
-        $adminRule = $auth->getRule((new AdminRule())->name);
+        $user = $auth->getRole(Rbac::USER);
+        $moderator = $auth->getRole(Rbac::MODERATOR);
+        $admin = $auth->getRole(Rbac::ADMIN);
+        $userRule = $auth->getRule(Rbac::USER_RULE);
+        $moderatorRule = $auth->getRule(Rbac::MODERATOR_RULE);
+        $adminRule = $auth->getRule(Rbac::ADMIN_RULE);
 
         $auth->remove($user);
         $auth->remove($moderator);

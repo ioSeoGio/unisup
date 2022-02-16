@@ -6,7 +6,7 @@ use Yii;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use app\parent\base\Module as BaseModule;
-
+use app\rbac\Rbac;
 
 class Module extends BaseModule
 {
@@ -16,7 +16,7 @@ class Module extends BaseModule
             return false;
         }
         
-        if (!Yii::$app->user->can('moderator')) {
+        if (!Yii::$app->user->can(Rbac::MODERATOR)) {
             throw new NotFoundHttpException();
         }
     
