@@ -3,4 +3,3 @@
 /.gitattributes     export-ignore
 
 /docs/**				linguist-generated
-/docs/**				linguist-documentation
