@@ -3,4 +3,5 @@
 /.gitattributes     export-ignore
 /docs               export-ignore
 
+/docs				linguist-generated=true
 /docs/*				linguist-generated=true
