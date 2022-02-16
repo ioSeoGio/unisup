@@ -38,8 +38,10 @@ tests/_support/_generated
 /database
 
 # Loaded data
-/web/loaded/*
+/web/loaded/**
 
 # Giiant genenerated files
 /gii/*
 .phptidy-cache
+
+/docs/**
