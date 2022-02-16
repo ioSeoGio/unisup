@@ -32,7 +32,7 @@ tests/_support/_generated
 #vagrant folder
 /.vagrant
 
-#====CUSTOM====
+#=====CUSTOM=====
 
 # database
 /database
@@ -43,3 +43,6 @@ tests/_support/_generated
 # Giiant genenerated files
 /gii/*
 .phptidy-cache
+
+# Documentation generated
+/docs
