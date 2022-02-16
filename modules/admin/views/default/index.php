@@ -1,0 +1,1 @@
+<?= Yii::t('cruds', 'Select category from left menu.') ?>

@@ -1,0 +1,4 @@
+# Ignore all test and documentation for archive
+/.github            export-ignore
+/.gitattributes     export-ignore
+/docs               export-ignore
