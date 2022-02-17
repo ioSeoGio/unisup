@@ -1,6 +1,6 @@
 <?php
 
-namespace src\models\base;
+namespace models\base;
 
 use yii\db\ActiveRecord;
 

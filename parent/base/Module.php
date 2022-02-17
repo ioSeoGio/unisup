@@ -1,9 +1,8 @@
 <?php
 
-namespace app\parent\base;
+namespace seog\base;
 
 use Yii;
-
 
 class Module extends \yii\base\Module
 {

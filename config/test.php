@@ -22,7 +22,7 @@ return array_merge($languages, [
             'showScriptName' => true,
         ],
         'user' => [
-            'identityClass' => 'src\models\UserIdentity',
+            'identityClass' => 'models\UserIdentity',
             'enableAutoLogin' => false,
             'enableSession' => false,
         ],

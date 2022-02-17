@@ -1,9 +1,8 @@
 <?php
 
-namespace app\parent\db;
+namespace seog\db;
 
 use yii\db\Command as BaseCommand;
-
 
 class Command extends BaseCommand
 {

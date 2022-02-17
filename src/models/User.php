@@ -1,19 +1,19 @@
 <?php
 
-namespace src\models;
+namespace models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\UnprocessableEntityHttpException;
 
-use src\models\base\User as BaseUser;
+use models\base\User as BaseUser;
 
 
 /**
  * This class describes an user AR.
  */
-class UserAR extends BaseUser
+class User extends BaseUser
 {
     // public $_new_repeat_password;
     // public $_new_password;

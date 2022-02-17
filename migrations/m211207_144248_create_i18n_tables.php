@@ -1,9 +1,8 @@
 <?php
 
-use app\parent\db\Migration;;
+use seog\db\Migration;
 
-use src\helpers\TranslationMessageHelper;
-
+use helpers\TranslationMessageHelper;
 
 class m211207_144248_create_i18n_tables extends Migration
 {

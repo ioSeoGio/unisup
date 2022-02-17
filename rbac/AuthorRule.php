@@ -2,7 +2,7 @@
 namespace app\rbac;
 
 use yii\rbac\Rule;
-use src\models\UserIdentity as User;
+use models\UserIdentity as User;
 
 
 class AuthorRule extends Rule

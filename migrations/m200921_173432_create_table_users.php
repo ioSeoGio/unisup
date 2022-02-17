@@ -1,7 +1,7 @@
 <?php
 
-use app\parent\db\Migration;
-use src\models\base\User;
+use seog\db\Migration;
+use models\base\User;
 
 class m200921_173432_create_table_users extends Migration
 {

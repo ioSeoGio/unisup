@@ -8,15 +8,17 @@ use yii\filters\VerbFilter;
 
 use seog\rest\Controller as BaseController;
 
-use src\forms\LoginForm;
-use src\forms\ContactForm;
-use src\forms\SignupForm;
-use src\forms\VerifyEmailForm;
-use src\forms\PasswordResetRequestForm;
-use src\forms\ResendVerificationEmailForm;
-use src\forms\ResetPasswordForm;
+use forms\LoginForm;
+use forms\ContactForm;
+use forms\SignupForm;
+use forms\VerifyEmailForm;
+use forms\PasswordResetRequestForm;
+use forms\ResendVerificationEmailForm;
+use forms\ResetPasswordForm;
 
-use src\actions\SignupAction;
+use actions\site\SignupAction;
+
+use transformers\UserSignupTransformer;
 
 class SiteController extends BaseController
 {
@@ -72,12 +74,12 @@ class SiteController extends BaseController
     
     public function actionIndex()
     {
-        throw new \DomainException();
+        return 'Hello world!';
     }
 
     public function actionTest()
     {
-        // return ;
+        return ;
     }
 
     /**
@@ -124,9 +126,13 @@ class SiteController extends BaseController
      */
     public function actionSignup()
     {
-        if ($this->signupAction->run(Yii::$app->request->post())) {
-            return $this->goHome();
+        if ($this->signupAction->run($this->request->bodyParams)) {
+            $this->request->setResponseCode(200);
+            return UserSignupTransformer::transform($this->signupAction->form->user);
         }
+
+        $this->request->setResponseCode(422);
+        return $this->signupAction;
     }
 
     /**

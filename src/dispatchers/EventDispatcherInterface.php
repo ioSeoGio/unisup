@@ -1,8 +1,8 @@
 <?php 
 
-namespace src\dispatchers;
+namespace dispatchers;
 
-use src\events\BaseEvent;
+use events\BaseEvent;
 
 interface EventDispatcherInterface
 {

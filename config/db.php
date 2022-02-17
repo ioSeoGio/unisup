@@ -8,7 +8,7 @@ return [
     'charset' => 'utf8',
 
     'commandMap' => [
-        'pgsql' => 'app\parent\db\Command',
+        'pgsql' => 'seog\db\Command',
     ],
     'schemaMap' => [
         'pgsql'=> [

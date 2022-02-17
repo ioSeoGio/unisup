@@ -6,7 +6,7 @@
  */
 
 use yii\base\InvalidConfigException;
-use app\parent\db\Migration;;
+use yii\db\Migration;
 use yii\rbac\DbManager;
 
 /**

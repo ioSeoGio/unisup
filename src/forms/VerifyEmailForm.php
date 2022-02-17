@@ -1,6 +1,6 @@
 <?php
 
-namespace src\forms;
+namespace forms;
 
 use yii\base\InvalidArgumentException;
 use yii\base\Model;

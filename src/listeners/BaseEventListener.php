@@ -1,8 +1,8 @@
 <?php
 
-namespace src\listeners;
+namespace listeners;
 
-use src\events\BaseEvent;
+use events\BaseEvent;
 
 abstract class BaseEventListener
 {

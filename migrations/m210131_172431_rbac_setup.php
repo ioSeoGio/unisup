@@ -1,6 +1,6 @@
 <?php
 
-use app\parent\db\Migration;;
+use seog\db\Migration;
 
 use app\rbac\UserRule;
 use app\rbac\ModeratorRule;

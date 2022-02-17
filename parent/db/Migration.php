@@ -1,9 +1,8 @@
 <?php
 
-namespace app\parent\db;
+namespace seog\db;
 
 use yii\db\Migration as BaseMigration;
-
 
 class Migration extends BaseMigration
 {

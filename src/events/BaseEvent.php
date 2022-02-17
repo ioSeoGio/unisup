@@ -1,6 +1,6 @@
 <?php
 
-namespace src\events;
+namespace events;
 
 abstract class BaseEvent
 {

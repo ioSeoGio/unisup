@@ -1,6 +1,6 @@
 <?php
 
-namespace src\helpers;
+namespace helpers;
 
 class TranslationMessageHelper
 {

@@ -41,7 +41,7 @@ $config = array_merge_recursive($common, [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'src\models\UserIdentity',
+            'identityClass' => 'models\UserIdentity',
             'enableAutoLogin' => false,
             'enableSession' => false,
         ],

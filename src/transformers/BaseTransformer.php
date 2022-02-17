@@ -1,6 +1,6 @@
 <?php
 
-namespace src\transformers;
+namespace transformers;
 
 abstract class BaseTransformer
 {

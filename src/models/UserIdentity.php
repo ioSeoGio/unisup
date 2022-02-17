@@ -1,10 +1,10 @@
 <?php
 
-namespace src\models;
+namespace models;
 
 use Yii;
 use yii\web\IdentityInterface;
-use src\models\base\User as BaseUser;
+use models\base\User as BaseUser;
 
 
 /**

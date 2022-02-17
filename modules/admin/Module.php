@@ -5,7 +5,8 @@ namespace app\modules\admin;
 use Yii;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
-use app\parent\base\Module as BaseModule;
+
+use seog\base\Module as BaseModule;
 use app\rbac\Rbac;
 
 class Module extends BaseModule
