@@ -22,7 +22,7 @@ $config = array_merge_recursive($common, [
             'currencyCode' => 'UAH',
         ],
         'request' => [
-            // 'cookieValidationKey' => '6MN-T0hVLs5fEOJuJv37RI6f4YCQJKuc',
+            'cookieValidationKey' => '6MN-T0hVLs5fEOJuJv37RI6f4YCQJKuc',
             'parsers' => [
                'application/json' => 'seog\web\JsonParser',
             ],
@@ -36,7 +36,29 @@ $config = array_merge_recursive($common, [
                     'encodeOptions' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
                 ],
             ],
+            'on beforeSend' => function ($event) {
+                $response = $event->sender;
+                $container = Yii::$container;
+
+                $rbacService = Yii::$app->rbacService;
+                $messageService = Yii::$app->messageService;
+                
+                if ($response->data !== null) {
+                    $response->data = [
+                        'data' => $response->data,
+                        'rbac' => $rbacService->dump(),
+                        'messages' => $messageService->dump(),
+                    ];
+                }
+            },
         ],
+        'rbacService' => [
+            'class' => 'services\RbacServiceInterface',
+        ],
+        'messageService' => [
+            'class' => 'services\MessageServiceInterface',
+        ],
+
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -86,14 +108,14 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '::1', 'localhost'],
+        // 'allowedIPs' => ['127.0.0.1', '::1', 'localhost', '*'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '::1', 'localhost'],
+        // 'allowedIPs' => ['127.0.0.1', '::1', 'localhost', '*'],
     ];
 }
 

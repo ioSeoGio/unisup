@@ -24,7 +24,12 @@ class SiteController extends BaseController
 {
     private $signupAction;
 
-    public function __construct($id, $module, SignupAction $signupAction, $config = [])
+    public function __construct(
+        $id, 
+        $module, 
+        SignupAction $signupAction, 
+        $config = []
+    )
     {
         $this->signupAction = $signupAction;
 
@@ -57,7 +62,7 @@ class SiteController extends BaseController
     {
         return array_merge_recursive(parent::auth(), [
             'only' => [],
-            'except' => ['signup', 'test', 'index'],
+            'except' => ['signup', 'test'],
         ]);
     }
 
@@ -74,6 +79,9 @@ class SiteController extends BaseController
     
     public function actionIndex()
     {
+        Yii::$app->rbacService->addRule('canSTFU');
+        Yii::$app->messageService->add('error', 'Test');
+
         return 'Hello world!';
     }
 
