@@ -43,7 +43,6 @@ class SiteController extends BaseController
     {
         return [
             'class' => AccessControl::className(),
-            'only' => ['logout', 'signup', 'test'],
             'rules' => [
                 [
                     'actions' => ['logout'],
@@ -51,7 +50,7 @@ class SiteController extends BaseController
                     'roles' => ['@'],
                 ],
                 [
-                    'actions' => ['test', 'index'],
+                    'actions' => ['test', 'index', 'login', 'signup'],
                     'allow' => true,
                 ]
             ],
@@ -62,7 +61,7 @@ class SiteController extends BaseController
     {
         return array_merge_recursive(parent::auth(), [
             'only' => [],
-            'except' => ['signup', 'test'],
+            'except' => ['login', 'signup', 'test'],
         ]);
     }
 
@@ -73,21 +72,21 @@ class SiteController extends BaseController
             'actions' => [
                 'logout' => ['post'],
                 'login' => ['post'],
+                'signup' => ['post'],
             ],
         ];
     }
     
     public function actionIndex()
     {
-        Yii::$app->rbacService->addRule('canSTFU');
-        Yii::$app->messageService->add('error', 'Test');
-
         return 'Hello world!';
     }
 
     public function actionTest()
     {
-        return ;
+        Yii::$app->rbacService->addRule('canSTFU');
+        Yii::$app->messageService->add('error', 'Test');
+        return 'Testing page';
     }
 
     /**
@@ -135,11 +134,11 @@ class SiteController extends BaseController
     public function actionSignup()
     {
         if ($this->signupAction->run($this->request->bodyParams)) {
-            $this->request->setResponseCode(200);
-            return UserSignupTransformer::transform($this->signupAction->form->user);
+            $this->response->setStatusCode(200);
+            return new UserSignupTransformer($this->signupAction);
         }
 
-        $this->request->setResponseCode(422);
+        $this->response->setStatusCode(422);
         return $this->signupAction;
     }
 

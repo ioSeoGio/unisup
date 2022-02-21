@@ -4,7 +4,7 @@ namespace forms;
 
 use Yii;
 use yii\base\InvalidArgumentException;
-use yii\base\Model;
+use seog\base\Model;
 
 /**
  * Password reset form

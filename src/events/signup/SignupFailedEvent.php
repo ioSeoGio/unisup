@@ -2,9 +2,9 @@
 
 namespace events\signup;
 
-class SignupFailedEvent extends BaseEvent
+class SignupFailedEvent extends \events\BaseEvent
 {
 	public function __construct(
-		\form\SignupForm $form
+		\forms\SignupForm $form
 	) {}
 }

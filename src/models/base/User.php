@@ -33,14 +33,4 @@ class User extends ActiveRecord
             self::STATUS_ACTIVE => Yii::t('app', 'Active'),
         ];
     }
-
-    /**
-     * Be careful editing this function, migration of user table uses this
-     *
-     * @return {desc}
-     */
-    public static function generateAccessToken()
-    {
-        return Yii::$app->security->generateRandomString() . '_' . time();
-    }
 }

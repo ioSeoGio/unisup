@@ -3,9 +3,10 @@
 namespace forms;
 
 use Yii;
-use yii\base\Model;
+use seog\base\Model;
 
 use models\User;
+use models\UserIdentity;
 
 /**
  * Signup form
@@ -56,22 +57,20 @@ class SignupForm extends Model
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
+        $user->generateAccessToken();
         $user->generateEmailVerificationToken();
 
         if ($user->save()) {
             $this->user = $user;
+            $this->loginAfterSignup();
+
             return true;
         }
         return false;
     }
 
-    /**
-     * Sends confirmation email to user
-     * @param User $user user model to with email should be send
-     * @return bool whether the email was sent
-     */
-    protected function sendEmail($user)
-    {
-
+    public function loginAfterSignup()
+    {   
+        Yii::$app->user->login(UserIdentity::findOne($this->user->id));
     }
 }

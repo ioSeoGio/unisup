@@ -2,15 +2,17 @@
 
 namespace transformers;
 
-use models\User;
+use actions\SignupAction;
 
 class UserSignupTransformer extends BaseTransformer
 {
-	public static function transform(User $model)
+	public function transform(): array
 	{
+		$user = $this->action->form->user;
+
 		return [
-			'username' => $model->user,
-			'access_token' => $model->access_token,
+			'username' => $user->username,
+			'access_token' => $user->access_token,
 		];
 	}
 }

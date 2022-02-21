@@ -17,7 +17,7 @@ class m200921_173432_create_table_users extends Migration
             'verification_token' => $this->string(64),
 
             'role' => $this->integer()->notNull()->defaultValue(User::ROLE_USER),
-            'status' => $this->integer()->notNull()->defaultValue(User::STATUS_INACTIVE),
+            'status' => $this->integer()->notNull()->defaultValue(User::STATUS_ACTIVE),
 
             'access_token' => $this->string(64)->notNull(),
 

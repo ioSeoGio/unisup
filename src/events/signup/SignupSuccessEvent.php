@@ -2,9 +2,9 @@
 
 namespace events\signup;
 
-class SignupSuccessEvent extends BaseEvent
+class SignupSuccessEvent extends \events\BaseEvent
 {
 	public function __construct(
-		\form\SignupForm $form
+		\forms\SignupForm $form
 	) {}
 }

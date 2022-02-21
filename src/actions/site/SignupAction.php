@@ -3,8 +3,8 @@
 namespace actions\site;
 
 use dispatchers\EventDispatcherInterface;
-use events\SignupSuccessEvent;
-use events\SignupFailedEvent;
+use events\signup\SignupSuccessEvent;
+use events\signup\SignupFailedEvent;
 use forms\SignupForm;
 
 use actions\BaseAction;
@@ -12,7 +12,7 @@ use actions\BaseAction;
 class SignupAction extends BaseAction
 {
 	public function __construct(
-		EventDispatcherInterface $dispatcher
+		public EventDispatcherInterface $dispatcher
 	) {}
 
 	public function run(array $post)
@@ -23,6 +23,7 @@ class SignupAction extends BaseAction
         	return true;
         }
 
+        $this->setErrors($this->form);
         $this->dispatcher->dispatch(new SignupFailedEvent($this->form));
     	return false;
 	}

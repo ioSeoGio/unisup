@@ -9,15 +9,11 @@ use yii\web\UnprocessableEntityHttpException;
 
 use models\base\User as BaseUser;
 
-
 /**
  * This class describes an user AR.
  */
 class User extends BaseUser
 {
-    // public $_new_repeat_password;
-    // public $_new_password;
-
     /**
      * {@inheritdoc}
      */
@@ -56,26 +52,78 @@ class User extends BaseUser
         return array_merge(parent::rules(), [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
-
-            [
-                ['_new_password'], 'required', 
-                'when' => function ($model) {
-                    return $model->_new_repeat_password != null;
-                },
-            ],
-            [
-                ['_new_repeat_password'], 'required', 
-                'when' => function ($model) {
-                    return $model->_new_password != null;
-                },
-            ],
-            [['_new_password', '_new_repeat_password'], 'string', 'min' => 4, 'when' => function ($model) {
-                return $model->_new_password != null || $model->_new_repeat_password != null;
-            }],
-            [['_new_repeat_password'], 'compare', 'compareAttribute' => '_new_password', 'when' => function ($model) {
-                return $model->_new_password != null || $model->_new_repeat_password != null;
-            }],
         ]);
+    }
+
+    /**
+     * Validates password
+     *
+     * @param string $password password to validate
+     * @return bool if password provided is valid for current user
+     */
+    public function validatePassword($password)
+    {
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
+    }
+
+    /**
+     * Generates password hash from password and sets it to the model
+     *
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+    }
+
+    /**
+     * Makes an access token.
+     *
+     * @return string
+     */
+    public static function makeAccessToken()
+    {
+        return Yii::$app->security->generateRandomString() . '_' . time();
+    }
+
+    /**
+     * Generates access token
+     */
+    public function generateAccessToken()
+    {
+        $this->access_token = self::makeAccessToken();
+    }
+
+    /**
+     * Generates "remember me" authentication key
+     */
+    public function generateAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    /**
+     * Generates new password reset token
+     */
+    public function generatePasswordResetToken()
+    {
+        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+    }
+
+    /**
+     * Generates new token for email verification
+     */
+    public function generateEmailVerificationToken()
+    {
+        $this->verification_token = Yii::$app->security->generateRandomString() . '_' . time();
+    }
+
+    /**
+     * Removes password reset token
+     */
+    public function removePasswordResetToken()
+    {
+        $this->password_reset_token = null;
     }
 
     public function isAdmin()
@@ -91,4 +139,5 @@ class User extends BaseUser
             );       
         }
     }
+    
 }

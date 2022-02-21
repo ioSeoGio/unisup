@@ -10,6 +10,11 @@ use yii\rest\Controller as BaseController;
 abstract class Controller extends BaseController
 {
     /**
+     * @var string|array the configuration for creating the serializer that formats the response data.
+     */
+    public $serializer = 'seog\rest\Serializer';
+
+    /**
      * {@inheritdoc}
      */
     public function __construct(

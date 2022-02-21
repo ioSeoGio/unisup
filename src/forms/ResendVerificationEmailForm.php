@@ -3,8 +3,7 @@
 namespace forms;
 
 use Yii;
-use yii\base\Model;
-
+use seog\base\Model;
 
 class ResendVerificationEmailForm extends Model
 {

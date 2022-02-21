@@ -13,6 +13,11 @@ class RbacService implements RbacServiceInterface
 
 	public function __construct()
 	{
+		$this->init();
+	}
+
+	public function init()
+	{
 		$authManager = Yii::$app->authManager;
 		$authUser = Yii::$app->user;
 

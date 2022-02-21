@@ -43,7 +43,7 @@ $config = array_merge_recursive($common, [
                 $rbacService = Yii::$app->rbacService;
                 $messageService = Yii::$app->messageService;
                 
-                if ($response->data !== null) {
+                if ($response->data !== null && $response->isSuccessful) {
                     $response->data = [
                         'data' => $response->data,
                         'rbac' => $rbacService->dump(),
@@ -93,9 +93,8 @@ $config = array_merge_recursive($common, [
                 // ['class' => 'yii\rest\UrlRule'],
                 
                 '' => 'site/index',
-                '<controller:[\w-]+>' => '<controller>/index',
-                '<controller:[\w-]+>/<id:\d+>' => '<controller>/view',
-                '<controller:[\w-]+>/<id:\d+>/<action:[\w-]+>' => '<controller>/<action>',
+                '<action:[\w-]+>' => 'site/<action>',
+                '<controller:[\w-]+>' => '<controller:[\w-]+>/index',
             ],
         ],
     ],
