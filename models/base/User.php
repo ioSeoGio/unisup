@@ -4,7 +4,6 @@ namespace models\base;
 
 use yii\db\ActiveRecord;
 
-
 class User extends ActiveRecord
 {
     const ROLE_USER = 1;

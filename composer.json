@@ -79,7 +79,8 @@
     "autoload": {
         "psr-4": {
             "src\\": "src/",
-            "seog\\": "parent/",
+            "seog\\": "yii-seog/",
+            "models\\": "models/",
 
             "actions\\": "src/actions/",
             "common\\": "src/common/",
@@ -89,7 +90,6 @@
             "forms\\": "src/forms/",
             "helpers\\": "src/helpers/",
             "listeners\\": "src/listeners/",
-            "models\\": "src/models/",
             "services\\": "src/services/",
             "tasks\\": "src/tasks/",
             "transformers\\": "src/transformers/"

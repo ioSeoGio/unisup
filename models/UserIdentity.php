@@ -6,7 +6,6 @@ use Yii;
 use yii\web\IdentityInterface;
 use models\base\User as BaseUser;
 
-
 /**
  * This class describes an user identity.
  */

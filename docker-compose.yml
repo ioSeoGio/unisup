@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    container_name: veloportal_web
+    container_name: rest_template_web
     image: nginx:1.17
     ports:
       - 80:80
@@ -12,7 +12,7 @@ services:
       - php
 
   php:
-    container_name: veloportal_php
+    container_name: rest_template_php
     build:
       context: ./
       dockerfile: ./docker/php/Dockerfile
@@ -21,7 +21,7 @@ services:
       - ./docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini
 
   db:
-    container_name: veloportal_db
+    container_name: rest_template_db
     image: postgres:latest
     restart: always
     ports:
@@ -31,11 +31,11 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: veloportal_db
+      POSTGRES_DB: rest_template_db
 
   # build to generate docs
   phpdoc:
-    container_name: veloportal_phpdoc
+    container_name: rest_template_phpdoc
     image: phpdoc/phpdoc:latest
     volumes:
       - ./:/var/www/html
@@ -48,7 +48,7 @@ services:
       "
 
   adminer:
-    container_name: veloportal_adminer
+    container_name: rest_template_adminer
     image: adminer
     restart: always
     ports:
