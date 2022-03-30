@@ -15,17 +15,6 @@ abstract class Controller extends BaseController
     public $serializer = 'seog\rest\Serializer';
 
     /**
-     * {@inheritdoc}
-     */
-    public function __construct(
-        $id, 
-        $module, 
-        $config = []
-    ) {
-        parent::__construct($id, $module, $config);
-    }
-
-    /**
      * Configuring authenticator and set cosr pre-flight filter in order to deal with api requests right
      * Chrome asking for OPTIONS pre-flight requests, so corsFilter must be set
      *

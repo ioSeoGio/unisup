@@ -2,9 +2,9 @@
 
 namespace listeners;
 
-use events\BaseEvent;
+use events\EventInterface;
 
 abstract class BaseEventListener
 {
-	abstract public function handle(BaseEvent $event): void;
+	abstract public function handle(EventInterface $event): void;
 }

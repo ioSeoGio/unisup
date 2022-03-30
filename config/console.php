@@ -5,7 +5,7 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = array_merge_recursive($common, [
-    'id' => 'veloportal-console',
+    'id' => 'console',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
@@ -28,9 +28,13 @@ $config = array_merge_recursive($common, [
     ],
     'params' => $params,
     'controllerMap' => [
-        'fixture' => [ // Fixture generation command line.
+        'fixture' => [
             'class' => 'yii\faker\FixtureController',
-            'templatePath' => '@tests/unit/templates',
+            
+            'templatePath' => '@tests/fixtures/templates',
+            'fixtureDataPath' => '@tests/_data',
+            'namespace' => 'tests/fixtures',
+
             'language' => 'ru_RU',
             'count' => 10,
             'providers' => [

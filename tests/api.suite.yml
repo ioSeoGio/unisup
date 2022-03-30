@@ -8,8 +8,12 @@ modules:
    enabled:
        - REST:
            depends: PhpBrowser
-           url: 'http://127.0.0.1:80/index-test.php'
+           url: 'http://25.59.80.8:8443'
            part: [json]
        - Yii2:
            part: [orm, fixtures]
            entryScript: index-test.php
+
+actor: ApiTester
+step_decorators:
+    - \Codeception\Step\AsJson

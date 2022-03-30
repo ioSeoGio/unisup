@@ -2,9 +2,9 @@
 
 namespace dispatchers;
 
-use events\BaseEvent;
+use events\EventInterface;
 
 interface EventDispatcherInterface
 {
-	public function dispatch(BaseEvent $event);
+	public function dispatch(EventInterface $event);
 }

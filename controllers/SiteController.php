@@ -16,23 +16,22 @@ use forms\PasswordResetRequestForm;
 use forms\ResendVerificationEmailForm;
 use forms\ResetPasswordForm;
 
-use actions\site\SignupAction;
+use domain\signup\SignupAction;
+use domain\signup\UserSignupTransformer;
 
-use transformers\UserSignupTransformer;
+use domain\login\LoginAction;
 
 class SiteController extends BaseController
 {
-    private $signupAction;
-
     public function __construct(
         $id, 
         $module, 
-        SignupAction $signupAction, 
+        private SignupAction $signupAction,
+        private LoginAction $loginAction,
+        private LoginForm $loginForm,
         $config = []
     )
     {
-        $this->signupAction = $signupAction;
-
         parent::__construct($id, $module, $config);
     }
 
@@ -84,9 +83,9 @@ class SiteController extends BaseController
 
     public function actionTest()
     {
-        Yii::$app->rbacService->addRule('canSTFU');
-        Yii::$app->messageService->add('error', 'Test');
-        return 'Testing page';
+        // Yii::$app->rbacHandler->addRule('canSTFU');
+        // Yii::$app->messageHandler->add('error', 'Test');
+        // return 'Testing page';
     }
 
     /**
@@ -96,22 +95,7 @@ class SiteController extends BaseController
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            if (Yii::$app->user->can('moderator')) {
-                return $this->redirect(['/admin/default/index']);
-            }
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+        return ['access_token' => 'K1t9ek5Y5llzWcqee7G5lL2j9SR1Vj6r_1644828238'];
     }
 
     /**

@@ -5,12 +5,11 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = array_merge_recursive($common, [
-    'id' => 'veloportal',
+    'id' => 'app',
     'basePath' => dirname(__DIR__),
 
     'bootstrap' => [
         'log', 
-        'app\bootstrap\Bootstrap',
         [
             'class' => 'yii\filters\Cors',
         ],
@@ -20,12 +19,6 @@ $config = array_merge_recursive($common, [
     'components' => [
         'formatter' => [
             'currencyCode' => 'UAH',
-        ],
-        'request' => [
-            'cookieValidationKey' => '6MN-T0hVLs5fEOJuJv37RI6f4YCQJKuc',
-            'parsers' => [
-               'application/json' => 'seog\web\JsonParser',
-            ],
         ],
         'response' => [
             'format' => 'json',
@@ -38,27 +31,19 @@ $config = array_merge_recursive($common, [
             ],
             'on beforeSend' => function ($event) {
                 $response = $event->sender;
-                $container = Yii::$container;
 
-                $rbacService = Yii::$app->rbacService;
-                $messageService = Yii::$app->messageService;
+                $rbacHandler = Yii::$app->rbacHandler;
+                $messageHandler = Yii::$app->messageHandler;
                 
                 if ($response->data !== null && $response->isSuccessful) {
                     $response->data = [
                         'data' => $response->data,
-                        'rbac' => $rbacService->dump(),
-                        'messages' => $messageService->dump(),
+                        'rbac' => $rbacHandler->dump(),
+                        'messages' => $messageHandler->dump(),
                     ];
                 }
             },
         ],
-        'rbacService' => [
-            'class' => 'services\RbacServiceInterface',
-        ],
-        'messageService' => [
-            'class' => 'services\MessageServiceInterface',
-        ],
-
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

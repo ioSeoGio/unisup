@@ -79,19 +79,24 @@
     "autoload": {
         "psr-4": {
             "src\\": "src/",
+            "domain\\": "domain/",
+            "tests\\": "tests/",
+            "tests\\dummy\\": "tests/unit/dummy",
+            
             "seog\\": "yii-seog/",
             "models\\": "models/",
+            "forms\\": "forms/",
 
             "actions\\": "src/actions/",
-            "common\\": "src/common/",
+            "components\\": "src/components/",
             "dispatchers\\": "src/dispatchers/",
+            "dto\\": "src/dto/",
             "events\\": "src/events/",
-            "exceptions\\": "src/exceptions/",
-            "forms\\": "src/forms/",
+            "factories\\": "src/factories/",
             "helpers\\": "src/helpers/",
             "listeners\\": "src/listeners/",
+            "repositories\\": "src/repositories/",
             "services\\": "src/services/",
-            "tasks\\": "src/tasks/",
             "transformers\\": "src/transformers/"
         }
     }

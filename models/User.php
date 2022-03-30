@@ -23,9 +23,6 @@ class User extends BaseUser
 
         $behaviors['timestamp'] = [
             'class' => 'yii\behaviors\TimestampBehavior',
-            'attributes' => [
-                ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-            ],
             'value' => function ($event) {
                 return date("Y-m-d H:i:s");
             }
@@ -95,14 +92,6 @@ class User extends BaseUser
     }
 
     /**
-     * Generates "remember me" authentication key
-     */
-    public function generateAuthKey()
-    {
-        $this->auth_key = Yii::$app->security->generateRandomString();
-    }
-
-    /**
      * Generates new password reset token
      */
     public function generatePasswordResetToken()
@@ -110,6 +99,14 @@ class User extends BaseUser
         $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
     }
 
+    /**
+     * Generates "remember me" authentication key
+     */
+    public function generateAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+    
     /**
      * Generates new token for email verification
      */

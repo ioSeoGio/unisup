@@ -2,7 +2,7 @@
 
 namespace dispatchers;
 
-use events\BaseEvent;
+use events\EventInterface;
 
 class SimpleEventDispatcher implements EventDispatcherInterface
 {
@@ -13,7 +13,7 @@ class SimpleEventDispatcher implements EventDispatcherInterface
 		$this->listeners = $listeners;
 	}
 
-	public function dispatch(BaseEvent $event)
+	public function dispatch(EventInterface $event)
 	{
 		$eventName = $event::class;
 

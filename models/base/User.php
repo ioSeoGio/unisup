@@ -32,4 +32,15 @@ class User extends ActiveRecord
             self::STATUS_ACTIVE => Yii::t('app', 'Active'),
         ];
     }
+
+    /**
+     * Finds user by username
+     *
+     * @param string $username
+     * @return static|null
+     */
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+    }
 }
