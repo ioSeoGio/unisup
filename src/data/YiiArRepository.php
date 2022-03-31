@@ -3,15 +3,25 @@
 namespace data;
 
 use yii\db\ActiveDataProvider;
+use factories\RepositoryFactoryInterface;
 
 abstract class YiiArRepository implements RepositoryInterface
 {
 	private object $query;
 
     public function __construct(
-    	private string $modelClass
+    	private string $modelClass,
+    	private RepositoryFactoryInterface $factory
     ) {
     	$this->resetQuery();
+    }
+
+    /**
+     * Restores query to default
+     */
+    public function resetQuery(): void
+    {
+    	$this->query = $this->modelClass::find();
     }
 
     /**
@@ -59,11 +69,10 @@ abstract class YiiArRepository implements RepositoryInterface
      */
     public function one(): object
     {
-    	$model = $this->query->one();
+    	$dto = $this->getDTO($this->query->one());
     	$this->resetQuery();
-    	return $model;
+    	return $dto;
     }
-
 
     /**
      * Return all records
@@ -71,9 +80,9 @@ abstract class YiiArRepository implements RepositoryInterface
      */
     public function all(): array
     {
-    	$models = $this->query->all();
+    	$dtos = $this->getDTOs($query);
     	$this->resetQuery();
-    	return $models;
+    	return $dtos;
     }
 
     public function asDataProvider(int $pageSize = 50)
@@ -89,20 +98,14 @@ abstract class YiiArRepository implements RepositoryInterface
     }
 
     /**
-     * Restores query to default
-     */
-    public function resetQuery(): void
-    {
-    	$this->query = new $this->modelClass();
-    }
-
-    /**
      * @param $id int
      * @return object
      */
     public static function findOneById(int $id): object
     {
-    	return $this->modelClass::findOne($id);
+    	return $this->getDTO(
+    		$this->modelClass::findOne($id)
+    	);
     }
 
     /**
@@ -113,10 +116,10 @@ abstract class YiiArRepository implements RepositoryInterface
      */
     public static function findManyByIds(array $ids, int $limit = 50): array
     {
-    	return $this->modelClass::find()
+    	$query = $this->modelClass::find()
     		->where(['in', self::PRIMARY_KEY, $ids])
-    		->limit(50)
-    		->all();
+    		->limit(50);
+    	return $this->getDTOs($query);
     }
 
     /**
@@ -127,10 +130,11 @@ abstract class YiiArRepository implements RepositoryInterface
      */
     public static function findOneByCriteria(array $criteria = [], array $with = []): object
     {
-    	return $this->modelClass::find()
+		$model = $this->modelClass::find()
     		->where($criteria)
     		->with($with)
     		->one();
+    	return $this->getDTO($model);
     }
 
     /**
@@ -142,11 +146,11 @@ abstract class YiiArRepository implements RepositoryInterface
      */
     public static function findManyByCriteria(array $criteria = [], int $limit = 50, array $with = []): array
     {
-    	return $this->modelClass::find()
+    	$query = $this->modelClass::find()
     		->where($criteria)
     		->with($with)
-    		->limit($limit)
-    		->all();
+    		->limit($limit);
+    	return $this->getDTOs($query);
     }
 
     /**
@@ -155,8 +159,30 @@ abstract class YiiArRepository implements RepositoryInterface
      */
     public static function findAll(int $limit = 50): array
     {
-    	return $this->modelClass::find()
-    		->limit($limit)
-    		->all();
+    	$query = $this->modelClass::find()
+    		->limit($limit);
+    	return $this->getDTOs($query);
+    }
+
+    /**
+     * @param $model ActiveRecord
+     * @return object
+     */
+    private function getDTO(ActiveRecord $model): object
+    {
+    	return $this->factory::makeDTO($model);
+    }
+
+    /**
+     * @param $query ActiveQuery
+     * @return array
+     */
+    private function getDTOs(ActiveQuery $query): array
+    {
+    	$dtos = [];
+    	foreach ($query->batch() as $model) {
+    		$dtos[] = $this->getDTO($model); 
+    	}
+    	return $dtos;
     }
 }

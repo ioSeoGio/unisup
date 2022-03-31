@@ -83,8 +83,6 @@ class SiteController extends BaseController
 
     public function actionTest()
     {
-        dd(opcache_get_status()['jit']);
-        dd(phpinfo());
         // Yii::$app->rbacHandler->addRule('canSTFU');
         // Yii::$app->messageHandler->add('error', 'Test');
         // return 'Testing page';

@@ -4,7 +4,7 @@ namespace factories;
 
 use seog\web\RequestAdapterInterface;
 
-abstract class BaseFactory
+abstract class BaseRequestFactory
 {
 	protected array $queryParams;
 	protected array $bodyParams;
