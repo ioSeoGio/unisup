@@ -18,7 +18,7 @@ interface RepositoryInterface
      * @param $columns array
      * @return self
      */
-    public function columns(array $columns = ['*']): self;
+    public function select(array $columns = ['*']): self;
 
     /**
      * @param $limit int
@@ -27,17 +27,15 @@ interface RepositoryInterface
     public function limit(int $limit = 50): self;
 
     /**
-     * @param $orderBy str
-     * @param $sort int
-     *
+     * @param $columns array
      * @return self
      */
-    public function orderBy(string $orderBy, int $sort = SORT_DESC): self;
+    public function orderBy($columns = [self::PRIMARY_KEY => self::ASC]): self;
 
     /**
      * @return array
      */
-    public function one(): array;
+    public function one(): object;
 
     /**
      * @return array
@@ -47,18 +45,13 @@ interface RepositoryInterface
     /**
      * @return object
      */
-    public function asDataProvider(): object;
-
-    /**
-     * Restore query to default
-     */
-    public function restoreQuery(): void;
+    public function asDataProvider(int $pageSize = 50): object;
 
     /**
      * @param $id int
      * @return array|object
      */
-    public static function findOneById(int $id): object;
+    public function findOneById(int $id): object;
 
     /**
      * @param $ids array
@@ -66,7 +59,7 @@ interface RepositoryInterface
      *
      * @return array
      */
-    public static function findManyByIds(array $ids, int $limit = 50): array;
+    public function findManyByIds(array $ids, int $limit = 50): array;
 
     /**
      * @param $criteria array
@@ -74,7 +67,7 @@ interface RepositoryInterface
      *
      * @return object
      */
-    public static function findOneByCriteria(array $criteria = [], array $with = []): object;
+    public function findOneByCriteria(array $criteria = [], array $with = []): object;
 
     /**
      * @param $criteria array
@@ -83,11 +76,11 @@ interface RepositoryInterface
      *
      * @return array
      */
-    public static function findManyByCriteria(array $criteria = [], int $limit = 50, array $with = []): array;
+    public function findManyByCriteria(array $criteria = [], int $limit = 50, array $with = []): array;
 
     /**
      * @param $limit int
      * @return array
      */
-    public static function findAll(int $limit = 50): array;
+    public function findAll(int $limit = 50): array;
 }

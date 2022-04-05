@@ -95,7 +95,7 @@
             "factories\\": "src/factories/",
             "helpers\\": "src/helpers/",
             "listeners\\": "src/listeners/",
-            "repositories\\": "src/repositories/",
+            "data\\": "src/data/",
             "services\\": "src/services/",
             "transformers\\": "src/transformers/"
         }
