@@ -23,9 +23,7 @@ abstract class YiiArDeleter extends YiiDataHandler implements DeleterInterface
      */
     public function deleteManyByIds(array $ids): bool
     {
-        $models = $this->modelClass::find()
-            ->where(['in', self::PRIMARY_KEY, $ids])
-            ->all();
+        $models = $this->findMany(['in', self::PRIMARY_KEY, $ids]);
         return $this->deleteMany($models);
     }
 
@@ -35,17 +33,13 @@ abstract class YiiArDeleter extends YiiDataHandler implements DeleterInterface
      */
     public function deleteOneByCriteria(array $criteria = []): bool
     {
-        $model = $this->modelClass::find()
-            ->where($criteria)
-            ->one();
+        $model = $this->findOne($criteria);
         return $this->deleteOne($model);
     }
 
     public function deleteManyByCriteria(array $criteria = []): bool
     {
-        $models = $this->modelClass::find()
-            ->where($criteria)
-            ->one();
+        $models = $this->findMany($criteria);
         return $this->deleteMany($models);
     }
 

@@ -27,16 +27,15 @@ class UserDeleterTest extends \Codeception\Test\Unit
     public function _before()
     {
         $query = new ActiveQueryAdapter(User::class);
-        $factory = new DataFactory(UserDTO::class);
 
         $this->deleter = new UserDeleter($query);
-        $this->repository = new UserRepository($query, $factory);
+        $this->repository = new UserRepository($query);
     }
 
     public function testDeleteOneById()
     {
         $this->assertTrue($this->deleter->deleteOneById(2));
-        $emptyDTO = $this->repository->findOneById(2);
-        $this->assertNull($emptyDTO);
+        $null = $this->repository->findOneById(2);
+        $this->assertNull($null);
     }
 }

@@ -28,8 +28,7 @@ class UserRepositoryTest extends \Codeception\Test\Unit
     public function _before()
     {
         $query = new ActiveQueryAdapter(User::class);
-        $factory = new DataFactory(UserDTO::class);
-        $this->repository = new UserRepository($query, $factory);
+        $this->repository = new UserRepository($query);
     }
 
 	public function testSelect()

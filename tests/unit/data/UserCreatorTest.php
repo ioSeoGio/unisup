@@ -2,7 +2,7 @@
 
 namespace tests\unit\data;
 
-use domain\login\LoginCredentialsDTO;
+use domain\login\LoginCredentialsDto;
 use domain\user\UserCreator;
 use domain\user\UserDTO;
 use factories\DataFactory;
@@ -26,8 +26,7 @@ class UserCreatorTest extends \Codeception\Test\Unit
     public function _before()
     {
         $query = new ActiveQueryAdapter(User::class);
-        $factory = new DataFactory(UserDTO::class);
-        $this->creator = new UserCreator($query, $factory);
+        $this->creator = new UserCreator($query);
     }
 
     public function testCreate()
@@ -65,26 +64,5 @@ class UserCreatorTest extends \Codeception\Test\Unit
         $this->assertIsObject($dtos[1]);
         $this->assertEquals($dtos[0]->username, 'test_1');
         $this->assertEquals($dtos[1]->username, 'test_2');
-    }
-
-    public function testChangeDTO()
-    {
-        $data = [
-            'username' => 'test_username',
-            'password' => '12345678',
-            'email' => 'test@gmail.com',
-            'access_token' => 'test_3534535',
-        ];
-
-        $dto = $this->creator->create($data);
-        $this->assertIsObject($dto);
-        $this->assertEquals($dto->email, 'test@gmail.com');
-        $this->assertObjectNotHasAttribute('password', $dto);
-
-        $this->creator->setDtoClass(LoginCredentialsDTO::class);
-        $loginCredentialsDto = $this->creator->create($data);
-        $this->assertIsObject($loginCredentialsDto);
-        $this->assertEquals($loginCredentialsDto->username, 'test_username');
-        $this->assertObjectHasAttribute('password_hash', $loginCredentialsDto);
     }
 }

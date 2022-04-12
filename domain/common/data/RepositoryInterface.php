@@ -2,7 +2,7 @@
 
 namespace data;
 
-interface RepositoryInterface extends DtoReturnableInterface
+interface RepositoryInterface
 {
     const DESC = SORT_DESC;
     const ASC = SORT_ASC;

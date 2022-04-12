@@ -5,7 +5,7 @@ namespace data;
 use yii\data\ActiveDataProvider;
 use factories\DataFactoryInterface;
 
-abstract class YiiArRepository extends YiiDtoHandler implements RepositoryInterface
+abstract class YiiArRepository extends YiiDataHandler implements RepositoryInterface
 {
     public function with(array $with = []): self
     {
@@ -37,14 +37,14 @@ abstract class YiiArRepository extends YiiDtoHandler implements RepositoryInterf
 
     public function one(): ?object
     {
-        $dto = $this->getDTO($this->query->one());
+        $dto = $this->query->one();
         $this->resetQuery();
         return $dto;
     }
 
     public function all(): array
     {
-        $dtos = $this->getDTOs($this->query);
+        $dtos = $this->query->all();
         $this->resetQuery();
         return $dtos;
     }
@@ -63,40 +63,40 @@ abstract class YiiArRepository extends YiiDtoHandler implements RepositoryInterf
 
     public function findOneById(int $id): ?object
     {
-        $this->query
-            ->where([self::PRIMARY_KEY => $id]);
-        return $this->getDTO();
+        return $this->query
+            ->where([self::PRIMARY_KEY => $id])
+            ->one();
     }
 
     public function findManyByIds(array $ids, int $limit = 50): array
     {
-        $this->query
+        return $this->query
             ->where(['in', self::PRIMARY_KEY, $ids])
-            ->limit(50);
-        return $this->getDTOs();
+            ->limit(50)
+            ->all();
     }
 
     public function findOneByCriteria(array $criteria = [], array $with = []): ?object
     {
-        $this->query
+        return $this->query
             ->where($criteria)
-            ->with($with);
-        return $this->getDTO();
+            ->with($with)
+            ->one();
     }
 
     public function findManyByCriteria(array $criteria = [], int $limit = 50, array $with = []): array
     {
-        $this->query
+        return $this->query
             ->where($criteria)
             ->with($with)
-            ->limit($limit);
-        return $this->getDTOs();
+            ->limit($limit)
+            ->all();
     }
 
     public function findAll(int $limit = 50): array
     {
-        $this->query
-            ->limit($limit);
-        return $this->getDTOs();
+        return $this->query
+            ->limit($limit)
+            ->all();
     }
 }

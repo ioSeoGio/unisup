@@ -78,7 +78,6 @@
     ],
     "autoload": {
         "psr-4": {
-            "src\\": "src/",
             "domain\\": "domain/",
             "tests\\": "tests/",
             "tests\\dummy\\": "tests/unit/dummy",
@@ -87,18 +86,18 @@
             "models\\": "models/",
             "forms\\": "forms/",
 
-            "actions\\": "src/actions/",
-            "components\\": "src/components/",
-            "dispatchers\\": "src/dispatchers/",
-            "dto\\": "src/dto/",
-            "events\\": "src/events/",
-            "factories\\": "src/factories/",
-            "helpers\\": "src/helpers/",
-            "listeners\\": "src/listeners/",
-            "data\\": "src/data/",
-            "services\\": "src/services/",
-            "transformers\\": "src/transformers/",
-            "validators\\": "src/validators/"
+            "actions\\": "domain/common/actions/",
+            "components\\": "domain/common/components/",
+            "dispatchers\\": "domain/common/dispatchers/",
+            "dto\\": "domain/common/dto/",
+            "events\\": "domain/common/events/",
+            "factories\\": "domain/common/factories/",
+            "helpers\\": "domain/common/helpers/",
+            "listeners\\": "domain/common/listeners/",
+            "data\\": "domain/common/data/",
+            "services\\": "domain/common/services/",
+            "transformers\\": "domain/common/transformers/",
+            "validators\\": "domain/common/validators/"
         }
     }
 }

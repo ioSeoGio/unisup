@@ -20,6 +20,7 @@ use domain\signup\SignupAction;
 use domain\signup\UserSignupTransformer;
 
 use domain\login\LoginAction;
+use domain\login\LoginFactory;
 
 class SiteController extends BaseController
 {
@@ -95,7 +96,13 @@ class SiteController extends BaseController
      */
     public function actionLogin()
     {
-        
+        $factory = new LoginFactory($this->request);
+        $dto = $factory->makeDto();
+
+        if ($this->loginForm->load($dto) && $this->loginForm->validate()) {
+            $this->loginAction->run();
+        }
+
         return ['access_token' => 'K1t9ek5Y5llzWcqee7G5lL2j9SR1Vj6r_1644828238'];
     }
 

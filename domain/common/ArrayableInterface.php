@@ -1,6 +1,6 @@
 <?php
 
-namespace src;
+namespace domain\common;
 
 interface ArrayableInterface
 {

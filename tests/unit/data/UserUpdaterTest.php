@@ -25,8 +25,7 @@ class UserUpdaterTest extends \Codeception\Test\Unit
     public function _before()
     {
         $query = new ActiveQueryAdapter(User::class);
-        $factory = new DataFactory(UserDTO::class);
-        $this->updater = new UserUpdater($query, $factory);
+        $this->updater = new UserUpdater($query);
     }
 
     public function testUpdateOneById()

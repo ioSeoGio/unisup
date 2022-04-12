@@ -4,7 +4,7 @@ namespace tests\unit\factories;
 
 use Yii;
 use domain\login\LoginFactory;
-use domain\login\LoginCredentialsDTO;
+use domain\login\LoginCredentialsDto;
 use seog\web\RequestAdapterInterface;
 
 class LoginFactoryTest extends \Codeception\Test\Unit
@@ -31,7 +31,7 @@ class LoginFactoryTest extends \Codeception\Test\Unit
 
         $factory = new LoginFactory($requestStub);
         $dto = $factory->makeDto();
-        $this->assertInstanceOf(LoginCredentialsDTO::class, $dto, 'DTO must be instance LoginCredentialsDTO');
+        $this->assertInstanceOf(LoginCredentialsDto::class, $dto, 'DTO must be instance LoginCredentialsDto');
         $this->assertEquals($dto->username, $data['username'], 'Must be equals');
         $this->assertEquals($dto->password, $data['password'], 'Must be equals');
     }

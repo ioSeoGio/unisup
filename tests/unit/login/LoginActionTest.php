@@ -3,7 +3,7 @@
 namespace tests\unit\actions;
 
 use Codeception\Stub;
-use domain\login\LoginCredentialsDTO;
+use domain\login\LoginCredentialsDto;
 use dispatchers\EventDispatcherInterface;
 use tests\dummy\DummyEventDispatcher;
 
@@ -22,7 +22,7 @@ class LoginActionTest extends \Codeception\Test\Unit
 
     public function testSuccessAction()
     {
-        $dto = new LoginCredentialsDTO();
+        $dto = new LoginCredentialsDto();
         $dto->username = 'admin';
         $dto->password = '12345678';
 

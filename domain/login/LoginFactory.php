@@ -2,15 +2,13 @@
 
 namespace domain\login;
 
-use factories\BaseRequestFactory;
-
-class LoginFactory extends BaseRequestFactory
+class LoginFactory extends \factories\BaseRequestFactory
 {
-    public function makeDto(): LoginCredentialsDTO
-    {
-        $dto = new LoginCredentialsDTO();
-        $dto->username = $this->bodyParams['username'];
-        $dto->password = $this->bodyParams['password'];
-        return $dto;
-    }
+	public function makeDto(): LoginCredentialsDto
+	{
+		$dto = new LoginCredentialsDto();
+		$dto->username = $this->bodyParams['username'];
+		$dto->password = $this->bodyParams['password'];
+		return $dto;
+	}
 }

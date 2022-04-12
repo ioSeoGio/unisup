@@ -2,7 +2,7 @@
 
 namespace data;
 
-interface UpdaterInterface extends DtoReturnableInterface
+interface UpdaterInterface
 {
     const PRIMARY_KEY = 'id';
 

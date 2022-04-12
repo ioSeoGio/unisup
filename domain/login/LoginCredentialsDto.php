@@ -2,8 +2,8 @@
 
 namespace domain\login;
 
-class LoginCredentialsDTO
+class LoginCredentialsDto
 {
 	public string $username = '';
-	public string $password_hash = '';
+	public string $password = '';
 }

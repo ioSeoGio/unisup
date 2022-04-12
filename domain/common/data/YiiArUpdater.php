@@ -5,7 +5,7 @@ namespace data;
 use Yii;
 use yii\db\ActiveRecord;
 
-abstract class YiiArUpdater extends YiiDtoHandler implements UpdaterInterface
+abstract class YiiArUpdater extends YiiDataHandler implements UpdaterInterface
 {
     public function updateOneById(int $id, array $data = []): object
     {
@@ -42,7 +42,7 @@ abstract class YiiArUpdater extends YiiDtoHandler implements UpdaterInterface
     {
         $isUpdatedSuccessful = boolval($model->updateAttributes($data));
         if ($isUpdatedSuccessful) {
-            return $this->factory->makeDto($model);
+            return $model;
         }
         throw new \Error("Saving record id = $model->id failed.");
     }

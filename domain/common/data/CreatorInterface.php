@@ -2,7 +2,7 @@
 
 namespace data;
 
-interface CreatorInterface extends DtoReturnableInterface
+interface CreatorInterface
 {
     const PRIMARY_KEY = 'id';
 

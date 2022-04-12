@@ -2,7 +2,7 @@
 
 namespace forms;
 
-use domain\login\LoginCredentialsDTO;
+use domain\login\LoginCredentialsDto;
 use domain\user\UserRepository;
 use domain\user\UserService;
 use factories\DataFactory;
@@ -25,9 +25,7 @@ class LoginForm extends ModelAdapter implements ValidatorInterface
     public function __construct(
         private UserRepository $repository,
         private UserService $service,
-    ) {
-        $this->repository->setDtoClass(LoginCredentialsDTO::class);
-    }
+    ) {}
 
     /**
      * {@inheritdoc}

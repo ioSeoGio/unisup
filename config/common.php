@@ -24,10 +24,7 @@ return array_merge(
                 },
                 'seog\db\QueryInterface' => 'seog\db\ActiveQueryAdapter',
                 'domain\user\UserRepository' => function () {
-                    return new UserRepository(
-                        new \models\query\UserQuery,
-                        new DataFactory(\domain\UserDTO::class),
-                    );
+                    return new UserRepository(new \models\query\UserQuery);
                 },
             ],
         ],

@@ -2,7 +2,7 @@
 
 namespace data;
 
-abstract class YiiArCreator extends YiiDtoHandler implements CreatorInterface
+abstract class YiiArCreator extends YiiDataHandler implements CreatorInterface
 {
     /**
      * @param $data array
@@ -13,7 +13,7 @@ abstract class YiiArCreator extends YiiDtoHandler implements CreatorInterface
     {
         $model = new $this->query->modelClass($data);
         if ($model->save()) {
-            return $this->factory->makeDto($model);
+            return $model;
         }
         throw new \Error('Failed creating record');
     }
