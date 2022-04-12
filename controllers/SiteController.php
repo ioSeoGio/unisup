@@ -89,28 +89,16 @@ class SiteController extends BaseController
         // return 'Testing page';
     }
 
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
     public function actionLogin()
     {
         $factory = new LoginFactory($this->request);
         $dto = $factory->makeDto();
 
         if ($this->loginForm->load($dto) && $this->loginForm->validate()) {
-            $this->loginAction->run();
+            return $this->loginAction->run($dto);
         }
-
-        return ['access_token' => 'K1t9ek5Y5llzWcqee7G5lL2j9SR1Vj6r_1644828238'];
     }
 
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
     public function actionLogout()
     {
         Yii::$app->user->logout();
@@ -118,11 +106,6 @@ class SiteController extends BaseController
         return $this->goHome();
     }
 
-    /**
-     * Signs user up.
-     *
-     * @return mixed
-     */
     public function actionSignup()
     {
         if ($this->signupAction->run($this->request->bodyParams)) {
@@ -134,11 +117,6 @@ class SiteController extends BaseController
         return $this->signupAction;
     }
 
-    /**
-     * Requests password reset.
-     *
-     * @return mixed
-     */
     public function actionRequestPasswordReset()
     {
         $model = new PasswordResetRequestForm();
@@ -157,13 +135,6 @@ class SiteController extends BaseController
         ]);
     }
 
-    /**
-     * Resets password.
-     *
-     * @param string $token
-     * @return mixed
-     * @throws BadRequestHttpException
-     */
     public function actionResetPassword($token)
     {
         try {
@@ -183,13 +154,6 @@ class SiteController extends BaseController
         ]);
     }
 
-    /**
-     * Verify email address
-     *
-     * @param string $token
-     * @throws BadRequestHttpException
-     * @return yii\web\Response
-     */
     public function actionVerifyEmail($token)
     {
         try {
@@ -206,11 +170,6 @@ class SiteController extends BaseController
         return $this->goHome();
     }
 
-    /**
-     * Resend verification email
-     *
-     * @return mixed
-     */
     public function actionResendVerificationEmail()
     {
         $model = new ResendVerificationEmailForm();

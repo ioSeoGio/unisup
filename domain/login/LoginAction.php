@@ -13,10 +13,10 @@ class LoginAction implements ActionInterface
 		private LoginFailedEvent $failedEvent,
 	) {}
 
-	public function run(object $dto): bool
+	public function run(object $dto): mixed
 	{
     	$this->dispatcher->dispatch($this->successEvent);
-    	return true;
+        return ['access_token' => 'K1t9ek5Y5llzWcqee7G5lL2j9SR1Vj6r_1644828238'];
 
         $this->dispatcher->dispatch($this->failedEvent);
     	return false;
