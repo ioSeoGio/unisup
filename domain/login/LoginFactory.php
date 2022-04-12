@@ -6,7 +6,7 @@ use factories\BaseRequestFactory;
 
 class LoginFactory extends BaseRequestFactory
 {
-    public function makeDTO(): LoginCredentialsDTO
+    public function makeDto(): LoginCredentialsDTO
     {
         $dto = new LoginCredentialsDTO();
         $dto->username = $this->bodyParams['username'];

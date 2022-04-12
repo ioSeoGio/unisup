@@ -2,7 +2,9 @@
 
 namespace tests\unit\actions;
 
+use Codeception\Stub;
 use domain\login\LoginCredentialsDTO;
+use dispatchers\EventDispatcherInterface;
 use tests\dummy\DummyEventDispatcher;
 
 class LoginActionTest extends \Codeception\Test\Unit
@@ -12,8 +14,9 @@ class LoginActionTest extends \Codeception\Test\Unit
     public function _before()
     {
         $container = \Yii::$container;
+        $eventDispatcherStub = Stub::makeEmpty(EventDispatcherInterface::class);
 
-        $container->set('dispatchers\EventDispatcherInterface', new DummyEventDispatcher());
+        $container->set(EventDispatcherInterface::class, $eventDispatcherStub);
     	$this->action = $container->get('domain\login\LoginAction');
     }
 

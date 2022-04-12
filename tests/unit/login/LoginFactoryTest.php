@@ -14,7 +14,7 @@ class LoginFactoryTest extends \Codeception\Test\Unit
         
     }
 
-    public function testMakeDTO()
+    public function testmakeDto()
     {
         $data = [
             'username' => 'test-username',
@@ -30,10 +30,9 @@ class LoginFactoryTest extends \Codeception\Test\Unit
         );
 
         $factory = new LoginFactory($requestStub);
-        $dto = $factory->makeDTO();
-
-        $this->assertTrue($dto instanceof LoginCredentialsDTO, 'DTO must be instance LoginCredentialsDTO');
-        $this->assertTrue($dto->username === $data['username'], 'Must be equals');
-        $this->assertTrue($dto->password === $data['password'], 'Must be equals');
+        $dto = $factory->makeDto();
+        $this->assertInstanceOf(LoginCredentialsDTO::class, $dto, 'DTO must be instance LoginCredentialsDTO');
+        $this->assertEquals($dto->username, $data['username'], 'Must be equals');
+        $this->assertEquals($dto->password, $data['password'], 'Must be equals');
     }
 }

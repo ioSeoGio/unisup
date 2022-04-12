@@ -2,53 +2,58 @@
 
 namespace tests\unit\forms;
 
+use Yii;
 use forms\LoginForm;
 
 class LoginFormTest extends \Codeception\Test\Unit
 {
+	private $form;
+
     public function _fixtures()
     {
         return [
             'users' => [
-                'class' => \tests\fixtures\UserFixture::className(),
+                'class' => \tests\fixtures\UserFixture::class,
                 'dataFile' => codecept_data_dir() . 'users.php'
             ],
         ];
     }
 
+    public function _before()
+    {
+    	$this->form = Yii::$container->get(LoginForm::class);
+    }
+
 	public function testSuccessValidateForm()
 	{
-    	$form = new LoginForm();
     	$data = [
     		'username' => 'admin',
     		'password' => '12345678',
     	];
 
-    	$this->assertTrue($form->load($data));
-    	$this->assertTrue($form->validate());
+    	$this->assertTrue($this->form->load($data));
+    	$this->assertTrue($this->form->validate());
 	}
 
 	public function testNotExistingUserLogin()
 	{
-    	$form = new LoginForm();
     	$data = [
     		'username' => 'not-existing-user',
     		'password' => 'random-password',
     	];
 
-    	$this->assertTrue($form->load($data));
-    	$this->assertFalse($form->validate());
+    	$this->assertTrue($this->form->load($data));
+    	$this->assertFalse($this->form->validate());
 	}
 
 	public function testNotCorrectPasswordLogin()
 	{
-    	$form = new LoginForm();
     	$data = [
     		'username' => 'admin',
     		'password' => 'not-correct-password',
     	];
 
-    	$this->assertTrue($form->load($data));
-    	$this->assertFalse($form->validate());
+    	$this->assertTrue($this->form->load($data));
+    	$this->assertFalse($this->form->validate());
 	}
 }

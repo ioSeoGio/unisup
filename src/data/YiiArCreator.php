@@ -2,33 +2,32 @@
 
 namespace data;
 
-abstract class YiiArCreator implements CreatorInterface
+abstract class YiiArCreator extends YiiDtoHandler implements CreatorInterface
 {
-    public function __construct(private string $modelClass) {}
-
     /**
      * @param $data array
-     * @return bool
+     * @return object
+     * @throws \Error
      */
-    public function create(array $data): bool
+    public function create(array $data): object
     {
-        $model = new $this->modelClass($data);
-        return $model->save();
+        $model = new $this->query->modelClass($data);
+        if ($model->save()) {
+            return $this->factory->makeDto($model);
+        }
+        throw new \Error('Failed creating record');
     }
 
     /**
      * @param $data array
-     * @return bool
+     * @return array
      */
-    public function createMany(array $data): bool
+    public function createMany(array $data): array
     {
-        $flag = true;
-
-        foreach ($data as $key => $attributesData) {
-            $model = new $this->modelClass($attributesData);
-            $flag &= $model->save();
+        $dtos = [];
+        foreach ($data as $attributesData) {
+            $dtos[] = $this->create($attributesData);
         }
-
-        return $flag;
+        return $dtos;
     }
 }

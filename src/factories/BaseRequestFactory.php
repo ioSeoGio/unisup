@@ -15,5 +15,5 @@ abstract class BaseRequestFactory
 		$this->bodyParams = $request->getBodyParams();
 	}
 
-	abstract public function makeDTO(): object;
+	abstract public function makeDto(): object;
 }

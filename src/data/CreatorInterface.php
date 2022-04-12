@@ -2,19 +2,11 @@
 
 namespace data;
 
-interface CreatorInterface
+interface CreatorInterface extends DtoReturnableInterface
 {
     const PRIMARY_KEY = 'id';
 
-    /**
-     * @param $data array
-     * @return bool
-     */
-    public function create(array $data): bool;
 
-    /**
-     * @param $data array
-     * @return bool
-     */
-    public function createMany(array $data): bool;
+    public function create(array $data): object;
+    public function createMany(array $data): array;
 }

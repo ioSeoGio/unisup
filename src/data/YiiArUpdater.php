@@ -2,63 +2,32 @@
 
 namespace data;
 
+use Yii;
 use yii\db\ActiveRecord;
 
-abstract class YiiArUpdater implements UpdaterInterface
+abstract class YiiArUpdater extends YiiDtoHandler implements UpdaterInterface
 {
-    public function __construct(private string $modelClass) {}
-
-    /**
-     * @param $id int
-     * @param $data array
-     *
-     * @return bool
-     */
-    public function updateOneById(int $id, array $data = []): bool
+    public function updateOneById(int $id, array $data = []): object
     {
-        $model = $this->modelClass::findOne($id);
+        $model = $this->findOne($id);
         return $this->updateOne($model, $data);
     }
 
-    /**
-     * @param $ids array
-     * @param $data array
-     *
-     * @return bool
-     */
-    public function updateManyByIds(array $ids, array $data = []): bool
+    public function updateManyByIds(array $ids, array $data = []): array
     {
-        $models = $this->modelClass::find()
-            ->where(['in', self::PRIMARY_KEY, $ids])
-            ->all();
+        $models = $this->findMany(['in', self::PRIMARY_KEY, $ids]);
         return $this->updateMany($models, $data);
     }
 
-    /**
-     * @param $criteria array
-     * @param $data array
-     *
-     * @return bool
-     */
-    public function updateOneByCriteria(array $criteria, array $data = []): bool
+    public function updateOneByCriteria(array $criteria, array $data = []): object
     {
-        $model = $this->modelClass::findOne()
-            ->where($criteria)
-            ->one();
+        $model = $this->findOne($criteria);
         return $this->updateOne($model, $data);
     }
 
-    /**
-     * @param $criteria array
-     * @param $data array
-     *
-     * @return bool
-     */
-    public function updateManyByCriteria(array $criteria = [], array $data = []): bool
+    public function updateManyByCriteria(array $criteria = [], array $data = []): array
     {
-        $models = $this->modelClass::findOne()
-            ->where($criteria)
-            ->all();
+        $models = $this->findMany($criteria);
         return $this->updateMany($models, $data);
     }
 
@@ -66,26 +35,24 @@ abstract class YiiArUpdater implements UpdaterInterface
      * @param $model \yii\db\ActiveRecord
      * @param $data array
      *
-     * @return bool
+     * @return object
+     * @throws \Error
      */
-    private function updateOne(ActiveRecord $model, array $data): bool
+    private function updateOne(ActiveRecord $model, array $data): object
     {
-        $affectedRowsNumber = $model->updateAttributes($data);
-        return boolval($affectedRowsNumber);
+        $isUpdatedSuccessful = boolval($model->updateAttributes($data));
+        if ($isUpdatedSuccessful) {
+            return $this->factory->makeDto($model);
+        }
+        throw new \Error("Saving record id = $model->id failed.");
     }
 
-    /**
-     * @param $models array
-     * @param $data array
-     *
-     * @return bool
-     */
-    public function updateMany(array $models, array $data): bool
+    private function updateMany(array $models, array $data): array
     {
-        $flag = true;
+        $dtos = [];
         foreach ($models as $model) {
-            $flag &= $this->updateOne($model, $data);
+            $dtos[] = $this->updateOne($model, $data);
         }
-        return $flag;
+        return $dtos;
     }
 }

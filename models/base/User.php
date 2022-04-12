@@ -2,9 +2,9 @@
 
 namespace models\base;
 
-use yii\db\ActiveRecord;
+use seog\db\ActiveRecordAdapter;
 
-class User extends ActiveRecord
+class User extends ActiveRecordAdapter
 {
     const ROLE_USER = 1;
     const ROLE_MODERATOR = 90;
@@ -31,16 +31,5 @@ class User extends ActiveRecord
             self::STATUS_INACTIVE => Yii::t('app', 'Inactive'),
             self::STATUS_ACTIVE => Yii::t('app', 'Active'),
         ];
-    }
-
-    /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
-     */
-    public static function findByUsername($username)
-    {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 }

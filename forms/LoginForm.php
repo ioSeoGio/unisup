@@ -2,21 +2,32 @@
 
 namespace forms;
 
-use Yii;
-use seog\base\Model;
-
+use domain\login\LoginCredentialsDTO;
+use domain\user\UserRepository;
+use domain\user\UserService;
+use factories\DataFactory;
+use models\query\UserQuery;
 use models\User;
+use seog\base\ModelAdapter;
+use validators\ValidatorInterface;
+use Yii;
 
 /**
  * Login form
  */
-class LoginForm extends Model
+class LoginForm extends ModelAdapter implements ValidatorInterface
 {
     public $username;
     public $password;
 
     private $_user;
 
+    public function __construct(
+        private UserRepository $repository,
+        private UserService $service,
+    ) {
+        $this->repository->setDtoClass(LoginCredentialsDTO::class);
+    }
 
     /**
      * {@inheritdoc}
@@ -48,7 +59,8 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->password)) {
+
+            if (!$user || !$this->service->validatePassword($this->password, $user)) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
         }
@@ -64,7 +76,7 @@ class LoginForm extends Model
         if ($this->validate()) {
             return $this->getUser();
         }
-        
+
         return false;
     }
 
@@ -73,10 +85,10 @@ class LoginForm extends Model
      *
      * @return User|null
      */
-    protected function getUser()
+    private function getUser()
     {
         if ($this->_user === null) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = $this->repository->findByUsername($this->username);
         }
 
         return $this->_user;

@@ -2,17 +2,18 @@
 
 namespace data;
 
-abstract class YiiArDeleter implements CreatorInterface
-{
-    public function __construct(private string $modelClass) {}
+use seog\db\QueryInterface;
+use seog\db\ActiveRecordAdapter;
 
+abstract class YiiArDeleter extends YiiDataHandler implements DeleterInterface
+{
     /**
      * @param $id int
      * @return bool
      */
     public function deleteOneById(int $id): bool
     {
-        $model = $this->modelClass::findOne($id);
+        $model = $this->findOne($id);
         return $this->deleteOne($model);
     }
 
@@ -62,10 +63,10 @@ abstract class YiiArDeleter implements CreatorInterface
     }
 
     /**
-     * @param $model ActiveRecord
+     * @param $model ActiveRecordAdapter
      * @return bool
      */
-    private function deleteOne(ActiveRecord $model): bool
+    private function deleteOne(ActiveRecordAdapter $model): bool
     {
         return $model->delete();
     }

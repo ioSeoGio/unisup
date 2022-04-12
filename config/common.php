@@ -1,6 +1,8 @@
 <?php
 
 use dispatchers\SimpleEventDispatcher;
+use domain\user\UserRepository;
+use factories\DataFactory;
 
 $languages = require __DIR__ . '/languages.php';
 
@@ -19,6 +21,13 @@ return array_merge(
                         'domain\login\LoginSuccessEvent' => ['domain\login\LoginSuccessEventListener'],
                         'domain\login\LoginFailedEvent' => ['domain\login\LoginFailedEventListener'],
                     ]);
+                },
+                'seog\db\QueryInterface' => 'seog\db\ActiveQueryAdapter',
+                'domain\user\UserRepository' => function () {
+                    return new UserRepository(
+                        new \models\query\UserQuery,
+                        new DataFactory(\domain\UserDTO::class),
+                    );
                 },
             ],
         ],
@@ -51,4 +60,5 @@ return array_merge(
                 'class' => 'components\MessageHandlerInterface',
             ],
         ],
-    ]);
+    ]
+);

@@ -97,7 +97,8 @@
             "listeners\\": "src/listeners/",
             "data\\": "src/data/",
             "services\\": "src/services/",
-            "transformers\\": "src/transformers/"
+            "transformers\\": "src/transformers/",
+            "validators\\": "src/validators/"
         }
     }
 }

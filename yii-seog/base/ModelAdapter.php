@@ -3,10 +3,11 @@
 namespace seog\base;
 
 use yii\base\Model as BaseModel;
+use validators\ValidatorInterface;
 
-class Model extends BaseModel
+class ModelAdapter extends BaseModel implements ValidatorInterface
 {
-    public function load($data, $formName = '')
+    public function load($data, $formName = ''): bool
     {
         $scope = $formName === null ? $this->formName() : $formName;
         if ($scope === '' && !empty($data)) {
@@ -21,4 +22,9 @@ class Model extends BaseModel
 
         return false;
     }
+
+    public function validate($attributeNames = null, $clearErrors = true): bool
+    {
+        return parent::validate();
+    }    
 }
