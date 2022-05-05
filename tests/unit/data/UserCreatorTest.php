@@ -2,12 +2,9 @@
 
 namespace tests\unit\data;
 
-use domain\login\LoginCredentialsDto;
 use domain\user\UserCreator;
-use domain\user\UserDTO;
-use factories\DataFactory;
 use models\User;
-use seog\db\ActiveQueryAdapter;
+use yiiseog\db\ActiveQueryAdapter;
 
 class UserCreatorTest extends \Codeception\Test\Unit
 {

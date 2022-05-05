@@ -2,11 +2,9 @@
 
 namespace tests\unit\data;
 
-use domain\user\UserDTO;
 use domain\user\UserUpdater;
-use factories\DataFactory;
 use models\User;
-use seog\db\ActiveQueryAdapter;
+use yiiseog\db\ActiveQueryAdapter;
 
 class UserUpdaterTest extends \Codeception\Test\Unit
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace seog\db;
+namespace yiiseog\db;
 
-use yii\db\ActiveRecord as BaseActiveRecord;
 use domain\common\ArrayableInterface;
+use yii\db\ActiveRecord as BaseActiveRecord;
 
-abstract class ActiveRecordAdapter extends BaseActiveRecord implements ArrayableInterface 
+abstract class ActiveRecordAdapter extends BaseActiveRecord implements ArrayableInterface
 {
-	public function asArray(): array
-	{
-		return $this->attributes;
-	}
+    public function asArray(): array
+    {
+        return $this->attributes;
+    }
 }

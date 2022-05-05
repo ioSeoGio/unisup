@@ -2,23 +2,9 @@
 
 namespace transformers;
 
-use actions\BaseAction;
-
-abstract class BaseTransformer
+abstract class BaseTransformer implements \JsonSerializable
 {
-	public BaseAction $action; 
-	
-	public function __construct(BaseAction $action)
-	{
-		$this->action = $action;
-	}
-
-	/**
-	 * Function returning transformed data
-	 *
-	 * @return array
-	 */
-	abstract public function transform(): array;
+	abstract public function jsonSerialize(): mixed;
 
 	/**
 	 * Array of (string) dynamic rbac rules to return to user

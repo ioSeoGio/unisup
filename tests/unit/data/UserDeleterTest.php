@@ -3,11 +3,9 @@
 namespace tests\unit\data;
 
 use domain\user\UserDeleter;
-use domain\user\UserDTO;
 use domain\user\UserRepository;
-use factories\DataFactory;
 use models\User;
-use seog\db\ActiveQueryAdapter;
+use yiiseog\db\ActiveQueryAdapter;
 
 class UserDeleterTest extends \Codeception\Test\Unit
 {

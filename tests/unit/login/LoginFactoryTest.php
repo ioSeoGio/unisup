@@ -2,16 +2,15 @@
 
 namespace tests\unit\factories;
 
-use Yii;
-use domain\login\LoginFactory;
 use domain\login\LoginCredentialsDto;
-use seog\web\RequestAdapterInterface;
+use domain\login\LoginFactory;
+use yiiseog\web\RequestAdapterInterface;
 
 class LoginFactoryTest extends \Codeception\Test\Unit
 {
     protected function _before()
     {
-        
+
     }
 
     public function testmakeDto()
@@ -22,10 +21,10 @@ class LoginFactoryTest extends \Codeception\Test\Unit
         ];
 
         $requestStub = \Codeception\Stub::makeEmpty(
-            RequestAdapterInterface::class, 
+            RequestAdapterInterface::class,
             [
                 'getQueryParams' => [],
-                'getBodyParams' => $data
+                'getBodyParams' => $data,
             ],
         );
 

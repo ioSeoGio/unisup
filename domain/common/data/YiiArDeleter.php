@@ -2,8 +2,7 @@
 
 namespace data;
 
-use seog\db\QueryInterface;
-use seog\db\ActiveRecordAdapter;
+use yiiseog\db\ActiveRecordAdapter;
 
 abstract class YiiArDeleter extends YiiDataHandler implements DeleterInterface
 {

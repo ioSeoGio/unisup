@@ -80,9 +80,8 @@
         "psr-4": {
             "domain\\": "domain/",
             "tests\\": "tests/",
-            "tests\\dummy\\": "tests/unit/dummy",
             
-            "seog\\": "yii-seog/",
+            "yiiseog\\": "yii-seog/",
             "models\\": "models/",
             "forms\\": "forms/",
 

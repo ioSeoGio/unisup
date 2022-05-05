@@ -6,33 +6,25 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
-use seog\rest\Controller as BaseController;
+use yiiseog\rest\Controller as BaseController;
 
-use forms\LoginForm;
-use forms\ContactForm;
-use forms\SignupForm;
-use forms\VerifyEmailForm;
-use forms\PasswordResetRequestForm;
-use forms\ResendVerificationEmailForm;
-use forms\ResetPasswordForm;
-
-use domain\signup\SignupAction;
-use domain\signup\UserSignupTransformer;
-
-use domain\login\LoginAction;
 use domain\login\LoginFactory;
+use domain\login\LoginForm;
+use domain\login\LoginAction;
+use domain\login\LoginTransformer;
 
 class SiteController extends BaseController
 {
     public function __construct(
         $id, 
         $module, 
-        private SignupAction $signupAction,
-        private LoginAction $loginAction,
+
+        private LoginFactory $loginFactory,
         private LoginForm $loginForm,
-        $config = []
-    )
-    {
+        private LoginAction $loginAction,
+
+        $config = [],
+    ) {
         parent::__construct($id, $module, $config);
     }
 
@@ -45,12 +37,7 @@ class SiteController extends BaseController
             'class' => AccessControl::className(),
             'rules' => [
                 [
-                    'actions' => ['logout'],
-                    'allow' => true,
-                    'roles' => ['@'],
-                ],
-                [
-                    'actions' => ['test', 'index', 'login', 'signup'],
+                    'actions' => ['test', 'index', 'login'],
                     'allow' => true,
                 ]
             ],
@@ -61,7 +48,7 @@ class SiteController extends BaseController
     {
         return array_merge_recursive(parent::auth(), [
             'only' => [],
-            'except' => ['login', 'signup', 'test'],
+            'except' => ['login', 'test'],
         ]);
     }
 
@@ -70,7 +57,6 @@ class SiteController extends BaseController
         return [
             'class' => VerbFilter::className(),
             'actions' => [
-                'logout' => ['post'],
                 'login' => ['post'],
                 'signup' => ['post'],
             ],
@@ -86,103 +72,14 @@ class SiteController extends BaseController
     {
         // Yii::$app->rbacHandler->addRule('canSTFU');
         // Yii::$app->messageHandler->add('error', 'Test');
-        // return 'Testing page';
     }
 
     public function actionLogin()
     {
-        $factory = new LoginFactory($this->request);
-        $dto = $factory->makeDto();
-
+        $dto = $this->loginFactory->makeDto();
         if ($this->loginForm->load($dto) && $this->loginForm->validate()) {
-            return $this->loginAction->run($dto);
+            return new LoginTransformer($this->loginAction->run($dto));
         }
-    }
-
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
-    public function actionSignup()
-    {
-        if ($this->signupAction->run($this->request->bodyParams)) {
-            $this->response->setStatusCode(200);
-            return new UserSignupTransformer($this->signupAction);
-        }
-
-        $this->response->setStatusCode(422);
-        return $this->signupAction;
-    }
-
-    public function actionRequestPasswordReset()
-    {
-        $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-
-                return $this->goHome();
-            }
-
-            Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
-        }
-
-        return $this->render('requestPasswordResetToken', [
-            'model' => $model,
-        ]);
-    }
-
-    public function actionResetPassword($token)
-    {
-        try {
-            $model = new ResetPasswordForm($token);
-        } catch (InvalidArgumentException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password saved.');
-
-            return $this->goHome();
-        }
-
-        return $this->render('resetPassword', [
-            'model' => $model,
-        ]);
-    }
-
-    public function actionVerifyEmail($token)
-    {
-        try {
-            $model = new VerifyEmailForm($token);
-        } catch (InvalidArgumentException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
-        if (($user = $model->verifyEmail()) && Yii::$app->user->login($user)) {
-            Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
-            return $this->goHome();
-        }
-
-        Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');
-        return $this->goHome();
-    }
-
-    public function actionResendVerificationEmail()
-    {
-        $model = new ResendVerificationEmailForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-                return $this->goHome();
-            }
-            Yii::$app->session->setFlash('error', 'Sorry, we are unable to resend verification email for the provided email address.');
-        }
-
-        return $this->render('resendVerificationEmail', [
-            'model' => $model
-        ]);
+        return $this->loginForm;
     }
 }

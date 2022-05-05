@@ -4,21 +4,21 @@ namespace domain\login;
 
 use actions\ActionInterface;
 use dispatchers\EventDispatcherInterface;
+use domain\user\UserRepository;
 
 class LoginAction implements ActionInterface
 {
 	public function __construct(
 		private EventDispatcherInterface $dispatcher,
 		private LoginSuccessEvent $successEvent,
-		private LoginFailedEvent $failedEvent,
+		private UserRepository $repository,
 	) {}
 
 	public function run(object $dto): mixed
 	{
-    	$this->dispatcher->dispatch($this->successEvent);
-        return ['access_token' => 'K1t9ek5Y5llzWcqee7G5lL2j9SR1Vj6r_1644828238'];
-
-        $this->dispatcher->dispatch($this->failedEvent);
-    	return false;
+		$dto = $this->repository->findByUsername($dto->username);
+		$this->successEvent->setDto($dto);
+		$this->dispatcher->dispatch($this->successEvent);
+    	return $dto;
 	}
 }

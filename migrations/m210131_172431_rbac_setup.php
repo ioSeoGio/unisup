@@ -1,21 +1,20 @@
 <?php
 
-use seog\db\Migration;
-
-use app\rbac\UserRule;
-use app\rbac\ModeratorRule;
 use app\rbac\AdminRule;
+use app\rbac\ModeratorRule;
 use app\rbac\Rbac;
+use app\rbac\UserRule;
+use yiiseog\db\Migration;
 
-class m210131_172431_rbac_setup extends Migration
+class M210131172431RbacSetup extends Migration
 {
     public function safeUp()
     {
         $auth = Yii::$app->authManager;
-    
-        $adminRule = new AdminRule(); 
-        $moderatorRule = new ModeratorRule(); 
-        $userRule = new UserRule(); 
+
+        $adminRule = new AdminRule();
+        $moderatorRule = new ModeratorRule();
+        $userRule = new UserRule();
         $auth->add($adminRule);
         $auth->add($moderatorRule);
         $auth->add($userRule);
@@ -37,7 +36,7 @@ class m210131_172431_rbac_setup extends Migration
     public function safeDown()
     {
         $auth = Yii::$app->authManager;
-        
+
         $user = $auth->getRole(Rbac::USER);
         $moderator = $auth->getRole(Rbac::MODERATOR);
         $admin = $auth->getRole(Rbac::ADMIN);

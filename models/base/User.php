@@ -2,7 +2,7 @@
 
 namespace models\base;
 
-use seog\db\ActiveRecordAdapter;
+use yiiseog\db\ActiveRecordAdapter;
 
 class User extends ActiveRecordAdapter
 {
@@ -13,7 +13,6 @@ class User extends ActiveRecordAdapter
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
-
 
     public function getRoles()
     {

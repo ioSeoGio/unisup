@@ -1,6 +1,6 @@
 <?php
 
-namespace seog\base;
+namespace yiiseog\base;
 
 use Yii;
 

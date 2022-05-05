@@ -1,6 +1,6 @@
 <?php
 
-namespace seog\rest;
+namespace yiiseog\rest;
 
 use Yii;
 use yii\web\Request;
@@ -12,7 +12,7 @@ abstract class Controller extends BaseController
     /**
      * @var string|array the configuration for creating the serializer that formats the response data.
      */
-    public $serializer = 'seog\rest\Serializer';
+    public $serializer = 'yiiseog\rest\Serializer';
 
     /**
      * Configuring authenticator and set cosr pre-flight filter in order to deal with api requests right

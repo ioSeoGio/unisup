@@ -1,9 +1,9 @@
 <?php
 
-namespace seog\base;
+namespace yiiseog\base;
 
-use yii\base\Model as BaseModel;
 use validators\ValidatorInterface;
+use yii\base\Model as BaseModel;
 
 class ModelAdapter extends BaseModel implements ValidatorInterface
 {
@@ -28,5 +28,5 @@ class ModelAdapter extends BaseModel implements ValidatorInterface
     public function validate($attributeNames = null, $clearErrors = true): bool
     {
         return parent::validate();
-    }    
+    }
 }

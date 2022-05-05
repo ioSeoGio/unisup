@@ -1,6 +1,6 @@
 <?php
 
-namespace seog\db;
+namespace yiiseog\db;
 
 use yii\db\Migration as BaseMigration;
 

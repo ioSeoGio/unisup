@@ -24,7 +24,7 @@ $config = array_merge_recursive($common, [
             'format' => 'json',
             'formatters' => [
                 'json' => [
-                    'class' => 'seog\web\JsonResponseFormatter',
+                    'class' => 'yiiseog\web\JsonResponseFormatter',
                     'prettyPrint' => YII_DEBUG,
                     'encodeOptions' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
                 ],

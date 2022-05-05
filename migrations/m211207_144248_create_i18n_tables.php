@@ -1,10 +1,9 @@
 <?php
 
-use seog\db\Migration;
-
 use helpers\TranslationMessageHelper;
+use yiiseog\db\Migration;
 
-class m211207_144248_create_i18n_tables extends Migration
+class M211207144248CreateI18nTables extends Migration
 {
     /**
      * {@inheritdoc}
@@ -29,12 +28,12 @@ class m211207_144248_create_i18n_tables extends Migration
             'updated_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP')->comment('Date and time of last updating'),
         ]);
         $this->addForeignKey(
-            'FK_message_id_source_message_id', 
-            '{{%message}}', 
-            'source_id', 
-            '{{%source_message}}', 
-            'id', 
-            'SET NULL', 
+            'FK_message_id_source_message_id',
+            '{{%message}}',
+            'source_id',
+            '{{%source_message}}',
+            'id',
+            'SET NULL',
             'SET NULL'
         );
 
@@ -58,7 +57,7 @@ class m211207_144248_create_i18n_tables extends Migration
     public function safeDown()
     {
         $this->dropForeignKey(
-            'FK_message_id_source_message_id', 
+            'FK_message_id_source_message_id',
             '{{%message}}'
         );
         $this->dropTable('{{%message}}');

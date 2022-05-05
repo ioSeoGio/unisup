@@ -1,6 +1,6 @@
 <?php 
 
-namespace seog\web;
+namespace yiiseog\web;
 
 use yii\web\Request as YiiRequest;
 

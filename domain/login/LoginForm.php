@@ -1,6 +1,6 @@
 <?php
 
-namespace forms;
+namespace domain\login;
 
 use domain\login\LoginCredentialsDto;
 use domain\user\UserRepository;
@@ -8,7 +8,7 @@ use domain\user\UserService;
 use factories\DataFactory;
 use models\query\UserQuery;
 use models\User;
-use seog\base\ModelAdapter;
+use yiiseog\base\ModelAdapter;
 use validators\ValidatorInterface;
 use Yii;
 
@@ -62,20 +62,6 @@ class LoginForm extends ModelAdapter implements ValidatorInterface
                 $this->addError($attribute, 'Incorrect username or password.');
             }
         }
-    }
-
-    /**
-     * Logs in a user using the provided username and password.
-     *
-     * @return bool whether the user is logged in successfully
-     */
-    public function login()
-    {
-        if ($this->validate()) {
-            return $this->getUser();
-        }
-
-        return false;
     }
 
     /**

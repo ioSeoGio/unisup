@@ -2,10 +2,8 @@
 
 namespace domain\login;
 
-use events\EventInterface;
+use events\BaseEvent;
 
-class LoginSuccessEvent implements EventInterface
+class LoginSuccessEvent extends BaseEvent
 {
-	public function __construct(
-	) {}
 }

@@ -2,11 +2,10 @@
 
 namespace forms;
 
-use Yii;
-use seog\base\Model;
-
 use models\User;
 use models\UserIdentity;
+use Yii;
+use yiiseog\base\Model;
 
 /**
  * Signup form
@@ -51,7 +50,7 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
@@ -70,7 +69,7 @@ class SignupForm extends Model
     }
 
     public function loginAfterSignup()
-    {   
+    {
         Yii::$app->user->login(UserIdentity::findOne($this->user->id));
     }
 }

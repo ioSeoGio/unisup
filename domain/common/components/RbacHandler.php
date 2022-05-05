@@ -3,7 +3,6 @@
 namespace components;
 
 use Yii;
-use seog\web\IdentityInterface;
 
 class RbacHandler implements RbacHandlerInterface
 {
@@ -12,11 +11,6 @@ class RbacHandler implements RbacHandlerInterface
 	private array $roles = [];
 
 	public function __construct()
-	{
-		$this->init();
-	}
-
-	public function init()
 	{
 		$authManager = Yii::$app->authManager;
 		$authUser = Yii::$app->user;

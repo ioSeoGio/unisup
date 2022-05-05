@@ -2,14 +2,10 @@
 
 namespace tests\unit\data;
 
-use seog\db\ActiveQueryAdapter;
-use yii\data\ActiveDataProvider;
-use Codeception\Stub;
-use Codeception\Stub\Expected;
-use domain\user\UserDTO;
-use models\User;
 use domain\user\UserRepository;
-use factories\DataFactory;
+use models\User;
+use yiiseog\db\ActiveQueryAdapter;
+use yii\data\ActiveDataProvider;
 
 class UserRepositoryTest extends \Codeception\Test\Unit
 {
@@ -20,7 +16,7 @@ class UserRepositoryTest extends \Codeception\Test\Unit
         return [
             'users' => [
                 'class' => \tests\fixtures\UserFixture::class,
-                'dataFile' => codecept_data_dir() . 'users.php'
+                'dataFile' => codecept_data_dir() . 'users.php',
             ],
         ];
     }
@@ -31,14 +27,14 @@ class UserRepositoryTest extends \Codeception\Test\Unit
         $this->repository = new UserRepository($query);
     }
 
-	public function testSelect()
+    public function testSelect()
     {
         $dto = $this->repository
             ->select([UserRepository::PRIMARY_KEY])
             ->one();
         $this->assertIsObject($dto);
-        $this->assertNotEquals($dto->id, 0); 
-        $this->assertEquals($dto->username, ''); 
+        $this->assertNotEquals($dto->id, 0);
+        $this->assertEquals($dto->username, '');
     }
 
     public function testLimit()

@@ -33,4 +33,15 @@ class LoginCest
             'messages' => [],
         ]);
     }
+
+    public function testFailedLogin(ApiTester $I)
+    {
+        $I->sendPostAsJson('/site/login', [
+            'username' => 'admin',
+            'password' => 'not-correct-password',
+        ]);
+
+        $I->seeResponseIsJson();
+        $I->seeResponseCodeIsClientError();
+    }
 }

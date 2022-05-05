@@ -1,8 +1,18 @@
 <?php
 
+use components\MessageHandler;
+use components\MessageHandlerInterface;
+use components\RbacHandler;
+use components\RbacHandlerInterface;
+use dispatchers\EventDispatcherInterface;
 use dispatchers\SimpleEventDispatcher;
+use domain\login\LoginSuccessEvent;
+use domain\login\LoginSuccessEventListener;
 use domain\user\UserRepository;
-use factories\DataFactory;
+use yiiseog\db\ActiveQueryAdapter;
+use yiiseog\db\QueryInterface;
+use yiiseog\web\RequestAdapter;
+use yiiseog\web\RequestAdapterInterface;
 
 $languages = require __DIR__ . '/languages.php';
 
@@ -13,17 +23,19 @@ return array_merge(
         ],
         'container' => [
             'singletons' => [
-                'seog\web\RequestAdapterInterface' => 'seog\web\RequestAdapter',
-                'components\RbacHandlerInterface' => 'components\RbacHandler',
-                'components\MessageHandlerInterface' => 'components\MessageHandler',
-                'dispatchers\EventDispatcherInterface' => function () {
+                RequestAdapterInterface::class => RequestAdapter::class,
+                QueryInterface::class => ActiveQueryAdapter::class,
+
+                RbacHandlerInterface::class => RbacHandler::class,
+                MessageHandlerInterface::class => MessageHandler::class,
+
+                EventDispatcherInterface::class => function () {
                     return new SimpleEventDispatcher([
-                        'domain\login\LoginSuccessEvent' => ['domain\login\LoginSuccessEventListener'],
-                        'domain\login\LoginFailedEvent' => ['domain\login\LoginFailedEventListener'],
+                        LoginSuccessEvent::class => [LoginSuccessEventListener::class],
                     ]);
                 },
-                'seog\db\QueryInterface' => 'seog\db\ActiveQueryAdapter',
-                'domain\user\UserRepository' => function () {
+
+                UserRepository::class => function () {
                     return new UserRepository(new \models\query\UserQuery);
                 },
             ],
@@ -40,10 +52,10 @@ return array_merge(
         ],
         'components' => [
             'request' => [
-                'class' => 'seog\web\RequestAdapterInterface',
+                'class' => 'yiiseog\web\RequestAdapterInterface',
                 'cookieValidationKey' => '6MN-T0hVLs5fEOJuJv37RI6f4YCQJKuc',
                 'parsers' => [
-                    'application/json' => 'seog\web\JsonParser',
+                    'application/json' => 'yiiseog\web\JsonParser',
                 ],
             ],
             'authManager' => [

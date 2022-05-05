@@ -1,9 +1,9 @@
 <?php
 
-use seog\db\Migration;
 use models\base\User;
+use yiiseog\db\Migration;
 
-class m200921_173432_create_table_users extends Migration
+class M200921173432CreateTableUsers extends Migration
 {
     public function up()
     {
@@ -25,7 +25,7 @@ class m200921_173432_create_table_users extends Migration
                 ->notNull()
                 ->defaultExpression('CURRENT_TIMESTAMP')
                 ->comment('Date and time of creating'),
-        
+
             'updated_at' => $this->timestamp()
                 ->notNull()
                 ->defaultExpression('CURRENT_TIMESTAMP')
