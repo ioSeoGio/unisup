@@ -2,7 +2,7 @@
 
 namespace models\base;
 
-use yiiseog\db\ActiveRecordAdapter;
+use seog\db\ActiveRecordAdapter;
 
 class User extends ActiveRecordAdapter
 {

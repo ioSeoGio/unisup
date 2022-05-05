@@ -3,7 +3,7 @@
 namespace models\query;
 
 use models\User;
-use yiiseog\db\ActiveQueryAdapter;
+use seog\db\ActiveQueryAdapter;
 
 class UserQuery extends ActiveQueryAdapter
 {

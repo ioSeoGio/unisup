@@ -6,7 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
-use yiiseog\rest\Controller as BaseController;
+use seog\rest\Controller as BaseController;
 
 use domain\login\LoginFactory;
 use domain\login\LoginForm;

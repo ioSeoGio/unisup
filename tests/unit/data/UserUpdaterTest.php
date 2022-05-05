@@ -4,7 +4,7 @@ namespace tests\unit\data;
 
 use domain\user\UserUpdater;
 use models\User;
-use yiiseog\db\ActiveQueryAdapter;
+use seog\db\ActiveQueryAdapter;
 
 class UserUpdaterTest extends \Codeception\Test\Unit
 {

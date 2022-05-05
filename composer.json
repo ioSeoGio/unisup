@@ -34,7 +34,8 @@
         "guzzlehttp/guzzle": "7.4.x-dev",
         "codeception/module-rest": "*",
         "codeception/module-phpbrowser": "1.x",
-        "flow/jsonpath": "dev-master"
+        "flow/jsonpath": "dev-master",
+        "elisdn/yii2-gii-fixture-generator": "dev-master"
     },
     "config": {
         "process-timeout": 1800,
@@ -81,7 +82,7 @@
             "domain\\": "domain/",
             "tests\\": "tests/",
             
-            "yiiseog\\": "yii-seog/",
+            "seog\\": "yii-seog/",
             "models\\": "models/",
             "forms\\": "forms/",
 
@@ -91,7 +92,7 @@
             "dto\\": "domain/common/dto/",
             "events\\": "domain/common/events/",
             "factories\\": "domain/common/factories/",
-            "helpers\\": "domain/common/helpers/",
+            "helpers\\": "helpers/",
             "listeners\\": "domain/common/listeners/",
             "data\\": "domain/common/data/",
             "services\\": "domain/common/services/",

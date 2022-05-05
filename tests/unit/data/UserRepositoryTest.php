@@ -4,7 +4,7 @@ namespace tests\unit\data;
 
 use domain\user\UserRepository;
 use models\User;
-use yiiseog\db\ActiveQueryAdapter;
+use seog\db\ActiveQueryAdapter;
 use yii\data\ActiveDataProvider;
 
 class UserRepositoryTest extends \Codeception\Test\Unit
@@ -121,5 +121,12 @@ class UserRepositoryTest extends \Codeception\Test\Unit
         $this->assertIsArray($dtos);
         $this->assertIsObject($dtos[0]);
         $this->assertCount(2, $dtos);
+    }
+
+    public function testFindByUsername()
+    {
+        $dto = $this->repository->findByUsername('admin');
+        $this->assertIsObject($dto);
+        $this->assertEquals($dto->username, 'admin');
     }
 }

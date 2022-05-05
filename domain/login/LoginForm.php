@@ -8,7 +8,7 @@ use domain\user\UserService;
 use factories\DataFactory;
 use models\query\UserQuery;
 use models\User;
-use yiiseog\base\ModelAdapter;
+use seog\base\ModelAdapter;
 use validators\ValidatorInterface;
 use Yii;
 

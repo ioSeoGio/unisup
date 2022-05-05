@@ -3,10 +3,7 @@
 namespace models;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
 use yii\web\UnprocessableEntityHttpException;
-
 use models\base\User as BaseUser;
 
 /**
@@ -14,26 +11,17 @@ use models\base\User as BaseUser;
  */
 class User extends BaseUser
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
+    public static function tableName()
     {
-        $behaviors = parent::behaviors();
-
-        $behaviors['timestamp'] = [
-            'class' => 'yii\behaviors\TimestampBehavior',
-            'value' => function ($event) {
-                return date("Y-m-d H:i:s");
-            }
-        ];
-
-        return $behaviors;
+        return '{{%users}}';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function behaviors()
+    {
+        return array_merge_recursive(parent::behaviors(), [
+        ]);
+    }
+
     public function beforeDelete()
     {
         $this->guardIsNotAdmin();
@@ -41,9 +29,6 @@ class User extends BaseUser
         return parent::beforeDelete();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return array_merge(parent::rules(), [

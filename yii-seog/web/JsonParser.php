@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiseog\web;
+namespace seog\web;
 
 use yii\web\JsonParser as BaseJsonParser;
 

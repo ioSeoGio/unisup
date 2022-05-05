@@ -9,18 +9,16 @@ use dispatchers\SimpleEventDispatcher;
 use domain\login\LoginSuccessEvent;
 use domain\login\LoginSuccessEventListener;
 use domain\user\UserRepository;
-use yiiseog\db\ActiveQueryAdapter;
-use yiiseog\db\QueryInterface;
-use yiiseog\web\RequestAdapter;
-use yiiseog\web\RequestAdapterInterface;
+use seog\db\ActiveQueryAdapter;
+use seog\db\QueryInterface;
+use seog\web\RequestAdapter;
+use seog\web\RequestAdapterInterface;
 
 $languages = require __DIR__ . '/languages.php';
 
 return array_merge(
     $languages,
     [
-        'bootstrap' => [
-        ],
         'container' => [
             'singletons' => [
                 RequestAdapterInterface::class => RequestAdapter::class,
@@ -51,13 +49,6 @@ return array_merge(
             ],
         ],
         'components' => [
-            'request' => [
-                'class' => 'yiiseog\web\RequestAdapterInterface',
-                'cookieValidationKey' => '6MN-T0hVLs5fEOJuJv37RI6f4YCQJKuc',
-                'parsers' => [
-                    'application/json' => 'yiiseog\web\JsonParser',
-                ],
-            ],
             'authManager' => [
                 'class' => 'yii\rbac\DbManager',
                 'defaultRoles' => ['user', 'moderator', 'admin'],

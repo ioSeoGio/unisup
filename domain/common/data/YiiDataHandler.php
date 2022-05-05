@@ -2,8 +2,8 @@
 
 namespace data;
 
-use yiiseog\db\QueryInterface;
-use yiiseog\db\ActiveRecordAdapter;
+use seog\db\QueryInterface;
+use seog\db\ActiveRecordAdapter;
 
 abstract class YiiDataHandler
 {

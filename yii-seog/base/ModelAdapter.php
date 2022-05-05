@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiseog\base;
+namespace seog\base;
 
 use validators\ValidatorInterface;
 use yii\base\Model as BaseModel;

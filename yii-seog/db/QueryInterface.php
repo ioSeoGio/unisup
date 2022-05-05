@@ -1,6 +1,6 @@
 <?php 
 
-namespace yiiseog\db;
+namespace seog\db;
 
 interface QueryInterface
 {

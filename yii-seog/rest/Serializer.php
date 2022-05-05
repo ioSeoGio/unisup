@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiseog\rest;
+namespace seog\rest;
 
 use yii\rest\Serializer as BaseSerializer;
 

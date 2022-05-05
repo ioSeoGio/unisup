@@ -24,6 +24,7 @@ $config = array_merge_recursive($common, [
                 ],
             ],
         ],
+        'request' => 'yii\console\Request',
         'db' => $db,
     ],
     'params' => $params,

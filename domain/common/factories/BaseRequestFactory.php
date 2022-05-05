@@ -2,7 +2,7 @@
 
 namespace factories;
 
-use yiiseog\web\RequestAdapterInterface;
+use seog\web\RequestAdapterInterface;
 
 abstract class BaseRequestFactory
 {

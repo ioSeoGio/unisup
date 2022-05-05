@@ -4,7 +4,7 @@ namespace tests\unit\data;
 
 use domain\user\UserCreator;
 use models\User;
-use yiiseog\db\ActiveQueryAdapter;
+use seog\db\ActiveQueryAdapter;
 
 class UserCreatorTest extends \Codeception\Test\Unit
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiseog\db;
+namespace seog\db;
 
 use yii\db\ActiveQuery as BaseActiveQuery;
 

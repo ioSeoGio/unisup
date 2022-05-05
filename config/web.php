@@ -20,11 +20,18 @@ $config = array_merge_recursive($common, [
         'formatter' => [
             'currencyCode' => 'UAH',
         ],
+        'request' => [
+            'class' => 'seog\web\RequestAdapterInterface',
+            'cookieValidationKey' => '6MN-T0hVLs5fEOJuJv37RI6f4YCQJKuc',
+            'parsers' => [
+                'application/json' => 'seog\web\JsonParser',
+            ],
+        ],
         'response' => [
             'format' => 'json',
             'formatters' => [
                 'json' => [
-                    'class' => 'yiiseog\web\JsonResponseFormatter',
+                    'class' => 'seog\web\JsonResponseFormatter',
                     'prettyPrint' => YII_DEBUG,
                     'encodeOptions' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
                 ],

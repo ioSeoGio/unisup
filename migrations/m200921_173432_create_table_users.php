@@ -1,13 +1,13 @@
 <?php
 
 use models\base\User;
-use yiiseog\db\Migration;
+use seog\db\Migration;
 
-class M200921173432CreateTableUsers extends Migration
+class m200921_173432_create_table_users extends Migration
 {
     public function up()
     {
-        $this->createTable('{{%user}}', [
+        $this->createTable('{{%users}}', [
             'id' => $this->primaryKey(),
             'username' => $this->string(64)->notNull(),
             'email' => $this->string(64)->notNull(),
@@ -21,18 +21,11 @@ class M200921173432CreateTableUsers extends Migration
 
             'access_token' => $this->string(64)->notNull(),
 
-            'created_at' => $this->timestamp()
-                ->notNull()
-                ->defaultExpression('CURRENT_TIMESTAMP')
-                ->comment('Date and time of creating'),
-
-            'updated_at' => $this->timestamp()
-                ->notNull()
-                ->defaultExpression('CURRENT_TIMESTAMP')
-                ->comment('Date and time of last updating'),
+            'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
+            'updated_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
         ]);
 
-        $this->insert('{{%user}}', [
+        $this->insert('{{%users}}', [
             'username' => 'admin',
             //12345678
             'password_hash' => '$2y$13$F2g0DJS8xzflDVLQ7Yzsm.51FGx1bDLBYFO9hOoVX1vv9u7PH1VR.',
@@ -42,7 +35,7 @@ class M200921173432CreateTableUsers extends Migration
             'auth_key' => 'K1t9ek5Y5llzWcqee7G5lL2j9SR1Vj6r',
             'access_token' => 'K1t9ek5Y5llzWcqee7G5lL2j9SR1Vj6r_1644828238',
         ]);
-        $this->insert('{{%user}}', [
+        $this->insert('{{%users}}', [
             'username' => 'moderator',
             //12345678
             'password_hash' => '$2y$13$F2g0DJS8xzflDVLQ7Yzsm.51FGx1bDLBYFO9hOoVX1vv9u7PH1VR.',
@@ -56,6 +49,6 @@ class M200921173432CreateTableUsers extends Migration
 
     public function down()
     {
-        $this->dropTable('{{%user}}');
+        $this->dropTable('{{%users}}');
     }
 }

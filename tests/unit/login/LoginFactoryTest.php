@@ -4,7 +4,7 @@ namespace tests\unit\factories;
 
 use domain\login\LoginCredentialsDto;
 use domain\login\LoginFactory;
-use yiiseog\web\RequestAdapterInterface;
+use seog\web\RequestAdapterInterface;
 
 class LoginFactoryTest extends \Codeception\Test\Unit
 {
