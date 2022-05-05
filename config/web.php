@@ -6,6 +6,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = array_merge_recursive($common, [
     'id' => 'app',
+    'name' => 'UniSup',
     'basePath' => dirname(__DIR__),
 
     'bootstrap' => [
@@ -18,7 +19,6 @@ $config = array_merge_recursive($common, [
     ],
     'components' => [
         'formatter' => [
-            'currencyCode' => 'UAH',
         ],
         'request' => [
             'class' => 'seog\web\RequestAdapterInterface',
