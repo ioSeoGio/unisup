@@ -1,5 +1,5 @@
 <?php
 return [
     'language' => 'ru-RU',
-    'sourceLanguage' => 'en-US',
+    'sourceLanguage' => 'ru-RU',
 ];

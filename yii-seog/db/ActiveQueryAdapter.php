@@ -28,7 +28,8 @@ class ActiveQueryAdapter extends BaseActiveQuery implements QueryInterface
 
     public function with(): self
     {
-        return parent::with();
+        $with = func_get_args()[0];
+        return parent::with($with);
     }
 
     public function limit($limit = 50): self

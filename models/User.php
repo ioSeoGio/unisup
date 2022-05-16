@@ -6,9 +6,6 @@ use Yii;
 use yii\web\UnprocessableEntityHttpException;
 use models\base\User as BaseUser;
 
-/**
- * This class describes an user AR.
- */
 class User extends BaseUser
 {
     public static function tableName()

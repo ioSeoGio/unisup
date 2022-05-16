@@ -3,17 +3,15 @@
 namespace models;
 
 use Yii;
+use seog\db\ActiveRecordAdapter;
 use yii\web\IdentityInterface;
 use models\base\User as BaseUser;
 
-/**
- * This class describes an user identity.
- */
 class UserIdentity extends BaseUser implements IdentityInterface
 {
     public static function tableName()
     {
-        return '{{%user}}';
+        return '{{%users}}';
     }
 
     /**

@@ -1,5 +1,8 @@
 <?php
 
+namespace app\migrations\init;
+
+use Yii;
 use app\rbac\AdminRule;
 use app\rbac\ModeratorRule;
 use app\rbac\Rbac;
@@ -30,7 +33,6 @@ class m210131_172431_rbac_setup extends Migration
         $user = $auth->createRole(Rbac::USER);
         $user->ruleName = $userRule->name;
         $auth->add($user);
-
     }
 
     public function safeDown()
@@ -51,7 +53,5 @@ class m210131_172431_rbac_setup extends Migration
         $auth->remove($userRule);
         $auth->remove($moderatorRule);
         $auth->remove($adminRule);
-
-        return true;
     }
 }

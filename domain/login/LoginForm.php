@@ -12,9 +12,6 @@ use seog\base\ModelAdapter;
 use validators\ValidatorInterface;
 use Yii;
 
-/**
- * Login form
- */
 class LoginForm extends ModelAdapter implements ValidatorInterface
 {
     public $username;
@@ -27,23 +24,12 @@ class LoginForm extends ModelAdapter implements ValidatorInterface
         private UserService $service,
     ) {}
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
             [['username', 'password'], 'required'],
             ['password', 'validatePassword'],
         ];
-    }
-
-    public function attributeLabels()
-    {
-        return array_merge(parent::attributeLabels(), [
-            'username' => Yii::t('models', 'Username'),
-            'password' => Yii::t('models', 'Password'),
-        ]);
     }
 
     /**

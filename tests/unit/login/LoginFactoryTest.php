@@ -3,10 +3,10 @@
 namespace tests\unit\factories;
 
 use domain\login\LoginCredentialsDto;
-use domain\login\LoginFactory;
+use domain\login\LoginRequestFactory;
 use seog\web\RequestAdapterInterface;
 
-class LoginFactoryTest extends \Codeception\Test\Unit
+class LoginRequestFactoryTest extends \Codeception\Test\Unit
 {
     protected function _before()
     {
@@ -28,7 +28,7 @@ class LoginFactoryTest extends \Codeception\Test\Unit
             ],
         );
 
-        $factory = new LoginFactory($requestStub);
+        $factory = new LoginRequestFactory($requestStub);
         $dto = $factory->makeDto();
         $this->assertInstanceOf(LoginCredentialsDto::class, $dto, 'DTO must be instance LoginCredentialsDto');
         $this->assertEquals($dto->username, $data['username'], 'Must be equals');

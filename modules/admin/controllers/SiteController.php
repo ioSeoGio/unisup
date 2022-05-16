@@ -2,10 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
-use yii\rest\Controller;
-
-
-class SiteController extends Controller
+class SiteController extends BaseModuleController
 {
     public function actionIndex()
     {

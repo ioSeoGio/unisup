@@ -15,6 +15,15 @@ $config = array_merge_recursive($common, [
     'components' => [
         'db' => $db,
     ],
+    'controllerMap' => [
+        'migrate' => [
+            'class' => 'yii\console\controllers\MigrateController',
+            'migrationNamespaces' => [
+                'app\migrations\init',
+                'app\migrations\rbac',
+            ],
+        ],
+    ],
 ]);
 
 return $config;

@@ -1,10 +1,14 @@
 <?php
+
+namespace app\migrations\init;
+
 /**
  * @link http://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
  * @license http://www.yiiframework.com/license/
  */
 
+use Yii;
 use yii\base\InvalidConfigException;
 use yii\rbac\DbManager;
 

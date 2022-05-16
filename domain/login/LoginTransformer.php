@@ -11,7 +11,7 @@ class LoginTransformer extends BaseTransformer
 		private User $dto
 	) {}
 
-	public function jsonSerialize(): mixed
+	public function formatResponse(): mixed
 	{
 		return [
 			'username' => $this->dto->username,

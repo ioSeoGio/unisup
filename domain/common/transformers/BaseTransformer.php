@@ -2,9 +2,22 @@
 
 namespace transformers;
 
-abstract class BaseTransformer implements \JsonSerializable
+abstract class BaseTransformer
 {
-	abstract public function jsonSerialize(): mixed;
+	public function makeResponse(): mixed
+	{
+		$this->formatRbacRules();
+		return $this->formatResponse();
+	}
+
+	protected function formatRbacRules(): void
+	{
+		foreach (self::rbacRules() as $rbacRuleName => $userCan) {
+			if ($userCan) {
+				\Yii::$app->rbacService->addRule($rbacRuleName);
+			}
+		}
+	}
 
 	/**
 	 * Array of (string) dynamic rbac rules to return to user
@@ -12,8 +25,10 @@ abstract class BaseTransformer implements \JsonSerializable
 	 *
 	 * @return array
 	 */
-	public function rbacRules(): array
+	protected function rbacRules(): array
 	{
 		return [];
 	}
+	
+	abstract protected function formatResponse(): mixed;
 }

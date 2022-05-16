@@ -19,6 +19,7 @@ $config = array_merge_recursive($common, [
     ],
     'components' => [
         'formatter' => [
+            'class' => 'yii\i18n\Formatter',
         ],
         'request' => [
             'class' => 'seog\web\RequestAdapterInterface',

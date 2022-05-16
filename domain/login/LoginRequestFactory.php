@@ -2,7 +2,7 @@
 
 namespace domain\login;
 
-class LoginFactory extends \factories\BaseRequestFactory
+class LoginRequestFactory extends \factories\BaseRequestFactory
 {
 	public function makeDto(): LoginCredentialsDto
 	{

@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'pgsql:host=db;dbname=rest_template_db',
+    'dsn' => 'pgsql:host=db;dbname=unisup_db',
     'username' => 'root',
     'password' => 'root',
     'charset' => 'utf8',

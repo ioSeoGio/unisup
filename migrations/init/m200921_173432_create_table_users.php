@@ -1,11 +1,13 @@
 <?php
 
+namespace app\migrations\init;
+
 use models\base\User;
 use seog\db\Migration;
 
 class m200921_173432_create_table_users extends Migration
 {
-    public function up()
+    public function safeUp()
     {
         $this->createTable('{{%users}}', [
             'id' => $this->primaryKey(),
@@ -47,7 +49,7 @@ class m200921_173432_create_table_users extends Migration
         ]);
     }
 
-    public function down()
+    public function safeDown()
     {
         $this->dropTable('{{%users}}');
     }

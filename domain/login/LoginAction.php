@@ -5,6 +5,7 @@ namespace domain\login;
 use actions\ActionInterface;
 use dispatchers\EventDispatcherInterface;
 use domain\user\UserRepository;
+use models\User;
 
 class LoginAction implements ActionInterface
 {
@@ -14,7 +15,7 @@ class LoginAction implements ActionInterface
 		private UserRepository $repository,
 	) {}
 
-	public function run(object $dto): mixed
+	public function run(object $dto): User
 	{
 		$dto = $this->repository->findByUsername($dto->username);
 		$this->successEvent->setDto($dto);

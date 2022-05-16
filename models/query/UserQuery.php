@@ -2,8 +2,8 @@
 
 namespace models\query;
 
-use models\User;
 use seog\db\ActiveQueryAdapter;
+use models\User;
 
 class UserQuery extends ActiveQueryAdapter
 {

@@ -9,6 +9,7 @@ use dispatchers\SimpleEventDispatcher;
 use domain\login\LoginSuccessEvent;
 use domain\login\LoginSuccessEventListener;
 use domain\user\UserRepository;
+use domain\teacher\TeacherRepository;
 use seog\db\ActiveQueryAdapter;
 use seog\db\QueryInterface;
 use seog\web\RequestAdapter;
@@ -36,16 +37,22 @@ return array_merge(
                 UserRepository::class => function () {
                     return new UserRepository(new \models\query\UserQuery);
                 },
+                TeacherRepository::class => function () {
+                    return new TeacherRepository(new \models\query\TeacherQuery);
+                },
             ],
         ],
         'aliases' => [
             '@web' => '@app/web',
             '@admin' => '@app/modules/admin',
-            '@message' => '@app/message',
+            '@documentBuilder' => '@app/modules/documentBuilder',
         ],
         'modules' => [
             'admin' => [
                 'class' => 'app\modules\admin\Module',
+            ],
+            'documentBuilder' => [
+                'class' => 'app\modules\documentBuilder\Module',
             ],
         ],
         'components' => [

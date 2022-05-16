@@ -7,6 +7,13 @@ use factories\DataFactoryInterface;
 
 abstract class YiiArRepository extends YiiDataHandler implements RepositoryInterface
 {
+    public function criteria(array $criteria): self
+    {
+        $this->query
+            ->where($criteria);
+        return $this;
+    }
+
     public function with(array $with = []): self
     {
         $this->query
@@ -61,10 +68,11 @@ abstract class YiiArRepository extends YiiDataHandler implements RepositoryInter
         return $dataProvider;
     }
 
-    public function findOneById(int $id): ?object
+    public function findOneById(int $id, array $with = []): ?object
     {
         return $this->query
             ->where([self::PRIMARY_KEY => $id])
+            ->with($with)
             ->one();
     }
 

@@ -10,11 +10,6 @@ use yii\rest\Controller as BaseController;
 abstract class Controller extends BaseController
 {
     /**
-     * @var string|array the configuration for creating the serializer that formats the response data.
-     */
-    public $serializer = 'seog\rest\Serializer';
-
-    /**
      * Configuring authenticator and set cosr pre-flight filter in order to deal with api requests right
      * Chrome asking for OPTIONS pre-flight requests, so corsFilter must be set
      *
@@ -57,7 +52,15 @@ abstract class Controller extends BaseController
      *
      * @return array
      */
-   	abstract protected function access();
+   	protected function access()
+    {
+        return [
+            'class' => \yii\filters\AccessControl::class,
+            'rules' => $this->rules(),
+        ];
+    }
+
+    abstract protected function rules();
    	
    	/**
    	 * Auth configuration of only and except blocks
