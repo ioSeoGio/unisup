@@ -1,6 +1,6 @@
 <?php
 
-namespace domain\educationalWork;
+namespace domain\scientificWork;
 
 use domain\workReport\DocumentInfoProvider as BaseDocumentInfoProvider;
 use domain\teacher\TeacherRepository;
@@ -10,6 +10,8 @@ class DocumentInfoProvider extends BaseDocumentInfoProvider
 {
 	private ?RequestDto $requestDto = null;
 	private ?Teacher $teacherDto = null;
+
+	private static $workReportCounter = 1;
 
 	public function __construct(
 		private TeacherRepository $teacherRepository,
@@ -22,7 +24,10 @@ class DocumentInfoProvider extends BaseDocumentInfoProvider
 
 	public function getDescription(string $description): string
 	{
-		return " – $description";
+		$i = self::$workReportCounter;
+		self::$workReportCounter++;
+
+		return "{$i}. $description";
 	}
 
 	public function getTeacher(): Teacher
@@ -34,7 +39,7 @@ class DocumentInfoProvider extends BaseDocumentInfoProvider
 	public function getWorkReports(): array
 	{
 		$this->setTeacherIfEmpty();
-		return $this->teacherDto->educationalWorkReports;		
+		return $this->teacherDto->scientificWorkReports;		
 	}
 
 	public function getHeaderStrings(): array
@@ -44,7 +49,7 @@ class DocumentInfoProvider extends BaseDocumentInfoProvider
 
 		$headerStrings = [];
 		$headerStrings[] = 'ПОКАЗАТЕЛИ';
-		$headerStrings[] = 'результатов воспитательной и идеологической работы';
+		$headerStrings[] = 'результатов научно-исследовательской работы';
 		$headerStrings[] = "{$this->teacherDto->full_name},";
 		$headerStrings[] = $this->requestDto->documentHeaderString;
 
@@ -55,7 +60,7 @@ class DocumentInfoProvider extends BaseDocumentInfoProvider
 	{
 		if (!$this->teacherDto) {
 			$this->teacherDto = $this->teacherRepository
-				->findOneById($this->requestDto->teacherId, ['educationalWorkReports.type']);
+				->findOneById($this->requestDto->teacherId, ['scientificWorkReports.type']);
 		}
 	}
 

@@ -9,6 +9,16 @@ use domain\educationalWork\Form as EducationalWorkForm;
 use domain\educationalWork\Action as EducationalWorkAction;
 use domain\educationalWork\Transformer as EducationalWorkTransformer;
 
+use domain\scientificWork\RequestFactory as ScientificWorkRequestFactory;
+use domain\scientificWork\Form as ScientificWorkForm;
+use domain\scientificWork\Action as ScientificWorkAction;
+use domain\scientificWork\Transformer as ScientificWorkTransformer;
+
+use domain\methodicalWork\RequestFactory as MethodicalWorkRequestFactory;
+use domain\methodicalWork\Form as MethodicalWorkForm;
+use domain\methodicalWork\Action as MethodicalWorkAction;
+use domain\methodicalWork\Transformer as MethodicalWorkTransformer;
+
 class SiteController extends BaseModuleController
 {
     public function __construct(
@@ -19,6 +29,14 @@ class SiteController extends BaseModuleController
         private EducationalWorkForm $educationalWorkForm,
         private EducationalWorkAction $educationalWorkAction,
 
+        private ScientificWorkRequestFactory $scientificWorkRequestFactory,
+        private ScientificWorkForm $scientificWorkForm,
+        private ScientificWorkAction $scientificWorkAction,
+
+        private MethodicalWorkRequestFactory $methodicalWorkRequestFactory,
+        private MethodicalWorkForm $methodicalWorkForm,
+        private MethodicalWorkAction $methodicalWorkAction,
+
         $config = [],
     ) {
         parent::__construct($id, $module, $config);
@@ -28,7 +46,7 @@ class SiteController extends BaseModuleController
     {
         return array_merge_recursive(parent::rules(), [
             [
-                'actions' => ['educational-work'],
+                'actions' => ['educational-work', 'scientific-work', 'methodical-work'],
                 'allow' => true,
             ]
         ]);
@@ -38,7 +56,7 @@ class SiteController extends BaseModuleController
     {
         return array_merge_recursive(parent::auth(), [
             'only' => [],
-            'except' => ['educational-work'],
+            'except' => ['educational-work', 'scientific-work', 'methodical-work'],
         ]);
     }
 
@@ -48,6 +66,8 @@ class SiteController extends BaseModuleController
             'class' => VerbFilter::className(),
             'actions' => [
                 'educational-work' => ['get'],
+                'scientific-work' => ['get'],
+                'methodical-work' => ['get'],
             ],
         ];
     }
@@ -62,11 +82,23 @@ class SiteController extends BaseModuleController
         return $this->educationalWorkForm;
     }
 
-    // public function actionScientificWork()
-    // {
-    //     $dto = $this->scientificWorkRequestFactory->makeDto();
-    //     if ($this->scientificWorkForm->load($dto) && $this->scientificWorkForm->validate()) {
-    //         $result = $this->scientificWorkAction->run($dto);
-    //     }
-    // }
+    public function actionScientificWork()
+    {
+        $dto = $this->scientificWorkRequestFactory->makeDto();
+        if ($this->scientificWorkForm->load($dto) && $this->scientificWorkForm->validate()) {
+            $result = $this->scientificWorkAction->run($dto);
+            return (new ScientificWorkTransformer($result))->makeResponse();
+        }
+        return $this->methodicalWorkForm;
+    }
+
+    public function actionMethodicalWork()
+    {
+        $dto = $this->methodicalWorkRequestFactory->makeDto();
+        if ($this->methodicalWorkForm->load($dto) && $this->methodicalWorkForm->validate()) {
+            $result = $this->methodicalWorkAction->run($dto);
+            return (new MethodicalWorkTransformer($result))->makeResponse();
+        }
+        return $this->methodicalWorkForm;
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use yii\db\Migration;
-use domain\workReports\WorkReportLevel;
+use domain\workReport\WorkReportLevel;
 
 /**
  * Handles the creation of table `{{%educational_work_reports}}`.

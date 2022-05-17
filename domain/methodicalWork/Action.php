@@ -1,6 +1,6 @@
 <?php
 
-namespace domain\scientificWork;
+namespace domain\methodicalWork;
 
 use actions\ActionInterface;
 use domain\workReport\DocumentBuilder;

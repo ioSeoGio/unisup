@@ -2,7 +2,6 @@
 
 namespace models;
 
-use Yii;
 use models\base\WorkReport;
 
 class EducationalWorkReport extends WorkReport
@@ -22,12 +21,10 @@ class EducationalWorkReport extends WorkReport
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTeacher()
+    public function getTeachers()
     {
-        return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
+        return $this->hasMany(Teacher::class, ['id' => 'teacher_id'])
+            ->viaTable(EducationalWorkReportAuthor::tableName(), ['educational_work_report_id' => 'id']);
     }
     
     /**

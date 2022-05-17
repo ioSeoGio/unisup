@@ -2,7 +2,6 @@
 
 namespace domain\workReport;
 
-use domain\educationalWork\DocumentInfoProvider;
 use domain\workReport\WorkReportDto;
 
 class DocumentInfoFactory
@@ -49,14 +48,20 @@ class DocumentInfoFactory
 
 			$workReportDto = new WorkReportDto();
 			
-			$workReportDto->description = $this->infoProvider->getDescription($description);
-			$workReportDto->textBreaksAmount = $this->infoProvider->countTextBreaks($description);
-			$workReportDto->points = $this->infoProvider->getAmountOfPoints($workReport);
+			$workReportDto->description = $this->infoProvider
+				->getDescription($description);
+			$workReportDto->textBreaksAmount = $this->infoProvider
+				->countTextBreaks($description);
 			$workReportDto->level = $workReport->level;
 			
-			$this->dto->totalPoints += $workReportDto->points;
+			[$rawPoints, $roundedPoints] = $this->infoProvider
+				->getAmountOfPoints($workReport);
+			$workReportDto->points = $roundedPoints;
+			$this->dto->totalPoints += $rawPoints;
+
 			$workReportsGrouppedByTypeId[$workReport->type_id][] = $workReportDto;
 		}
+		$this->dto->totalPoints = floor($this->dto->totalPoints);
 		$this->dto->workReportsGrouppedByTypeId = $workReportsGrouppedByTypeId;
 	}
 }

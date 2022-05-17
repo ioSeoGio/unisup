@@ -146,7 +146,9 @@ class DocumentBuilder implements DocumentBuilderInterface
 
 		$descriptionCell = $this->table->addCell(style: $this->styles['cell']);
 
-		$foreignPointCell = $this->table->addCell(style: $this->styles['cell']);
+		$foreignPointCell = $this->table->addCell(style: array_merge(
+			$this->styles['cell'], )
+		);
 		$belarusPointCell = $this->table->addCell(style: $this->styles['cell']);
 		$brestPointCell = $this->table->addCell(style: $this->styles['cell']);
 
@@ -164,8 +166,8 @@ class DocumentBuilder implements DocumentBuilderInterface
 		$this->table->addRow();
 		$cell = $this->table->addCell(style: array_merge(
 			$this->styles['cell'], 
-			['gridSpan' => 5])
-		);
+			['gridSpan' => 5]
+		));
 
 		$text = \Yii::t(
     		'app',

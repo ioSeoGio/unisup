@@ -27,75 +27,61 @@ class Teacher extends ActiveRecordAdapter
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getJournalRecords()
     {
         return $this->hasMany(JournalRecord::class, ['teacher_id' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getSubgroups()
     {
         return $this->hasMany(Subgroup::class, ['discipline_id' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getTeacherJournals()
     {
         return $this->hasMany(TeacherJournal::class, ['teacher_id' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getTeacherPreferences()
     {
         return $this->hasMany(TeacherPreference::class, ['teacher_id' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getAcademicDegree()
     {
         return $this->hasOne(AcademicDegree::class, ['id' => 'academic_degree_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getAcademicTitle()
     {
         return $this->hasOne(AcademicTitle::class, ['id' => 'academic_title_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getDepartment()
     {
         return $this->hasOne(Department::class, ['id' => 'department_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getTeacherPost()
     {
         return $this->hasOne(TeacherPost::class, ['id' => 'teacher_post_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getEducationalWorkReports()
     {
-        return $this->hasMany(EducationalWorkReport::class, ['teacher_id' => 'id']);
+        return $this->hasMany(EducationalWorkReport::class, ['id' => 'educational_work_report_id'])
+            ->viaTable(ScientificWorkReportAuthor::tableName(), ['teacher_id' => 'id']);
+    }
+
+    public function getScientificWorkReports()
+    {
+        return $this->hasMany(ScientificWorkReport::class, ['id' => 'scientific_work_report_id'])
+            ->viaTable(ScientificWorkReportAuthor::tableName(), ['teacher_id' => 'id']);
+    }
+
+    public function getMethodicalWorkReports()
+    {
+        return $this->hasMany(MethodicalWorkReport::class, ['id' => 'methodical_work_report_id'])
+            ->viaTable(MethodicalWorkReportAuthor::tableName(), ['teacher_id' => 'id']);
     }
 }

@@ -4,11 +4,11 @@ namespace models;
 
 use models\base\WorkReport;
 
-class ScientificWorkReport extends WorkReport
+class MethodicalWorkReport extends WorkReport
 {
     public static function tableName()
     {
-        return '{{%scientific_work_reports}}';
+        return '{{%methodical_work_reports}}';
     }
 
     public function rules()
@@ -20,14 +20,13 @@ class ScientificWorkReport extends WorkReport
             [['type_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['level'], 'string', 'max' => 255],
-            [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => ScientificWorkReport::class, 'targetAttribute' => ['type_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => WorkReportType::class, 'targetAttribute' => ['type_id' => 'id']],
         ];
     }
 
-    public function getScientificWorkReportAuthors()
+    public function getMethodicalWorkReportAuthors()
     {
-        return $this->hasMany(ScientificWorkReportAuthor::class, ['scientific_work_report_id' => 'id']);
+        return $this->hasMany(MethodicalWorkReportAuthor::class, ['methodical_work_report_id' => 'id']);
     }
 
     public function getType()
@@ -35,9 +34,10 @@ class ScientificWorkReport extends WorkReport
         return $this->hasOne(WorkReportType::class, ['id' => 'type_id']);
     }
 
+
     public function getTeachers()
     {
         return $this->hasMany(Teacher::class, ['id' => 'teacher_id'])
-            ->viaTable(ScientificWorkReportAuthor::tableName(), ['scientific_work_report_id' => 'id']);
+            ->viaTable(MethodicalWorkReportAuthor::tableName(), ['methodical_work_report_id' => 'id']);
     }
 }

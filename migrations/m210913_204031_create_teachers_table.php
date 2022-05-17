@@ -2,19 +2,14 @@
 
 use yii\db\Migration;
 
-/**
- * Handles the creation of table `{{%teachers}}`.
- */
 class m210913_204031_create_teachers_table extends Migration
 {
-    /**
-     * {@inheritdoc}
-     */
     public function safeUp()
     {
         $this->createTable('{{%teachers}}', [
             'id' => $this->primaryKey(),
             'full_name' => $this->string()->notNull()->comment('ФИО преподавателя'),
+            'sex' => $this->boolean()->notNull()->defaultValue(true)->comment('Пол преподавателя true = муж'),
             'department_id' => $this->integer()->notNull()->comment('Кафедра преподавателя'),
             
             'academic_degree_id' => $this->integer()->comment('Ученая степень преподавателя (при наличии)'),
