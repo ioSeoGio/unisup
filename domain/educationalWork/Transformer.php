@@ -5,7 +5,7 @@ namespace domain\educationalWork;
 use transformers\BaseTransformer;
 use PhpOffice\PhpWord\PhpWord;
 
-class EducationalWorkTransformer extends BaseTransformer
+class Transformer extends BaseTransformer
 {
     public function __construct(
         private PhpWord $document

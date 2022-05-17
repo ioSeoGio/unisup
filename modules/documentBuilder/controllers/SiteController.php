@@ -4,10 +4,10 @@ namespace app\modules\documentBuilder\controllers;
 
 use yii\filters\VerbFilter;
 
-use domain\educationalWork\EducationalWorkRequestFactory;
-use domain\educationalWork\EducationalWorkForm;
-use domain\educationalWork\EducationalWorkAction;
-use domain\educationalWork\EducationalWorkTransformer;
+use domain\educationalWork\RequestFactory as EducationalWorkRequestFactory;
+use domain\educationalWork\Form as EducationalWorkForm;
+use domain\educationalWork\Action as EducationalWorkAction;
+use domain\educationalWork\Transformer as EducationalWorkTransformer;
 
 class SiteController extends BaseModuleController
 {
@@ -61,4 +61,12 @@ class SiteController extends BaseModuleController
         }
         return $this->educationalWorkForm;
     }
+
+    // public function actionScientificWork()
+    // {
+    //     $dto = $this->scientificWorkRequestFactory->makeDto();
+    //     if ($this->scientificWorkForm->load($dto) && $this->scientificWorkForm->validate()) {
+    //         $result = $this->scientificWorkAction->run($dto);
+    //     }
+    // }
 }

@@ -1,11 +1,9 @@
 <?php
 
-namespace domain\educationalWork;
+namespace domain\workReport;
 
-use domain\teacher\TeacherRepository;
-use domain\documentBuilder\DocumentBuilder;
-use domain\workReports\WorkReportFormatter;
-use domain\workReports\WorkReportLevel;
+use domain\documentBuilder\DocumentBuilderInterface;
+
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Element\Table;
 use PhpOffice\PhpWord\Element\Section;
@@ -14,21 +12,23 @@ use PhpOffice\PhpWord\SimpleType\JcTable;
 use PhpOffice\PhpWord\Style\Cell;
 use PhpOffice\PhpWord\Style\Tab;
 
-class EducationalWorkDocumentBuilder extends DocumentBuilder
+class DocumentBuilder implements DocumentBuilderInterface
 {
 	private PhpWord $document;
 	private Table $table;
 	private Section $section;
 	private array $styles;
 
-	private EducationalWorkDocumentInfoDto $documentInfoDto;
+	private ?DocumentInfoDto $documentInfoDto = null;
 
-	public function __construct(
-	) {}
-
-	public function build(EducationalWorkDocumentInfoDto $dto): PhpWord
+	public function setDto(DocumentInfoDto $dto): void
 	{
 		$this->documentInfoDto = $dto;
+	}
+
+	public function build(): PhpWord
+	{
+		$this->guardDocumentInfoDtoIsset();
 
 		$this->document = new PhpWord();
 		$this->section = $this->document->addSection();
@@ -38,6 +38,13 @@ class EducationalWorkDocumentBuilder extends DocumentBuilder
 		$this->buildTable();
 
 		return $this->document;		
+	}
+
+	private function guardDocumentInfoDtoIsset()
+	{
+		if (!$this->documentInfoDto) {
+			throw new \DomainException('You should set $documentInfoDto using setDto() first');
+		}
 	}
 
 	private function addStyles()
@@ -107,20 +114,20 @@ class EducationalWorkDocumentBuilder extends DocumentBuilder
 	private function buildTableHeader()
 	{
 		$this->table->addRow();
-		$cell = $this->table->addCell(style: $this->styles['headerCell'], width: 700);
+		$cell = $this->table->addCell(700, $this->styles['headerCell']);
 		$cell->addText('№', $this->styles['tableText'], 'alignCenter');
 		$cell->addText('п/п', $this->styles['tableText'], 'alignCenter');
 
-		$cell = $this->table->addCell(style: $this->styles['headerCell'], width: 6500);
+		$cell = $this->table->addCell(6500, $this->styles['headerCell']);
 		$cell->addText('Виды работ', $this->styles['tableText'], 'alignCenter');
 
-		$cell = $this->table->addCell(style: $this->styles['headerCell'], width: 900);
+		$cell = $this->table->addCell(900, $this->styles['headerCell']);
 		$cell->addText('За рубежом', $this->styles['tableText'], 'alignCenter');
 		
-		$cell = $this->table->addCell(style: $this->styles['headerCell'], width: 900);
+		$cell = $this->table->addCell(900, $this->styles['headerCell']);
 		$cell->addText('В Республике Беларусь', $this->styles['tableText'], 'alignCenter');
 		
-		$cell = $this->table->addCell(style: $this->styles['headerCell'], width: 900);
+		$cell = $this->table->addCell(900, $this->styles['headerCell']);
 		$cell->addText('В Бресте, В БрГУ', $this->styles['tableText'], 'alignCenter');
 	}
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace domain\educationalWork;
+namespace domain\scientificWork;
 
 use actions\ActionInterface;
 
-class EducationalWorkAction implements ActionInterface
+class Action implements ActionInterface
 {
 	public function __construct(
-		private EducationalWorkDocumentBuilder $documentBuilder,
-		private EducationalWorkDocumentInfoFactory $documentInfoFactory,
+		private WorkReportDocumentBuilder $documentBuilder,
+		private WorkReportDocumentInfoFactory $documentInfoFactory,
 	) {}
 
 	public function run(object $requestDto): object

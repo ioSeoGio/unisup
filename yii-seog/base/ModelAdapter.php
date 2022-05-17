@@ -7,12 +7,18 @@ use yii\base\Model as BaseModel;
 
 class ModelAdapter extends BaseModel implements ValidatorInterface
 {
+    /**
+     * @param $data Can be object or array
+     * @param $formName str Key of array in request params
+     *
+     * @return bool
+     */
     public function load($data, $formName = ''): bool
     {
         if (is_object($data)) {
             $data = get_object_vars($data);
         }
-
+        
         $scope = $formName === null ? $this->formName() : $formName;
         if ($scope === '' && !empty($data)) {
             $this->setAttributes($data);

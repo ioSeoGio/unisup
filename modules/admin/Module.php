@@ -15,10 +15,6 @@ class Module extends BaseModule
             return false;
         }
 
-        if (!Yii::$app->user->can(Rbac::MODERATOR)) {
-            throw new NotFoundHttpException();
-        }
-
         return true;
     }
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace domain\educationalWork;
+namespace domain\scientificWork;
 
 use seog\base\ModelAdapter;
 use validators\ValidatorInterface;
 use models\Teacher;
 
-class EducationalWorkForm extends ModelAdapter implements ValidatorInterface
+class Form extends ModelAdapter implements ValidatorInterface
 {
     public $documentHeaderString;
     public $teacherId;
@@ -17,7 +17,7 @@ class EducationalWorkForm extends ModelAdapter implements ValidatorInterface
             [['documentHeaderString', 'teacherId'], 'required'],
             [['documentHeaderString'], 'string'],
             [['teacherId'], 'integer'],
-            [['teacherId'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::className(), 'targetAttribute' => ['teacherId' => 'id']],
+            [['teacherId'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::class, 'targetAttribute' => ['teacherId' => 'id']],
         ];
     }
 }

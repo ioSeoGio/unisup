@@ -2,11 +2,11 @@
 
 namespace domain\educationalWork;
 
-class EducationalWorkRequestFactory extends \factories\BaseRequestFactory
+class RequestFactory extends \factories\BaseRequestFactory
 {
-	public function makeDto(): EducationalWorkRequestDto
+	public function makeDto(): RequestDto
 	{
-		$dto = new EducationalWorkRequestDto();
+		$dto = new RequestDto();
 		$dto->documentHeaderString = $this->queryParams['document_header'];
 		$dto->teacherId = $this->queryParams['teacher_id'];
 		return $dto;

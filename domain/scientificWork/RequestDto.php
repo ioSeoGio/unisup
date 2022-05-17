@@ -1,8 +1,8 @@
 <?php
 
-namespace domain\educationalWork;
+namespace domain\scientificWork;
 
-class EducationalWorkRequestDto
+class RequestDto
 {
 	public string $documentHeaderString;
 	public int $teacherId;

@@ -1,8 +1,8 @@
 <?php 
 
-namespace domain\educationalWork;
+namespace domain\workReport;
 
-class EducationalWorkDocumentInfoDto
+class DocumentInfoDto
 {
 	public array $headerStrings = [];
 	public array $workReportsGrouppedByTypeId = [];
