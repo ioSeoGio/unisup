@@ -2,10 +2,8 @@
 
 namespace tests\unit\data;
 
-use domain\user\UserRepository;
 use models\User;
-use seog\db\ActiveQueryAdapter;
-use yii\data\ActiveDataProvider;
+use domain\user\Repository as UserRepository;
 
 class UserRepositoryTest extends \Codeception\Test\Unit
 {
@@ -23,8 +21,7 @@ class UserRepositoryTest extends \Codeception\Test\Unit
 
     public function _before()
     {
-        $query = new ActiveQueryAdapter(User::class);
-        $this->repository = new UserRepository($query);
+        $this->repository = \Yii::$container->get(UserRepository::class);
     }
 
     public function testSelect()
@@ -78,7 +75,7 @@ class UserRepositoryTest extends \Codeception\Test\Unit
     {
         $dataProvider = $this->repository
             ->asDataProvider();
-        $this->assertInstanceOf(ActiveDataProvider::class, $dataProvider);
+        $this->assertInstanceOf(\yii\data\ActiveDataProvider::class, $dataProvider);
     }
 
     public function testFindOneById()

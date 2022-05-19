@@ -46,14 +46,11 @@ class SiteController extends BaseController
         ]);
     }
 
-    public function verbs()
+    public function verbActions()
     {
         return [
-            'class' => VerbFilter::className(),
-            'actions' => [
-                'login' => ['post'],
-                'signup' => ['post'],
-            ],
+            'login' => ['post'],
+            'signup' => ['post'],
         ];
     }
     

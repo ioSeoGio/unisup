@@ -7,39 +7,33 @@ use yii\db\ActiveRecord;
 
 abstract class YiiArUpdater extends YiiDataHandler implements UpdaterInterface
 {
-    public function updateOneById(int $id, array $data = []): object
+    public function updateOneById(int $id, array|object $data): object
     {
         $model = $this->findOne($id);
         return $this->updateOne($model, $data);
     }
 
-    public function updateManyByIds(array $ids, array $data = []): array
+    public function updateManyByIds(array $ids, array|object $data): array
     {
         $models = $this->findMany(['in', self::PRIMARY_KEY, $ids]);
         return $this->updateMany($models, $data);
     }
 
-    public function updateOneByCriteria(array $criteria, array $data = []): object
+    public function updateOneByCriteria(array $criteria, array|object $data): object
     {
         $model = $this->findOne($criteria);
         return $this->updateOne($model, $data);
     }
 
-    public function updateManyByCriteria(array $criteria = [], array $data = []): array
+    public function updateManyByCriteria(array $criteria = [], array|object $data): array
     {
         $models = $this->findMany($criteria);
         return $this->updateMany($models, $data);
     }
 
-    /**
-     * @param $model \yii\db\ActiveRecord
-     * @param $data array
-     *
-     * @return object
-     * @throws \Error
-     */
-    private function updateOne(ActiveRecord $model, array $data): object
+    private function updateOne(ActiveRecord $model, array|object $data): object
     {
+        $data = $this->makeArray($data);
         $isUpdatedSuccessful = boolval($model->updateAttributes($data));
         if ($isUpdatedSuccessful) {
             return $model;

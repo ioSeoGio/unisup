@@ -35,7 +35,8 @@ class m220516_173659_create_educational_work_report_authors_table extends Migrat
         $this->batchInsert('{{%educational_work_report_authors}}', ['educational_work_report_id', 'teacher_id'], [
 
             [1, 1],
-            [2, 3],
+            [2, 1],
+            [3, 1],
         ]);
     }
 

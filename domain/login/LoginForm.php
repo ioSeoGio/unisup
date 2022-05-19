@@ -2,15 +2,11 @@
 
 namespace domain\login;
 
-use domain\login\LoginCredentialsDto;
-use domain\user\UserRepository;
-use domain\user\UserService;
-use factories\DataFactory;
-use models\query\UserQuery;
-use models\User;
 use seog\base\ModelAdapter;
 use validators\ValidatorInterface;
-use Yii;
+
+use domain\user\Repository as UserRepository;
+use domain\user\Service as UserService;
 
 class LoginForm extends ModelAdapter implements ValidatorInterface
 {

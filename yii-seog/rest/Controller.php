@@ -74,4 +74,14 @@ abstract class Controller extends BaseController
    			'except' => [],
    		];
    	}
+
+    protected function verbs()
+    {
+        return [
+            'class' => \yii\filters\VerbFilter::class,
+            'actions' => $this->verbActions(),
+        ];
+    }
+
+    abstract protected function verbActions();
 }

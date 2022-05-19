@@ -4,7 +4,7 @@ namespace domain\login;
 
 use actions\ActionInterface;
 use dispatchers\EventDispatcherInterface;
-use domain\user\UserRepository;
+use domain\user\Repository as UserRepository;
 use models\User;
 
 class LoginAction implements ActionInterface

@@ -28,20 +28,12 @@ abstract class YiiDataHandler
         $this->query = clone $this->queryBackup;
     }
 
-    /**
-     * @param $criteria array|int
-     * @return object
-     */
     protected function findOne(array|int $criteria): ActiveRecordAdapter
     {
         return $this->query
             ->modelClass::findOne($criteria);
     }
 
-    /**
-     * @param $criteria array
-     * @return array
-     */
     protected function findMany(array $criteria): array
     {
         $models = $this->query
@@ -49,5 +41,13 @@ abstract class YiiDataHandler
             ->all();
         $this->resetQuery();
         return $models;
+    }
+
+    protected function makeArray(array|object $data): array
+    {
+        if (is_object($data)) {
+            $data = get_object_vars($data);
+        }
+        return $data;
     }
 }

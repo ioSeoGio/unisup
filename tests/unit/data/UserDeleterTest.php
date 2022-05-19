@@ -2,10 +2,8 @@
 
 namespace tests\unit\data;
 
-use domain\user\UserDeleter;
-use domain\user\UserRepository;
-use models\User;
-use seog\db\ActiveQueryAdapter;
+use domain\user\Deleter as UserDeleter;
+use domain\user\Repository as UserRepository;
 
 class UserDeleterTest extends \Codeception\Test\Unit
 {
@@ -24,10 +22,8 @@ class UserDeleterTest extends \Codeception\Test\Unit
 
     public function _before()
     {
-        $query = new ActiveQueryAdapter(User::class);
-
-        $this->deleter = new UserDeleter($query);
-        $this->repository = new UserRepository($query);
+        $this->deleter = \Yii::$container->get(UserDeleter::class);
+        $this->repository = \Yii::$container->get(UserRepository::class);
     }
 
     public function testDeleteOneById()

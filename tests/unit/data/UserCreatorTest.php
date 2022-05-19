@@ -2,9 +2,7 @@
 
 namespace tests\unit\data;
 
-use domain\user\UserCreator;
-use models\User;
-use seog\db\ActiveQueryAdapter;
+use domain\user\Creator as UserCreator;
 
 class UserCreatorTest extends \Codeception\Test\Unit
 {
@@ -20,10 +18,9 @@ class UserCreatorTest extends \Codeception\Test\Unit
         ];
     }
 
-    public function _before()
+    protected function _before()
     {
-        $query = new ActiveQueryAdapter(User::class);
-        $this->creator = new UserCreator($query);
+        $this->creator = \Yii::$container->get(UserCreator::class);
     }
 
     public function testCreate()

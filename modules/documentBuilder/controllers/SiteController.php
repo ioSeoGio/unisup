@@ -4,20 +4,20 @@ namespace app\modules\documentBuilder\controllers;
 
 use yii\filters\VerbFilter;
 
-use domain\educationalWork\RequestFactory as EducationalWorkRequestFactory;
-use domain\educationalWork\Form as EducationalWorkForm;
-use domain\educationalWork\Action as EducationalWorkAction;
-use domain\educationalWork\Transformer as EducationalWorkTransformer;
+use domain\workReport\educationalWork\RequestFactory as EducationalWorkRequestFactory;
+use domain\workReport\educationalWork\Form as EducationalWorkForm;
+use domain\workReport\educationalWork\Action as EducationalWorkAction;
+use domain\workReport\educationalWork\Transformer as EducationalWorkTransformer;
 
-use domain\scientificWork\RequestFactory as ScientificWorkRequestFactory;
-use domain\scientificWork\Form as ScientificWorkForm;
-use domain\scientificWork\Action as ScientificWorkAction;
-use domain\scientificWork\Transformer as ScientificWorkTransformer;
+use domain\workReport\scientificWork\RequestFactory as ScientificWorkRequestFactory;
+use domain\workReport\scientificWork\Form as ScientificWorkForm;
+use domain\workReport\scientificWork\Action as ScientificWorkAction;
+use domain\workReport\scientificWork\Transformer as ScientificWorkTransformer;
 
-use domain\methodicalWork\RequestFactory as MethodicalWorkRequestFactory;
-use domain\methodicalWork\Form as MethodicalWorkForm;
-use domain\methodicalWork\Action as MethodicalWorkAction;
-use domain\methodicalWork\Transformer as MethodicalWorkTransformer;
+use domain\workReport\methodicalWork\RequestFactory as MethodicalWorkRequestFactory;
+use domain\workReport\methodicalWork\Form as MethodicalWorkForm;
+use domain\workReport\methodicalWork\Action as MethodicalWorkAction;
+use domain\workReport\methodicalWork\Transformer as MethodicalWorkTransformer;
 
 class SiteController extends BaseModuleController
 {

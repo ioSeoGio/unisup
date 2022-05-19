@@ -4,7 +4,7 @@ namespace app\modules\documentBuilder\controllers;
 
 use seog\rest\Controller;
 
-class BaseModuleController extends Controller
+abstract class BaseModuleController extends Controller
 {
     public function rules()
     {

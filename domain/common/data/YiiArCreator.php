@@ -4,13 +4,9 @@ namespace data;
 
 abstract class YiiArCreator extends YiiDataHandler implements CreatorInterface
 {
-    /**
-     * @param $data array
-     * @return object
-     * @throws \Error
-     */
-    public function create(array $data): object
+    public function create(array|object $data): object
     {
+        $data = $this->makeArray($data);
         $model = new $this->query->modelClass($data);
         if ($model->save()) {
             return $model;

@@ -2,9 +2,8 @@
 
 namespace tests\unit\data;
 
-use domain\user\UserUpdater;
+use domain\user\Updater as UserUpdater;
 use models\User;
-use seog\db\ActiveQueryAdapter;
 
 class UserUpdaterTest extends \Codeception\Test\Unit
 {
@@ -22,8 +21,7 @@ class UserUpdaterTest extends \Codeception\Test\Unit
 
     public function _before()
     {
-        $query = new ActiveQueryAdapter(User::class);
-        $this->updater = new UserUpdater($query);
+        $this->updater = \Yii::$container->get(UserUpdater::class);
     }
 
     public function testUpdateOneById()
