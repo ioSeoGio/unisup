@@ -25,6 +25,16 @@ class TeacherController extends BaseModuleController
         ]);
     }
 
+    public function verbActions()
+    {
+        return [
+            'index' => ['get'],
+            'read' => ['get'],
+            'create' => ['post'],
+            'update' => ['post'],
+        ];
+    }
+
     public function actionIndex()
     {
         return $this->teacherFiltrator->search($this->request);

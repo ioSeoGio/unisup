@@ -4,21 +4,34 @@ use tests\api\common\Cest;
 
 class TeacherCest extends Cest
 {
+    public function _fixtures()
+    {
+        return [
+            'users' => [
+                'class' => \tests\fixtures\UserFixture::class,
+                'dataFile' => codecept_data_dir() . 'users.php',
+            ],
+            'teachers' => [
+                'class' => \tests\fixtures\TeacherFixture::class,
+                'dataFile' => codecept_data_dir() . 'teachers.php',
+            ],
+        ];
+    }
+
     public function testIndexAction(ApiTester $I)
     {
-        $url = '/admin/educational-work/index';
+        $url = '/admin/teacher/index';
         $this->testFailedIfUnauthorized($I, $url, 'GET');
         $this->asAdmin($I);
         $I->sendGetAsJson($url, [
-            'description' => 'матча по мини-футболу',
+            'full_name' => 'Марзан',
         ]);
 
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
-              'id' => 2,
-              'description' => 'Организация факультетского матча по мини-футболу между командой студентов 1 курса и командой старшекурсников физико-математического факультета; по баскетболу между командой преподавателей и студентов 30.10.2020 в 20.30 в спортивном зале Сендер А.Н. (расп. 223 от 08.10.2020);',
+              'full_name' => 'Марзан Сергей Андреевич',
             ],
         ]);
     }

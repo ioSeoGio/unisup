@@ -5,19 +5,35 @@ namespace domain\educationalWork;
 use seog\base\ModelAdapter;
 use validators\ValidatorInterface;
 
+use models\Teacher;
+use models\WorkReportType;
+use domain\workReport\WorkReportLevel;
+
 class CreateForm extends ModelAdapter implements ValidatorInterface
 {
     public $description;
     public $level;
-    public $teacher_id;
     public $type_id;
+    public $teachers;
+
+    public function commonRules()
+    {
+        return [
+            [['description', 'level'], 'string'],
+            [['type_id'], 'integer'],
+            [['teachers'], 'each', 'rule' => ['integer']],
+            [['teachers'], 'each', 'rule' => ['exist', 'skipOnError' => true, 'targetClass' => Teacher::class, 'targetAttribute' => ['teachers' => 'id']]],
+
+            [['level'], 'in', 'range' => [WorkReportLevel::BREST, WorkReportLevel::BELARUS, WorkReportLevel::FOREIGN]],
+            
+            [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => WorkReportType::class, 'targetAttribute' => ['type_id' => 'id']],
+        ];
+    }
 
     public function rules()
     {
-        return [
-            [['description', 'level', 'teacher_id', 'type_id'], 'required'],
-            [['description', 'level'], 'string'],
-            [['teacher_id', 'type_id'], 'integer'],
-        ];
+        return array_merge($this->commonRules(), [
+            [['description', 'level', 'teachers', 'type_id'], 'required'],
+        ]);
     }
 }

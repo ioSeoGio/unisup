@@ -12,11 +12,13 @@ abstract class YiiDataHandler
      * Used to restore query to default state
      */
     protected QueryInterface $queryBackup;
+    protected ?QueryInterface $query = null;
 
 
     public function __construct(
-        protected QueryInterface $query
+        QueryInterface $query
     ) {
+        $this->query = $query;
         $this->queryBackup = clone $query;
     }
 
@@ -26,6 +28,15 @@ abstract class YiiDataHandler
     protected function resetQuery(): void
     {
         $this->query = clone $this->queryBackup;
+    }
+
+    protected function getOne(array|int $criteria): ActiveRecordAdapter
+    {
+        $dto = $this->findOne($criteria);
+        if ($dto) {
+            return $dto;
+        }
+        throw new \yii\web\NotFoundHttpException();
     }
 
     protected function findOne(array|int $criteria): ActiveRecordAdapter
@@ -48,6 +59,9 @@ abstract class YiiDataHandler
         if (is_object($data)) {
             $data = get_object_vars($data);
         }
-        return $data;
+        // exclude null values
+        return array_filter($data, function ($value) {
+            return $value !== null;
+        });
     }
 }

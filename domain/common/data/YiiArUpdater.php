@@ -9,7 +9,7 @@ abstract class YiiArUpdater extends YiiDataHandler implements UpdaterInterface
 {
     public function updateOneById(int $id, array|object $data): object
     {
-        $model = $this->findOne($id);
+        $model = $this->getOne($id);
         return $this->updateOne($model, $data);
     }
 
@@ -21,11 +21,11 @@ abstract class YiiArUpdater extends YiiDataHandler implements UpdaterInterface
 
     public function updateOneByCriteria(array $criteria, array|object $data): object
     {
-        $model = $this->findOne($criteria);
+        $model = $this->getOne($criteria);
         return $this->updateOne($model, $data);
     }
 
-    public function updateManyByCriteria(array $criteria = [], array|object $data): array
+    public function updateManyByCriteria(array $criteria, array|object $data): array
     {
         $models = $this->findMany($criteria);
         return $this->updateMany($models, $data);
@@ -34,11 +34,20 @@ abstract class YiiArUpdater extends YiiDataHandler implements UpdaterInterface
     private function updateOne(ActiveRecord $model, array|object $data): object
     {
         $data = $this->makeArray($data);
-        $isUpdatedSuccessful = boolval($model->updateAttributes($data));
-        if ($isUpdatedSuccessful) {
+        $model = $this->fillDtoAttributes($model, $data);
+        
+        if ($model->save()) {
             return $model;
         }
         throw new \Error("Saving record id = $model->id failed.");
+    }
+
+    private function fillDtoAttributes(object $dto, array $data): object
+    {
+        foreach ($data as $key => $value) {
+            $dto->$key = $value;
+        }
+        return $dto;
     }
 
     private function updateMany(array $models, array $data): array

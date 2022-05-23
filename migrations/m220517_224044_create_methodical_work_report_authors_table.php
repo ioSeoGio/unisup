@@ -9,7 +9,7 @@ class m220517_224044_create_methodical_work_report_authors_table extends Migrati
         $this->createTable('{{%methodical_work_report_authors}}', [
             'id' => $this->primaryKey(),
 
-            'methodical_work_report_id' => $this->integer()->notNull(),
+            'work_report_id' => $this->integer()->notNull(),
             'teacher_id' => $this->integer()->notNull(),
 
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
@@ -17,9 +17,9 @@ class m220517_224044_create_methodical_work_report_authors_table extends Migrati
         ]);
 
         $this->addForeignKey(
-            'FK-methodical_work_report_authors-methodical_work_report_id',
+            'FK-methodical_work_report_authors-work_report_id',
             '{{%methodical_work_report_authors}}',
-            'methodical_work_report_id',
+            'work_report_id',
             '{{%methodical_work_reports}}',
             'id'
         );
@@ -30,7 +30,7 @@ class m220517_224044_create_methodical_work_report_authors_table extends Migrati
             '{{%teachers}}',
             'id'
         );
-        $this->batchInsert('{{%methodical_work_report_authors}}', ['methodical_work_report_id', 'teacher_id'], [
+        $this->batchInsert('{{%methodical_work_report_authors}}', ['work_report_id', 'teacher_id'], [
 
             [1, 1],
             [2, 3],
@@ -44,7 +44,7 @@ class m220517_224044_create_methodical_work_report_authors_table extends Migrati
             '{{%methodical_work_report_authors}}',
         );
         $this->dropForeignKey(
-            'FK-methodical_work_report_authors-methodical_work_report_id',
+            'FK-methodical_work_report_authors-work_report_id',
             '{{%methodical_work_reports}}',
         );
         $this->dropTable('{{%methodical_work_report_authors}}');

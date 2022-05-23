@@ -2,10 +2,10 @@
 
 namespace domain\educationalWork;
 
-class CreateRequestDto
+class Dto
 {
 	public ?string $description;
 	public ?string $level;
-	public ?int $teacher_id;
 	public ?int $type_id;
+	public ?array $teachers = [];
 }

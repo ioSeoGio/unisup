@@ -12,7 +12,6 @@ modules:
            part: [json]
        - Yii2:
            part: [orm, fixtures]
-           entryScript: index-test.php
 
 actor: ApiTester
 step_decorators:

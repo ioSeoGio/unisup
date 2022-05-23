@@ -69,19 +69,19 @@ class Teacher extends ActiveRecordAdapter
 
     public function getEducationalWorkReports()
     {
-        return $this->hasMany(EducationalWorkReport::class, ['id' => 'educational_work_report_id'])
+        return $this->hasMany(EducationalWorkReport::class, ['id' => 'work_report_id'])
             ->viaTable(ScientificWorkReportAuthor::tableName(), ['teacher_id' => 'id']);
     }
 
     public function getScientificWorkReports()
     {
-        return $this->hasMany(ScientificWorkReport::class, ['id' => 'scientific_work_report_id'])
+        return $this->hasMany(ScientificWorkReport::class, ['id' => 'work_report_id'])
             ->viaTable(ScientificWorkReportAuthor::tableName(), ['teacher_id' => 'id']);
     }
 
     public function getMethodicalWorkReports()
     {
-        return $this->hasMany(MethodicalWorkReport::class, ['id' => 'methodical_work_report_id'])
+        return $this->hasMany(MethodicalWorkReport::class, ['id' => 'work_report_id'])
             ->viaTable(MethodicalWorkReportAuthor::tableName(), ['teacher_id' => 'id']);
     }
 }

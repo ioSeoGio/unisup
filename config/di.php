@@ -28,12 +28,6 @@ use domain\teacher\Repository as TeacherRepository;
 use domain\teacher\Updater as TeacherUpdater;
 use models\query\TeacherQuery;
 
-use domain\educationalWork\Creator as EducationalWorkReportCreator;
-use domain\educationalWork\Deleter as EducationalWorkReportDeleter;
-use domain\educationalWork\Repository as EducationalWorkReportRepository;
-use domain\educationalWork\Updater as EducationalWorkUpdater;
-use models\query\EducationalWorkReportQuery;
-
 return [
     'singletons' => [
 	    RequestAdapterInterface::class => RequestAdapter::class,
@@ -73,19 +67,6 @@ return [
 	    },
 	    TeacherUpdater::class => function () {
 	        return new TeacherUpdater(new TeacherQuery);
-	    },
-
-	    EducationalWorkReportCreator::class => function () {
-	        return new EducationalWorkReportCreator(new EducationalWorkReportQuery);
-	    },
-	    EducationalWorkReportDeleter::class => function () {
-	        return new EducationalWorkReportDeleter(new EducationalWorkReportQuery);
-	    },
-	    EducationalWorkReportRepository::class => function () {
-	        return new EducationalWorkReportRepository(new EducationalWorkReportQuery);
-	    },
-	    EducationalWorkReportUpdater::class => function () {
-	        return new EducationalWorkReportUpdater(new EducationalWorkReportQuery);
 	    },
 	],
 ];

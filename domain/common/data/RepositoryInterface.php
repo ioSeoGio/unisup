@@ -16,6 +16,7 @@ interface RepositoryInterface
     public function one(): ?object;
     public function all(): array;
     public function asDataProvider(int $pageSize = 50): object;
+    public function getOneById(int $id, array $with = []): object;
     public function findOneById(int $id, array $with = []): ?object;
     public function findManyByIds(array $ids, int $limit = 50): array;
     public function findOneByCriteria(array $criteria = [], array $with = []): ?object;

@@ -25,5 +25,4 @@ $config = array_merge_recursive($common, [
         ],
     ],
 ]);
-
 return $config;

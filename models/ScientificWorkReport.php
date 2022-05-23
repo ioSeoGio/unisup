@@ -20,14 +20,13 @@ class ScientificWorkReport extends WorkReport
             [['type_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['level'], 'string', 'max' => 255],
-            [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => ScientificWorkReport::class, 'targetAttribute' => ['type_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => WorkReportType::class, 'targetAttribute' => ['type_id' => 'id']],
         ];
     }
 
     public function getScientificWorkReportAuthors()
     {
-        return $this->hasMany(ScientificWorkReportAuthor::class, ['scientific_work_report_id' => 'id']);
+        return $this->hasMany(ScientificWorkReportAuthor::class, ['work_report_id' => 'id']);
     }
 
     public function getType()
@@ -38,6 +37,6 @@ class ScientificWorkReport extends WorkReport
     public function getTeachers()
     {
         return $this->hasMany(Teacher::class, ['id' => 'teacher_id'])
-            ->viaTable(ScientificWorkReportAuthor::tableName(), ['scientific_work_report_id' => 'id']);
+            ->viaTable(ScientificWorkReportAuthor::tableName(), ['work_report_id' => 'id']);
     }
 }

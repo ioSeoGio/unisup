@@ -2,12 +2,22 @@
 
 class LoginCest
 {
+    public function _fixtures()
+    {
+        return [
+            'users' => [
+                'class' => \tests\fixtures\UserFixture::class,
+                'dataFile' => codecept_data_dir() . 'users.php',
+            ],
+        ];
+    }
+
     public function testSuccessLogin(ApiTester $I)
     {
         $I->sendPostAsJson('/site/login', [
             'username' => 'admin',
             'password' => '12345678',
-        ]);       
+        ]);
         
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();

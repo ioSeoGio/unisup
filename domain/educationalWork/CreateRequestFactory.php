@@ -4,13 +4,13 @@ namespace domain\educationalWork;
 
 class CreateRequestFactory extends \factories\BaseRequestFactory
 {
-	public function makeDto(): CreateRequestDto
+	public function makeDto(): Dto
 	{
-		$dto = new CreateRequestDto();
+		$dto = new Dto();
 		$dto->description = $this->bodyParams['description'] ?? null;
 		$dto->level = $this->bodyParams['level'] ?? null;
-		$dto->teacher_id = $this->bodyParams['teacher_id'] ?? null;
 		$dto->type_id = $this->bodyParams['type_id'] ?? null;
+		$dto->teachers = $this->bodyParams['teachers'] ?? null;
 		return $dto;
 	}
 }

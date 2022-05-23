@@ -5,6 +5,32 @@ use domain\workReport\WorkReportLevel;
 
 class EducationalWorkCest extends Cest
 {
+    public function _fixtures()
+    {
+        return [
+            'users' => [
+                'class' => \tests\fixtures\UserFixture::class,
+                'dataFile' => codecept_data_dir() . 'users.php',
+            ],
+            'teachers' => [
+                'class' => \tests\fixtures\TeacherFixture::class,
+                'dataFile' => codecept_data_dir() . 'teachers.php',
+            ],
+            'work_report_types' => [
+                'class' => \tests\fixtures\WorkReportTypeFixture::class,
+                'dataFile' => codecept_data_dir() . 'work_report_types.php',
+            ],
+            'educational_work_reports' => [
+                'class' => \tests\fixtures\EducationalWorkReportFixture::class,
+                'dataFile' => codecept_data_dir() . 'educational_work_reports.php',
+            ],
+            'educational_work_report_authors' => [
+                'class' => \tests\fixtures\EducationalWorkReportAuthorFixture::class,
+                'dataFile' => codecept_data_dir() . 'educational_work_report_authors.php',
+            ],
+        ];
+    }
+
     public function testIndexAction(ApiTester $I)
     {
         $url = '/admin/educational-work/index';
@@ -24,23 +50,74 @@ class EducationalWorkCest extends Cest
         ]);
     }
 
+    public function testReadAction(ApiTester $I)
+    {
+        $url = '/admin/educational-work/read?id=1';
+        $this->testFailedIfUnauthorized($I, $url, 'GET');
+        $this->asAdmin($I);
+        $I->sendGetAsJson($url);
+
+        $I->seeResponseIsJson();
+        $I->seeResponseCodeIsSuccessful();
+        $I->seeResponseContainsJson([
+            'data' => [
+                'description' => 'Организация и проведение конкурса «Национальное гостеприимство» (расп. №56 от 05.02.2020);',
+            ],
+        ]);
+    }
+
     public function testCreateAction(ApiTester $I)
     {
         $url = '/admin/educational-work/create';
         $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
-        $data = [
+        $I->sendPostAsJson($url, [
             'description' => 'test-description',
             'level' => WorkReportLevel::BREST,
-            'teacher_id' => 1,
             'type_id' => 5,
-        ];
-        $I->sendPostAsJson($url, $data);
+            'teachers' => [1],
+        ]);
 
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
-            'data' => $data
+            'data' => [
+                'description' => 'test-description',
+                'level' => WorkReportLevel::BREST,
+                'type_id' => 5,
+            ]
         ]);
+    }
+
+    public function testUpdateActionOneField(ApiTester $I)
+    {
+        $url = '/admin/educational-work/update?id=1';
+        $this->testFailedIfUnauthorized($I, $url, 'POST');
+        $this->asAdmin($I);
+
+        $I->sendPostAsJson($url, ['description' => 'test-description-updated']);
+        
+        $I->seeResponseIsJson();
+        $I->seeResponseCodeIsSuccessful();
+        $I->seeResponseContainsJson([
+            'data' => [
+                'id' => 1,
+                'description' => 'test-description-updated',
+            ]
+        ]);
+    }
+
+    public function testDeleteAction(ApiTester $I)
+    {
+        $url = '/admin/educational-work/delete?id=1';
+        $this->testFailedIfUnauthorized($I, $url, 'POST');
+        $this->asAdmin($I);
+
+        $I->sendPostAsJson($url);
+        $I->seeResponseIsJson();
+        $I->seeResponseCodeIsSuccessful();
+
+        $I->sendGetAsJson('/admin/educational-work/read?id=1');
+        $I->seeResponseCodeIs(404);
     }
 }

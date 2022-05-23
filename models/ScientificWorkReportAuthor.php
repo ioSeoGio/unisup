@@ -14,16 +14,16 @@ class ScientificWorkReportAuthor extends ActiveRecordAdapter
     public function rules()
     {
         return [
-            [['scientific_work_report_id', 'teacher_id'], 'required'],
-            [['scientific_work_report_id', 'teacher_id'], 'integer'],
+            [['work_report_id', 'teacher_id'], 'required'],
+            [['work_report_id', 'teacher_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['scientific_work_report_id'], 'exist', 'skipOnError' => true, 'targetClass' => ScientificWorkReport::class, 'targetAttribute' => ['scientific_work_report_id' => 'id']],
+            [['work_report_id'], 'exist', 'skipOnError' => true, 'targetClass' => ScientificWorkReport::class, 'targetAttribute' => ['work_report_id' => 'id']],
         ];
     }
 
     public function getScientificWorkReport()
     {
-        return $this->hasOne(ScientificWorkReport::class, ['id' => 'scientific_work_report_id']);
+        return $this->hasOne(ScientificWorkReport::class, ['id' => 'work_report_id']);
     }
 
     public function getTeacher()

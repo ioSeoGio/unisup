@@ -42,15 +42,15 @@ class SiteController extends BaseController
     {
         return array_merge_recursive(parent::auth(), [
             'only' => ['test'],
-            'except' => ['login'],
+            'except' => ['login', 'index'],
         ]);
     }
 
     public function verbActions()
     {
         return [
+            'index' => ['get'],
             'login' => ['post'],
-            'signup' => ['post'],
         ];
     }
     

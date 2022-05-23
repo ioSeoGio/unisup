@@ -26,7 +26,7 @@ class MethodicalWorkReport extends WorkReport
 
     public function getMethodicalWorkReportAuthors()
     {
-        return $this->hasMany(MethodicalWorkReportAuthor::class, ['methodical_work_report_id' => 'id']);
+        return $this->hasMany(MethodicalWorkReportAuthor::class, ['work_report_id' => 'id']);
     }
 
     public function getType()
@@ -38,6 +38,6 @@ class MethodicalWorkReport extends WorkReport
     public function getTeachers()
     {
         return $this->hasMany(Teacher::class, ['id' => 'teacher_id'])
-            ->viaTable(MethodicalWorkReportAuthor::tableName(), ['methodical_work_report_id' => 'id']);
+            ->viaTable(MethodicalWorkReportAuthor::tableName(), ['work_report_id' => 'id']);
     }
 }

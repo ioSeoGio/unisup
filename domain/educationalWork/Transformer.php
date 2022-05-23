@@ -5,7 +5,7 @@ namespace domain\educationalWork;
 use transformers\BaseTransformer;
 use models\EducationalWorkReport;
 
-class CreateTransformer extends BaseTransformer
+class Transformer extends BaseTransformer
 {
     public function __construct(
         private EducationalWorkReport $dto

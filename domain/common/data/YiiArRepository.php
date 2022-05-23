@@ -68,6 +68,18 @@ abstract class YiiArRepository extends YiiDataHandler implements RepositoryInter
         return $dataProvider;
     }
 
+    public function getOneById(int $id, array $with = []): object
+    {
+        $dto = $this->query
+            ->where([self::PRIMARY_KEY => $id])
+            ->with($with)
+            ->one();
+        if ($dto) {
+            return $dto;
+        }
+        throw new \yii\web\NotFoundHttpException();
+    }
+
     public function findOneById(int $id, array $with = []): ?object
     {
         return $this->query

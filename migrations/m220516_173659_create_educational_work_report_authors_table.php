@@ -11,7 +11,7 @@ class m220516_173659_create_educational_work_report_authors_table extends Migrat
         $this->createTable('{{%educational_work_report_authors}}', [
             'id' => $this->primaryKey(),
 
-            'educational_work_report_id' => $this->integer()->notNull(),
+            'work_report_id' => $this->integer()->notNull(),
             'teacher_id' => $this->integer()->notNull(),
 
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
@@ -19,9 +19,9 @@ class m220516_173659_create_educational_work_report_authors_table extends Migrat
         ]);
 
         $this->addForeignKey(
-            'FK-educational_work_report_authors-educational_work_report_id',
+            'FK-educational_work_report_authors-work_report_id',
             '{{%educational_work_report_authors}}',
-            'educational_work_report_id',
+            'work_report_id',
             '{{%educational_work_reports}}',
             'id'
         );
@@ -32,7 +32,7 @@ class m220516_173659_create_educational_work_report_authors_table extends Migrat
             '{{%teachers}}',
             'id'
         );
-        $this->batchInsert('{{%educational_work_report_authors}}', ['educational_work_report_id', 'teacher_id'], [
+        $this->batchInsert('{{%educational_work_report_authors}}', ['work_report_id', 'teacher_id'], [
 
             [1, 1],
             [2, 1],
@@ -43,7 +43,7 @@ class m220516_173659_create_educational_work_report_authors_table extends Migrat
     public function safeDown()
     {
         $this->dropForeignKey(
-            'FK-educational_work_report_authors-educational_work_report_id',
+            'FK-educational_work_report_authors-work_report_id',
             '{{%educational_work_report_authors}}',
         );
         $this->dropForeignKey(

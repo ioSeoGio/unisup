@@ -3,7 +3,7 @@
 namespace models\search;
 
 use data\FiltratorInterface;
-use models\query\EducationalWorkReportQuery;
+use models\query\EducationalWorkReportQuery as Query;
 use seog\base\ModelAdapter;
 use seog\web\RequestAdapterInterface;
 use yii\data\ActiveDataProvider;
@@ -29,7 +29,7 @@ class EducationalWorkFiltrator extends ModelAdapter implements FiltratorInterfac
 
     public function search(RequestAdapterInterface $request): ActiveDataProvider
     {
-        $query = new EducationalWorkReportQuery();
+        $query = new Query();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

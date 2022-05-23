@@ -13,7 +13,7 @@ class m220517_173659_create_scientific_work_report_authors_table extends Migrati
         $this->createTable('{{%scientific_work_report_authors}}', [
             'id' => $this->primaryKey(),
 
-            'scientific_work_report_id' => $this->integer()->notNull(),
+            'work_report_id' => $this->integer()->notNull(),
             'teacher_id' => $this->integer()->notNull(),
 
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
@@ -21,9 +21,9 @@ class m220517_173659_create_scientific_work_report_authors_table extends Migrati
         ]);
 
         $this->addForeignKey(
-            'FK-scientific_work_report_authors-scientific_work_report_id',
+            'FK-scientific_work_report_authors-work_report_id',
             '{{%scientific_work_report_authors}}',
-            'scientific_work_report_id',
+            'work_report_id',
             '{{%scientific_work_reports}}',
             'id'
         );
@@ -34,7 +34,7 @@ class m220517_173659_create_scientific_work_report_authors_table extends Migrati
             '{{%teachers}}',
             'id'
         );
-        $this->batchInsert('{{%scientific_work_report_authors}}', ['scientific_work_report_id', 'teacher_id'], [
+        $this->batchInsert('{{%scientific_work_report_authors}}', ['work_report_id', 'teacher_id'], [
 
             [1, 1],
             [2, 3],
@@ -47,7 +47,7 @@ class m220517_173659_create_scientific_work_report_authors_table extends Migrati
     public function safeDown()
     {
         $this->dropForeignKey(
-            'FK-scientific_work_report_authors-scientific_work_report_id',
+            'FK-scientific_work_report_authors-work_report_id',
             '{{%scientific_work_report_authors}}',
         );
         $this->dropForeignKey(
