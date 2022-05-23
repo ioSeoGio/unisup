@@ -62,9 +62,6 @@ return [
 	    TeacherDeleter::class => function () {
 	        return new TeacherDeleter(new TeacherQuery);
 	    },
-	    TeacherRepository::class => function () {
-	        return new TeacherRepository(new TeacherQuery);
-	    },
 	    TeacherUpdater::class => function () {
 	        return new TeacherUpdater(new TeacherQuery);
 	    },

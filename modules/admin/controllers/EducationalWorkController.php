@@ -47,25 +47,6 @@ class EducationalWorkController extends BaseModuleController
         parent::__construct($id, $module, $config);
     }
 
-    protected function auth()
-    {
-        return array_merge_recursive(parent::auth(), [
-            'only' => ['index', 'read', 'create', 'update', 'delete'],
-            'except' => [],
-        ]);
-    }
-
-    public function verbActions()
-    {
-        return [
-            'index' => ['get'],
-            'read' => ['get'],
-            'create' => ['post'],
-            'update' => ['post'],
-            'delete' => ['post'],
-        ];
-    }
-
     public function actionIndex()
     {
         return $this->filtrator->search($this->request);

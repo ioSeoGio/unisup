@@ -21,15 +21,31 @@ abstract class Controller extends BaseController
 
         // Configuring authenticator && access
 		$behaviors['access'] = $this->access();
+        
+        // add CORS filter
+        $behaviors['corsFilter'] = [
+            'class' => \yii\filters\Cors::class,
+        ];
+        
         $behaviors['authenticator'] = [
             'class' => $this->getAuthenticatorClass(),
         ];
+
 
 		$authConfig = $this->auth();
         $behaviors['authenticator']['only'] = $authConfig['only'];
         $behaviors['authenticator']['except'] = array_merge(['options'], $authConfig['except']);
 
         return $behaviors;
+    }
+
+    public function actions()
+    {
+        return [
+            'options' => [
+                'class' => 'yii\rest\OptionsAction',
+            ],
+        ];
     }
 
     /**
@@ -71,8 +87,8 @@ abstract class Controller extends BaseController
    	{
    		return [
    			'only' => [],
-   			'except' => [],
-   		];
+            'except' => ['options', 'index', 'read', 'create', 'update', 'delete'],
+        ];
    	}
 
     protected function verbs()
@@ -83,5 +99,14 @@ abstract class Controller extends BaseController
         ];
     }
 
-    abstract protected function verbActions();
+    protected function verbActions()
+    {
+        return [
+            'index' => ['get', 'options'],
+            'read' => ['get', 'options'],
+            'create' => ['post', 'options'],
+            'update' => ['post', 'options'],
+            'delete' => ['post', 'options'],
+        ];
+    }
 }

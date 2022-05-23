@@ -11,9 +11,6 @@ $config = array_merge_recursive($common, [
 
     'bootstrap' => [
         'log', 
-        [
-            'class' => 'yii\filters\Cors',
-        ],
     ],
     'aliases' => [
     ],

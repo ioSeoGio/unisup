@@ -26,4 +26,24 @@ abstract class ActiveRecordAdapter extends BaseActiveRecord implements Arrayable
             ],
         ];
     }
+
+    /**
+     * Additional fiels to display relations
+     * By default adds all related records to return in rest controller
+     * WARNING You should declare corresponding properties in AR class
+     * Use ActiveQuery::with() to get related methods
+     *
+     * @return array $fields
+    */
+    // public function fields()
+    // {
+    //     $fields = parent::fields();
+        
+    //     // dd($this->relatedRecords);
+    //     $fields['related'] = function () {
+    //         return $this->relatedRecords;
+    //     };
+        
+    //     return $fields;
+    // }
 }

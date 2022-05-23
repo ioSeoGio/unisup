@@ -2,15 +2,15 @@
 
 namespace app\modules\admin\controllers;
 
-use models\search\TeacherFiltrator;
+use models\search\WorkReportTypeFiltrator;
 
-class TeacherController extends BaseModuleController
+class WorkReportTypeController extends BaseModuleController
 {
     public function __construct(
         $id,
         $module,
 
-        private TeacherFiltrator $teacherFiltrator,
+        private WorkReportTypeFiltrator $filtrator,
 
         $config = [],
     ) {
@@ -19,6 +19,6 @@ class TeacherController extends BaseModuleController
 
     public function actionIndex()
     {
-        return $this->teacherFiltrator->search($this->request);
+        return $this->filtrator->search($this->request);
     }
 }

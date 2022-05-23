@@ -60,16 +60,13 @@ class SiteController extends BaseModuleController
         ]);
     }
 
-    public function verbs()
+    public function verbActions()
     {
-        return [
-            'class' => VerbFilter::className(),
-            'actions' => [
-                'educational-work' => ['get'],
-                'scientific-work' => ['get'],
-                'methodical-work' => ['get'],
-            ],
-        ];
+        return array_merge(parent::verbActions(), [
+            'educational-work' => ['post', 'options'],
+            'scientific-work' => ['post', 'options'],
+            'methodical-work' => ['post', 'options'],
+        ]);
     }
 
     public function actionEducationalWork()

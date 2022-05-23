@@ -11,7 +11,7 @@ abstract class BaseModuleController extends Controller
         return [
             [
                 'allow' => true,
-                'roles' => ['moderator'],
+                // 'roles' => ['moderator'],
             ]
         ];
     }

@@ -34,7 +34,7 @@ class MethodicalWorkCest extends Cest
     public function testIndexAction(ApiTester $I)
     {
         $url = '/admin/methodical-work/index';
-        $this->testFailedIfUnauthorized($I, $url, 'GET');
+        // $this->testFailedIfUnauthorized($I, $url, 'GET');
         $this->asAdmin($I);
         $I->sendGetAsJson($url, [
             'description' => 'Математический анализ (2014)',
@@ -53,7 +53,7 @@ class MethodicalWorkCest extends Cest
     public function testReadAction(ApiTester $I)
     {
         $url = '/admin/methodical-work/read?id=1';
-        $this->testFailedIfUnauthorized($I, $url, 'GET');
+        // $this->testFailedIfUnauthorized($I, $url, 'GET');
         $this->asAdmin($I);
         $I->sendGetAsJson($url);
 
@@ -69,7 +69,7 @@ class MethodicalWorkCest extends Cest
     public function testCreateAction(ApiTester $I)
     {
         $url = '/admin/methodical-work/create';
-        $this->testFailedIfUnauthorized($I, $url, 'POST');
+        // $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
         $I->sendPostAsJson($url, [
             'description' => 'test-description',
@@ -92,7 +92,7 @@ class MethodicalWorkCest extends Cest
     public function testUpdateActionOneField(ApiTester $I)
     {
         $url = '/admin/methodical-work/update?id=1';
-        $this->testFailedIfUnauthorized($I, $url, 'POST');
+        // $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
 
         $I->sendPostAsJson($url, ['description' => 'test-description-updated']);
@@ -110,7 +110,7 @@ class MethodicalWorkCest extends Cest
     public function testDeleteAction(ApiTester $I)
     {
         $url = '/admin/methodical-work/delete?id=1';
-        $this->testFailedIfUnauthorized($I, $url, 'POST');
+        // $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
 
         $I->sendPostAsJson($url);

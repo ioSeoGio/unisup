@@ -3,29 +3,30 @@
 namespace models\search;
 
 use data\FiltratorInterface;
-use models\query\TeacherQuery as Query;
+use models\query\WorkReportTypeQuery as Query;
 use seog\base\ModelAdapter;
 use seog\web\RequestAdapterInterface;
 use yii\data\ActiveDataProvider;
 
-class TeacherFiltrator extends ModelAdapter implements FiltratorInterface
+class WorkReportTypeFiltrator extends ModelAdapter implements FiltratorInterface
 {
     public $id;
-    public $department_id;
-    public $academic_degree_id;
-    public $academic_title_id;
-    public $teacher_post_id;
+    public $serial_number;
+    public $type;
+    public $description;
 
-    public $full_name;
-    public $working_since;
+    public $foreign_points;
+    public $belarus_points;
+    public $brest_points;
+
     public $created_at;
     public $updated_at;
 
     public function rules()
     {
         return [
-            [['id', 'department_id', 'academic_degree_id', 'academic_title_id', 'teacher_post_id'], 'integer'],
-            [['full_name', 'working_since', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'serial_number', 'foreign_points', 'belarus_points', 'brest_points'], 'integer'],
+            [['type', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -43,15 +44,17 @@ class TeacherFiltrator extends ModelAdapter implements FiltratorInterface
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'department_id' => $this->department_id,
-            'academic_degree_id' => $this->academic_degree_id,
-            'academic_title_id' => $this->academic_title_id,
-            'teacher_post_id' => $this->teacher_post_id,
-            'working_since' => $this->working_since,
+            'serial_number' => $this->serial_number,
+            'type' => $this->type,
+
+            'foreign_points' => $this->foreign_points,
+            'belarus_points' => $this->belarus_points,
+            'brest_points' => $this->brest_points,
+
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
-        $query->andFilterWhere(['ilike', 'full_name', $this->full_name]);
+        $query->andFilterWhere(['ilike', 'description', $this->description]);
 
         return $dataProvider;
     }
