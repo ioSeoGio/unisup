@@ -104,6 +104,11 @@ class ScientificWorkCest extends Cest
 
     public function testDeleteAction(ApiTester $I)
     {
+        $readUrl = '/admin/scientific-work/read?id=1';
+        $I->sendGetAsJson($readUrl);
+        $I->seeResponseIsJson();
+        $I->seeResponseCodeIsSuccessful();
+        
         $url = '/admin/scientific-work/delete?id=1';
         // $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
@@ -112,7 +117,7 @@ class ScientificWorkCest extends Cest
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
 
-        $I->sendGetAsJson('/admin/scientific-work/read?id=1');
+        $I->sendGetAsJson($readUrl);
         $I->seeResponseCodeIs(404);
     }
 }

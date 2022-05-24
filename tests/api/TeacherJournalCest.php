@@ -1,9 +1,8 @@
 <?php
 
 use tests\api\common\Cest;
-use domain\workReport\WorkReportLevel;
 
-class EducationalWorkCest extends Cest
+class TeacherJournalCest extends Cest
 {
     public function _fixtures()
     {
@@ -14,40 +13,40 @@ class EducationalWorkCest extends Cest
             'teachers' => [
                 'class' => \tests\fixtures\TeacherFixture::class,
             ],
-            'work_report_types' => [
-                'class' => \tests\fixtures\WorkReportTypeFixture::class,
+            'journals' => [
+                'class' => \tests\fixtures\TeacherJournalFixture::class,
             ],
-            'educational_work_reports' => [
-                'class' => \tests\fixtures\EducationalWorkReportFixture::class,
+            'disciplines' => [
+                'class' => \tests\fixtures\DisciplineFixture::class,
             ],
-            'educational_work_report_authors' => [
-                'class' => \tests\fixtures\EducationalWorkReportAuthorFixture::class,
+            'groups' => [
+                'class' => \tests\fixtures\GroupFixture::class,
             ],
         ];
     }
 
     public function testIndexAction(ApiTester $I)
     {
-        $url = '/admin/educational-work/index';
+        $url = '/admin/teacher-journal/index';
         // $this->testFailedIfUnauthorized($I, $url, 'GET');
         $this->asAdmin($I);
         $I->sendGetAsJson($url, [
-            'description' => 'матча по мини-футболу',
+            'name' => 'Математический анализ',
         ]);
 
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
-              'id' => 2,
-              'description' => 'Организация факультетского матча по мини-футболу между командой студентов 1 курса и командой старшекурсников физико-математического факультета; по баскетболу между командой преподавателей и студентов 30.10.2020 в 20.30 в спортивном зале Сендер А.Н. (расп. 223 от 08.10.2020);',
+              'id' => 1,
+              'name' => 'Математический анализ',
             ],
         ]);
     }
 
     public function testReadAction(ApiTester $I)
     {
-        $url = '/admin/educational-work/read?id=1';
+        $url = '/admin/teacher-journal/read?id=2';
         // $this->testFailedIfUnauthorized($I, $url, 'GET');
         $this->asAdmin($I);
         $I->sendGetAsJson($url);
@@ -56,64 +55,60 @@ class EducationalWorkCest extends Cest
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
-                'description' => 'Организация и проведение конкурса «Национальное гостеприимство» (расп. №56 от 05.02.2020);',
+                'name' => 'Геометрия и Алгебра',
             ],
         ]);
     }
 
     public function testCreateAction(ApiTester $I)
     {
-        $url = '/admin/educational-work/create';
+        $url = '/admin/teacher-journal/create';
         // $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
-        $I->sendPostAsJson($url, [
-            'description' => 'test-description',
-            'level' => WorkReportLevel::BREST,
-            'type_id' => 5,
-            'teachers' => [1],
-        ]);
+        $data = [
+            'name' => 'test-name',
+            'teacher_id' => 3,
+            'discipline_id' => 1,
+        ];
+        $I->sendPostAsJson($url, $data);
 
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
-            'data' => [
-                'description' => 'test-description',
-                'level' => WorkReportLevel::BREST,
-                'type_id' => 5,
-            ]
+            'data' => $data
         ]);
     }
 
     public function testUpdateActionOneField(ApiTester $I)
     {
-        $url = '/admin/educational-work/update?id=1';
+        $url = '/admin/teacher-journal/update?id=1';
         // $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
 
-        $I->sendPostAsJson($url, ['description' => 'test-description-updated']);
+        $I->sendPostAsJson($url, ['name' => 'test-name-updated']);
         
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
                 'id' => 1,
-                'description' => 'test-description-updated',
+                'name' => 'test-name-updated',
             ]
         ]);
     }
 
     public function testDeleteAction(ApiTester $I)
     {
-        $readUrl = '/admin/educational-work/read?id=1';
+        $readUrl = '/admin/teacher-journal/read?id=1';
         $I->sendGetAsJson($readUrl);
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
 
-        $deleteUrl = '/admin/educational-work/delete?id=1';
+        $url = '/admin/teacher-journal/delete?id=1';
         // $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
 
-        $I->sendPostAsJson($deleteUrl);
+        $I->sendPostAsJson($url);
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
 
