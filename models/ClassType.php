@@ -4,6 +4,7 @@ namespace models;
 
 use Yii;
 use seog\db\ActiveRecordAdapter;
+use yii\db\ActiveQueryInterface;
 
 class ClassType extends ActiveRecordAdapter
 {
@@ -21,10 +22,7 @@ class ClassType extends ActiveRecordAdapter
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getJournalRecords()
+    public function getJournalRecords(): ActiveQueryInterface
     {
         return $this->hasMany(JournalRecord::class, ['class_type' => 'id']);
     }

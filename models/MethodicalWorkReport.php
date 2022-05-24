@@ -3,6 +3,7 @@
 namespace models;
 
 use models\base\WorkReport;
+use yii\db\ActiveQueryInterface;
 
 class MethodicalWorkReport extends WorkReport
 {
@@ -24,18 +25,18 @@ class MethodicalWorkReport extends WorkReport
         ];
     }
 
-    public function getMethodicalWorkReportAuthors()
+    public function getMethodicalWorkReportAuthors(): ActiveQueryInterface
     {
         return $this->hasMany(MethodicalWorkReportAuthor::class, ['work_report_id' => 'id']);
     }
 
-    public function getType()
+    public function getType(): ActiveQueryInterface
     {
         return $this->hasOne(WorkReportType::class, ['id' => 'type_id']);
     }
 
 
-    public function getTeachers()
+    public function getTeachers(): ActiveQueryInterface
     {
         return $this->hasMany(Teacher::class, ['id' => 'teacher_id'])
             ->viaTable(MethodicalWorkReportAuthor::tableName(), ['work_report_id' => 'id']);

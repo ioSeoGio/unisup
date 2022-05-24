@@ -4,6 +4,7 @@ namespace models;
 
 use Yii;
 use seog\db\ActiveRecordAdapter;
+use yii\db\ActiveQueryInterface;
 
 class AcademicTitle extends ActiveRecordAdapter
 {
@@ -20,10 +21,7 @@ class AcademicTitle extends ActiveRecordAdapter
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTeachers()
+    public function getTeachers(): ActiveQueryInterface
     {
         return $this->hasMany(Teacher::class, ['academic_title_id' => 'id']);
     }

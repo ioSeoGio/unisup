@@ -4,6 +4,7 @@ namespace models;
 
 use Yii;
 use seog\db\ActiveRecordAdapter;
+use yii\db\ActiveQueryInterface;
 
 class Student extends ActiveRecordAdapter
 {
@@ -24,18 +25,12 @@ class Student extends ActiveRecordAdapter
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCourse()
+    public function getCourse(): ActiveQueryInterface
     {
         return $this->hasOne(Course::class, ['id' => 'course_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGroup()
+    public function getGroup(): ActiveQueryInterface
     {
         return $this->hasOne(Group::class, ['id' => 'group_id']);
     }

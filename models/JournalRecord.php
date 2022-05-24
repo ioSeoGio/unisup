@@ -4,6 +4,7 @@ namespace models;
 
 use Yii;
 use seog\db\ActiveRecordAdapter;
+use yii\db\ActiveQueryInterface;
 
 class JournalRecord extends ActiveRecordAdapter
 {
@@ -28,22 +29,22 @@ class JournalRecord extends ActiveRecordAdapter
         ];
     }
 
-    public function getClassType()
+    public function getClassType(): ActiveQueryInterface
     {
         return $this->hasOne(ClassType::class, ['id' => 'class_type']);
     }
 
-    public function getGroup()
+    public function getGroup(): ActiveQueryInterface
     {
         return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
 
-    public function getJournal()
+    public function getJournal(): ActiveQueryInterface
     {
         return $this->hasOne(TeacherJournal::class, ['id' => 'journal_id']);
     }
 
-    public function getTeacher()
+    public function getTeacher(): ActiveQueryInterface
     {
         return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
     }

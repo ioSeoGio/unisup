@@ -6,7 +6,7 @@ use domain\common\ArrayableInterface;
 use helpers\Formatter;
 use yii\db\ActiveRecord as BaseActiveRecord;
 use yii\behaviors\TimestampBehavior;
-
+use yii\db\ActiveQueryInterface;
 
 abstract class ActiveRecordAdapter extends BaseActiveRecord implements ArrayableInterface
 {
@@ -27,23 +27,30 @@ abstract class ActiveRecordAdapter extends BaseActiveRecord implements Arrayable
         ];
     }
 
+    public function extraFields()
+    {
+        return array_merge($this->getRelationList(), [
+        ]);
+    }
+
     /**
-     * Additional fiels to display relations
-     * By default adds all related records to return in rest controller
-     * WARNING You should declare corresponding properties in AR class
-     * Use ActiveQuery::with() to get related methods
-     *
-     * @return array $fields
-    */
-    // public function fields()
-    // {
-    //     $fields = parent::fields();
-        
-    //     // dd($this->relatedRecords);
-    //     $fields['related'] = function () {
-    //         return $this->relatedRecords;
-    //     };
-        
-    //     return $fields;
-    // }
+     * List of AR relations
+     * Used to add relations to extraFields by default
+     * WARNING: You should define return type of relation function \yii\db\ActiveQueryInterface like this:
+     * ```php
+     * public function getTeacher(): \yii\db\ActiveQueryInterface
+     * ...
+     * ``` 
+     */
+    protected function getRelationList()
+    {
+        $reflection = new \ReflectionClass($this);
+        foreach ($reflection->getMethods() as $method) {
+            if ($method->getReturnType()?->getName() !== ActiveQueryInterface::class) {
+                continue;
+            }
+            $relations[] = lcfirst(str_replace('get', '', $method->name));
+        }
+        return $relations;
+    }
 }

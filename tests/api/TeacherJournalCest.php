@@ -104,11 +104,11 @@ class TeacherJournalCest extends Cest
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
 
-        $url = '/admin/teacher-journal/delete?id=1';
+        $deleteUrl = '/admin/teacher-journal/delete?id=1';
         // $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
 
-        $I->sendPostAsJson($url);
+        $I->sendPostAsJson($deleteUrl);
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
 

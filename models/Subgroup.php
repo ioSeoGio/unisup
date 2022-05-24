@@ -4,6 +4,7 @@ namespace models;
 
 use Yii;
 use seog\db\ActiveRecordAdapter;
+use yii\db\ActiveQueryInterface;
 
 class Subgroup extends ActiveRecordAdapter
 {
@@ -12,26 +13,17 @@ class Subgroup extends ActiveRecordAdapter
         return '{{%subgroups}}';
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDiscipline()
+    public function getDiscipline(): ActiveQueryInterface
     {
         return $this->hasOne(Discipline::class, ['id' => 'discipline_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGroup()
+    public function getGroup(): ActiveQueryInterface
     {
         return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTeacher()
+    public function getTeacher(): ActiveQueryInterface
     {
         return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
     }
