@@ -10,23 +10,18 @@ class MethodicalWorkCest extends Cest
         return [
             'users' => [
                 'class' => \tests\fixtures\UserFixture::class,
-                'dataFile' => codecept_data_dir() . 'users.php',
             ],
             'teachers' => [
                 'class' => \tests\fixtures\TeacherFixture::class,
-                'dataFile' => codecept_data_dir() . 'teachers.php',
             ],
             'work_report_types' => [
                 'class' => \tests\fixtures\WorkReportTypeFixture::class,
-                'dataFile' => codecept_data_dir() . 'work_report_types.php',
             ],
             'methodical_work_reports' => [
                 'class' => \tests\fixtures\MethodicalWorkReportFixture::class,
-                'dataFile' => codecept_data_dir() . 'methodical_work_reports.php',
             ],
             'methodical_work_report_authors' => [
                 'class' => \tests\fixtures\MethodicalWorkReportAuthorFixture::class,
-                'dataFile' => codecept_data_dir() . 'methodical_work_report_authors.php',
             ],
         ];
     }

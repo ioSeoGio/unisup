@@ -9,11 +9,9 @@ class TeacherCest extends Cest
         return [
             'users' => [
                 'class' => \tests\fixtures\UserFixture::class,
-                'dataFile' => codecept_data_dir() . 'users.php',
             ],
             'teachers' => [
                 'class' => \tests\fixtures\TeacherFixture::class,
-                'dataFile' => codecept_data_dir() . 'teachers.php',
             ],
         ];
     }

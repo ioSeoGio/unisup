@@ -24,25 +24,16 @@ class TeacherJournal extends ActiveRecordAdapter
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getJournalRecords()
     {
         return $this->hasMany(JournalRecord::class, ['journal_id' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getDiscipline()
     {
         return $this->hasOne(Discipline::class, ['id' => 'discipline_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getTeacher()
     {
         return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);

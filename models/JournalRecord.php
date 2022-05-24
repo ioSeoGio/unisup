@@ -28,33 +28,21 @@ class JournalRecord extends ActiveRecordAdapter
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getClassType()
     {
         return $this->hasOne(ClassType::class, ['id' => 'class_type']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getGroup()
     {
         return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getJournal()
     {
         return $this->hasOne(TeacherJournal::class, ['id' => 'journal_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getTeacher()
     {
         return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);

@@ -10,23 +10,18 @@ class EducationalWorkCest extends Cest
         return [
             'users' => [
                 'class' => \tests\fixtures\UserFixture::class,
-                'dataFile' => codecept_data_dir() . 'users.php',
             ],
             'teachers' => [
                 'class' => \tests\fixtures\TeacherFixture::class,
-                'dataFile' => codecept_data_dir() . 'teachers.php',
             ],
             'work_report_types' => [
                 'class' => \tests\fixtures\WorkReportTypeFixture::class,
-                'dataFile' => codecept_data_dir() . 'work_report_types.php',
             ],
             'educational_work_reports' => [
                 'class' => \tests\fixtures\EducationalWorkReportFixture::class,
-                'dataFile' => codecept_data_dir() . 'educational_work_reports.php',
             ],
             'educational_work_report_authors' => [
                 'class' => \tests\fixtures\EducationalWorkReportAuthorFixture::class,
-                'dataFile' => codecept_data_dir() . 'educational_work_report_authors.php',
             ],
         ];
     }

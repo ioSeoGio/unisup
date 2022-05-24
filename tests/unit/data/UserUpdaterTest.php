@@ -14,7 +14,6 @@ class UserUpdaterTest extends \Codeception\Test\Unit
         return [
             'users' => [
                 'class' => \tests\fixtures\UserFixture::class,
-                'dataFile' => codecept_data_dir() . 'users.php',
             ],
         ];
     }
