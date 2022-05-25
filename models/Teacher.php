@@ -38,9 +38,9 @@ class Teacher extends ActiveRecordAdapter
         return $this->hasMany(Subgroup::class, ['discipline_id' => 'id']);
     }
 
-    public function getTeacherJournals(): ActiveQueryInterface
+    public function getJournals(): ActiveQueryInterface
     {
-        return $this->hasMany(TeacherJournal::class, ['teacher_id' => 'id']);
+        return $this->hasMany(Journal::class, ['teacher_id' => 'id']);
     }
 
     public function getTeacherPreferences(): ActiveQueryInterface
