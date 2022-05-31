@@ -8,11 +8,6 @@ use seog\web\RequestAdapterInterface;
 
 class LoginRequestFactoryTest extends \Codeception\Test\Unit
 {
-    protected function _before()
-    {
-
-    }
-
     public function testmakeDto()
     {
         $data = [

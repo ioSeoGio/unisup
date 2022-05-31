@@ -40,7 +40,7 @@ class m211201_105418_create_journal_records_table extends Migration
             'FK-journal_records-journal_id',
             '{{%journal_records}}',
             'journal_id',
-            '{{%teacher_journals}}',
+            '{{%journals}}',
             'id'
         );
         $this->addForeignKey(

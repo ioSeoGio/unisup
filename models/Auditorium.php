@@ -4,6 +4,7 @@ namespace models;
 
 use Yii;
 use seog\db\ActiveRecordAdapter;
+use yii\db\ActiveQueryInterface;
 
 class Auditorium extends ActiveRecordAdapter
 {
@@ -23,10 +24,7 @@ class Auditorium extends ActiveRecordAdapter
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAuditoriumType()
+    public function getAuditoriumType(): ActiveQueryInterface
     {
         return $this->hasOne(AuditoriumType::class, ['id' => 'auditorium_type_id']);
     }

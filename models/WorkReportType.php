@@ -4,6 +4,7 @@ namespace models;
 
 use Yii;
 use seog\db\ActiveRecordAdapter;
+use yii\db\ActiveQueryInterface;
 
 class WorkReportType extends ActiveRecordAdapter
 {
@@ -20,10 +21,7 @@ class WorkReportType extends ActiveRecordAdapter
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEducationalWorkReports()
+    public function getEducationalWorkReports(): ActiveQueryInterface
     {
         return $this->hasMany(EducationalWorkReport::class, ['type_id' => 'id']);
     }

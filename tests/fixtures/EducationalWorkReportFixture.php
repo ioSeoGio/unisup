@@ -7,6 +7,7 @@ use yii\test\ActiveFixture;
 class EducationalWorkReportFixture extends ActiveFixture
 {
     public $modelClass = 'models\EducationalWorkReport';
+    public $dataFile = 'tests/_data/educational_work_reports.php';
 
     public $depends = [
         'tests\fixtures\TeacherFixture',

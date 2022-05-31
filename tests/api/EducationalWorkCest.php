@@ -10,23 +10,18 @@ class EducationalWorkCest extends Cest
         return [
             'users' => [
                 'class' => \tests\fixtures\UserFixture::class,
-                'dataFile' => codecept_data_dir() . 'users.php',
             ],
             'teachers' => [
                 'class' => \tests\fixtures\TeacherFixture::class,
-                'dataFile' => codecept_data_dir() . 'teachers.php',
             ],
             'work_report_types' => [
                 'class' => \tests\fixtures\WorkReportTypeFixture::class,
-                'dataFile' => codecept_data_dir() . 'work_report_types.php',
             ],
             'educational_work_reports' => [
                 'class' => \tests\fixtures\EducationalWorkReportFixture::class,
-                'dataFile' => codecept_data_dir() . 'educational_work_reports.php',
             ],
             'educational_work_report_authors' => [
                 'class' => \tests\fixtures\EducationalWorkReportAuthorFixture::class,
-                'dataFile' => codecept_data_dir() . 'educational_work_report_authors.php',
             ],
         ];
     }
@@ -109,15 +104,20 @@ class EducationalWorkCest extends Cest
 
     public function testDeleteAction(ApiTester $I)
     {
-        $url = '/admin/educational-work/delete?id=1';
-        // $this->testFailedIfUnauthorized($I, $url, 'POST');
-        $this->asAdmin($I);
-
-        $I->sendPostAsJson($url);
+        $readUrl = '/admin/educational-work/read?id=1';
+        $I->sendGetAsJson($readUrl);
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
 
-        $I->sendGetAsJson('/admin/educational-work/read?id=1');
+        $deleteUrl = '/admin/educational-work/delete?id=1';
+        // $this->testFailedIfUnauthorized($I, $url, 'POST');
+        $this->asAdmin($I);
+
+        $I->sendPostAsJson($deleteUrl);
+        $I->seeResponseIsJson();
+        $I->seeResponseCodeIsSuccessful();
+
+        $I->sendGetAsJson($readUrl);
         $I->seeResponseCodeIs(404);
     }
 }

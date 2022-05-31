@@ -32,6 +32,6 @@ abstract class YiiArDeleter extends YiiDataHandler implements DeleterInterface
     public function deleteManyByCriteria(array $criteria): bool
     {
         return $this->query
-            ->modelClass::deleteAll($criteria);
+            ->modelClass::deleteAll($criteria) !== false;
     }
 }

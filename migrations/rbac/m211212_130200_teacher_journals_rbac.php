@@ -31,18 +31,18 @@ class m211212_130200_teacher_journals_rbac extends RbacMigration
     ];
 
     public $roles = [
-        'AppTeacherJournalFull' => [
+        'AppJournalFull' => [
             'index',
             'view',
             'create',
             'update',
             'delete'
         ],
-        'AppTeacherJournalView' => [
+        'AppJournalView' => [
             'index',
             'view'
         ],
-        'AppTeacherJournalEdit' => [
+        'AppJournalEdit' => [
             'update',
             'create',
             'delete'
@@ -55,12 +55,12 @@ class m211212_130200_teacher_journals_rbac extends RbacMigration
     public $rolesAssignments = [
         Rbac::ADMIN => [
             'permissions' => [],
-            'roles' => ['AppTeacherJournalFull'],
+            'roles' => ['AppJournalFull'],
             'rules' => [],
         ],
         Rbac::MODERATOR => [
             'permissions' => [],
-            'roles' => ['AppTeacherJournalFull'],
+            'roles' => ['AppJournalFull'],
             'rules' => [],
         ],
     ];

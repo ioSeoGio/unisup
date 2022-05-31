@@ -4,6 +4,7 @@ namespace models;
 
 use Yii;
 use seog\db\ActiveRecordAdapter;
+use yii\db\ActiveQueryInterface;
 
 class JournalRecord extends ActiveRecordAdapter
 {
@@ -23,39 +24,27 @@ class JournalRecord extends ActiveRecordAdapter
             [['topic'], 'string', 'max' => 255],
             [['class_type'], 'exist', 'skipOnError' => true, 'targetClass' => ClassType::class, 'targetAttribute' => ['class_type' => 'id']],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::class, 'targetAttribute' => ['group_id' => 'id']],
-            [['journal_id'], 'exist', 'skipOnError' => true, 'targetClass' => TeacherJournal::class, 'targetAttribute' => ['journal_id' => 'id']],
+            [['journal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Journal::class, 'targetAttribute' => ['journal_id' => 'id']],
             [['teacher_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::class, 'targetAttribute' => ['teacher_id' => 'id']]
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getClassType()
+    public function getClassType(): ActiveQueryInterface
     {
         return $this->hasOne(ClassType::class, ['id' => 'class_type']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGroup()
+    public function getGroup(): ActiveQueryInterface
     {
         return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getJournal()
+    public function getJournal(): ActiveQueryInterface
     {
-        return $this->hasOne(TeacherJournal::class, ['id' => 'journal_id']);
+        return $this->hasOne(Journal::class, ['id' => 'journal_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTeacher()
+    public function getTeacher(): ActiveQueryInterface
     {
         return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
     }

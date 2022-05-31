@@ -4,6 +4,7 @@ namespace models;
 
 use Yii;
 use seog\db\ActiveRecordAdapter;
+use yii\db\ActiveQueryInterface;
 
 class Group extends ActiveRecordAdapter
 {
@@ -26,50 +27,32 @@ class Group extends ActiveRecordAdapter
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCourse()
+    public function getCourse(): ActiveQueryInterface
     {
         return $this->hasOne(Course::class, ['id' => 'course_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFaculty()
+    public function getFaculty(): ActiveQueryInterface
     {
         return $this->hasOne(Faculty::class, ['id' => 'faculty_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSpecialization()
+    public function getSpecialization(): ActiveQueryInterface
     {
         return $this->hasOne(Specialty::class, ['id' => 'specialization_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getJournalRecords()
+    public function getJournalRecords(): ActiveQueryInterface
     {
         return $this->hasMany(JournalRecord::class, ['group_id' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getStudents()
+    public function getStudents(): ActiveQueryInterface
     {
         return $this->hasMany(Student::class, ['group_id' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSubgroups()
+    public function getSubgroups(): ActiveQueryInterface
     {
         return $this->hasMany(Subgroup::class, ['discipline_id' => 'id']);
     }

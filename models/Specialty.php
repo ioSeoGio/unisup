@@ -4,6 +4,7 @@ namespace models;
 
 use Yii;
 use seog\db\ActiveRecordAdapter;
+use yii\db\ActiveQueryInterface;
 
 class Specialty extends ActiveRecordAdapter
 {
@@ -20,10 +21,7 @@ class Specialty extends ActiveRecordAdapter
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGroups()
+    public function getGroups(): ActiveQueryInterface
     {
         return $this->hasMany(Group::class, ['specialization_id' => 'id']);
     }

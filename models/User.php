@@ -5,6 +5,7 @@ namespace models;
 use Yii;
 use yii\web\UnprocessableEntityHttpException;
 use models\base\User as BaseUser;
+use yii\db\ActiveQueryInterface;
 
 class User extends BaseUser
 {

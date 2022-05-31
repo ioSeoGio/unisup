@@ -3,6 +3,7 @@
 namespace models;
 
 use seog\db\ActiveRecordAdapter;
+use yii\db\ActiveQueryInterface;
 
 class EducationalWorkReportAuthor extends ActiveRecordAdapter
 {
@@ -21,12 +22,12 @@ class EducationalWorkReportAuthor extends ActiveRecordAdapter
         ];
     }
 
-    public function getEducationalWorkReport()
+    public function getEducationalWorkReport(): ActiveQueryInterface
     {
         return $this->hasOne(EducationalWorkReport::class, ['id' => 'work_report_id']);
     }
 
-    public function getTeacher()
+    public function getTeacher(): ActiveQueryInterface
     {
         return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
     }

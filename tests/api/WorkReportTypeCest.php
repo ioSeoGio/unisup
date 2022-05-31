@@ -9,11 +9,9 @@ class WorkReportTypeCest extends Cest
         return [
             'users' => [
                 'class' => \tests\fixtures\UserFixture::class,
-                'dataFile' => codecept_data_dir() . 'users.php',
             ],
             'work_report_types' => [
                 'class' => \tests\fixtures\WorkReportTypeFixture::class,
-                'dataFile' => codecept_data_dir() . 'work_report_types.php',
             ],
         ];
     }
