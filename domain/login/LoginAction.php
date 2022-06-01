@@ -17,7 +17,7 @@ class LoginAction implements ActionInterface
 
 	public function run(object $dto): User
 	{
-		$dto = $this->repository->findByUsername($dto->username);
+		$dto = $this->repository->findByUsername($dto->username, ['teacher']);
 		$this->successEvent->setDto($dto);
 		$this->dispatcher->dispatch($this->successEvent);
     	return $dto;

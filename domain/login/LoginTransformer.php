@@ -18,6 +18,7 @@ class LoginTransformer extends BaseTransformer
 			'username' => $this->dto->username,
 			'access_token' => $this->dto->access_token,
 			'email' => $this->dto->email,
+			'teacher' => $this->dto->teacher,
 		];
 	}
 }

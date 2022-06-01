@@ -109,8 +109,8 @@ class User extends BaseUser
         }
     }
     
-    public function getTeacher()
+    public function getTeacher(): ActiveQueryInterface
     {
-        $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
+        return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
     }
 }

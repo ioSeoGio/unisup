@@ -25,17 +25,17 @@ class TeacherPreference extends ActiveRecordAdapter
         ];
     }
 
-    public function getCourse(): ActiveQueryInterface0
+    public function getCourse(): ActiveQueryInterface
     {
         return $this->hasOne(Course::class, ['id' => 'course_id']);
     }
 
-    public function getDiscipline(): ActiveQueryInterface0
+    public function getDiscipline(): ActiveQueryInterface
     {
         return $this->hasOne(Discipline::class, ['id' => 'discipline_id']);
     }
 
-    public function getTeacher(): ActiveQueryInterface0
+    public function getTeacher(): ActiveQueryInterface
     {
         return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
     }

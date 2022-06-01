@@ -6,8 +6,8 @@ use data\YiiArRepository;
 
 class Repository extends YiiArRepository
 {
-	public function findByUsername(string $username): ?object
+	public function findByUsername(string $username, array $with = []): ?object
 	{
-		return $this->findOneByCriteria(['username' => $username]);
+		return $this->findOneByCriteria(['username' => $username], $with);
 	}
 }
