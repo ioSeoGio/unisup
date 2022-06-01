@@ -82,6 +82,7 @@ $config = array_merge_recursive($common, [
             'rules' => [
                 // ['class' => 'yii\rest\UrlRule'],
                 
+                '<module:admin>/<controller>/read/<id:[\d+]>' => '<module>/<controller>/read',
                 '<module:admin>' => '<module>/site/index',
                 
                 '<action:[\w-]+>' => 'site/<action>',

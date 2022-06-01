@@ -7,21 +7,11 @@ class JournalCest extends Cest
     public function _fixtures()
     {
         return [
-            'users' => [
-                'class' => \tests\fixtures\UserFixture::class,
-            ],
-            'teachers' => [
-                'class' => \tests\fixtures\TeacherFixture::class,
-            ],
-            'journals' => [
-                'class' => \tests\fixtures\JournalFixture::class,
-            ],
-            'disciplines' => [
-                'class' => \tests\fixtures\DisciplineFixture::class,
-            ],
-            'groups' => [
-                'class' => \tests\fixtures\GroupFixture::class,
-            ],
+            'users' => \tests\fixtures\UserFixture::class,
+            'teachers' => \tests\fixtures\TeacherFixture::class,
+            'journals' => \tests\fixtures\JournalFixture::class,
+            'disciplines' => \tests\fixtures\DisciplineFixture::class,
+            'groups' => \tests\fixtures\GroupFixture::class,
         ];
     }
 

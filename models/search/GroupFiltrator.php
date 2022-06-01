@@ -1,20 +1,28 @@
 <?php
 
-namespace app\models\search;
+namespace models\search;
 
-use Yii;
-use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Group as GroupModel;
+use models\query\GroupQuery as Query;
+use data\FiltratorInterface;
+use seog\base\ModelAdapter;
+use seog\web\RequestAdapterInterface;
 
-/**
-* Group represents the model behind the search form about `app\models\Group`.
-*/
-class Group extends GroupModel
+class GroupFiltrator extends ModelAdapter implements FiltratorInterface
 {
-    /**
-    * @inheritdoc
-    */
+    public $id;
+    public $name;
+    public $course_id;
+    public $number_of_students;
+    public $faculty_id;
+    public $specialization_id;
+    public $form_of_study;
+    public $start_of_study;
+    public $end_of_study;
+
+    public $created_at;
+    public $updated_at;
+
     public function rules()
     {
         return [
@@ -23,35 +31,15 @@ class Group extends GroupModel
         ];
     }
 
-    /**
-    * @inheritdoc
-    */
-    public function scenarios()
+    public function search(RequestAdapterInterface $request): ActiveDataProvider
     {
-        // bypass scenarios() implementation in the parent class
-        return parent::scenarios();
-    }
-
-    /**
-    * Creates data provider instance with search query applied
-    *
-    * @param array $params
-    *
-    * @return ActiveDataProvider
-    */
-    public function search($params)
-    {
-        $query = GroupModel::find();
-
+        $query = new Query();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        $this->load($params);
-
+        $this->load($request->getQueryParams());
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 

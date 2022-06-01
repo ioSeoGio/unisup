@@ -10,5 +10,8 @@ class GroupFixture extends ActiveFixture
     public $dataFile = 'tests/_data/groups.php';
 
     public $depends = [
+        'tests\fixtures\SpecialtyFixture',
+        'tests\fixtures\CourseFixture',
+        'tests\fixtures\FacultyFixture',
     ];
 }

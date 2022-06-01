@@ -2,30 +2,30 @@
 
 use tests\api\common\Cest;
 
-class TeacherCest extends Cest
+class ClassTypeCest extends Cest
 {
     public function _fixtures()
     {
         return [
             'users' => \tests\fixtures\UserFixture::class,
-            'teachers' => \tests\fixtures\TeacherFixture::class,
+            'class-types' => \tests\fixtures\ClassTypeFixture::class,
         ];
     }
 
     public function testIndexAction(ApiTester $I)
     {
-        $url = '/admin/teacher/index';
+        $url = '/admin/class-type/index';
         // $this->testFailedIfUnauthorized($I, $url, 'GET');
         $this->asAdmin($I);
         $I->sendGetAsJson($url, [
-            'full_name' => 'Марзан',
+            'name' => 'Лекция',
         ]);
 
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
-              'full_name' => 'Марзан Сергей Андреевич',
+                'name' => 'Лекция',
             ],
         ]);
     }

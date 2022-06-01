@@ -8,21 +8,11 @@ class EducationalWorkCest extends Cest
     public function _fixtures()
     {
         return [
-            'users' => [
-                'class' => \tests\fixtures\UserFixture::class,
-            ],
-            'teachers' => [
-                'class' => \tests\fixtures\TeacherFixture::class,
-            ],
-            'work_report_types' => [
-                'class' => \tests\fixtures\WorkReportTypeFixture::class,
-            ],
-            'educational_work_reports' => [
-                'class' => \tests\fixtures\EducationalWorkReportFixture::class,
-            ],
-            'educational_work_report_authors' => [
-                'class' => \tests\fixtures\EducationalWorkReportAuthorFixture::class,
-            ],
+            'users' => \tests\fixtures\UserFixture::class,
+            'teachers' => \tests\fixtures\TeacherFixture::class,
+            'work_report_types' => \tests\fixtures\WorkReportTypeFixture::class,
+            'educational_work_reports' => \tests\fixtures\EducationalWorkReportFixture::class,
+            'educational_work_report_authors' => \tests\fixtures\EducationalWorkReportAuthorFixture::class,
         ];
     }
 

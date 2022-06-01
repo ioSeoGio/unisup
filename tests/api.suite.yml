@@ -8,7 +8,7 @@ modules:
    enabled:
        - REST:
            depends: PhpBrowser
-           url: 'http://25.59.80.8:8443'
+           url: 'http://web:8443'
            part: [json]
        - Yii2:
            part: [orm, fixtures]
