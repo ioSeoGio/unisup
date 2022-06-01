@@ -109,4 +109,8 @@ class User extends BaseUser
         }
     }
     
+    public function getTeacher()
+    {
+        $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
+    }
 }
