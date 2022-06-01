@@ -5,9 +5,7 @@ class LoginCest
     public function _fixtures()
     {
         return [
-            'users' => [
-                'class' => \tests\fixtures\UserFixture::class,
-            ],
+            'users' => \tests\fixtures\UserFixture::class,
         ];
     }
 

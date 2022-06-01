@@ -7,12 +7,8 @@ class WorkReportTypeCest extends Cest
     public function _fixtures()
     {
         return [
-            'users' => [
-                'class' => \tests\fixtures\UserFixture::class,
-            ],
-            'work_report_types' => [
-                'class' => \tests\fixtures\WorkReportTypeFixture::class,
-            ],
+            'users' => \tests\fixtures\UserFixture::class,
+            'work_report_types' => \tests\fixtures\WorkReportTypeFixture::class,
         ];
     }
 
