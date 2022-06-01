@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace domain\login;
 
@@ -14,8 +14,10 @@ class LoginTransformer extends BaseTransformer
 	public function formatResponse(): mixed
 	{
 		return [
+			'id' => $this->dto->id,
 			'username' => $this->dto->username,
 			'access_token' => $this->dto->access_token,
+			'email' => $this->dto->email,
 		];
 	}
 }
