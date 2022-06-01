@@ -37,7 +37,11 @@ class m220517_173659_create_scientific_work_report_authors_table extends Migrati
         $this->batchInsert('{{%scientific_work_report_authors}}', ['work_report_id', 'teacher_id'], [
 
             [1, 1],
-            [2, 3],
+            [2, 1],
+            [3, 1],
+            [4, 1],
+            [5, 1],
+            [6, 1],
         ]);
     }
 

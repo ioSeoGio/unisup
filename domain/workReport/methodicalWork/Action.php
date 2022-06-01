@@ -20,7 +20,6 @@ class Action implements ActionInterface
 		
 		$this->documentInfoFactory->setInfoProvider($this->documentInfoProvider);
 		$documentInfoDto = $this->documentInfoFactory->makeDto();
-		
 		$this->documentBuilder->setDto($documentInfoDto);
 		$document = $this->documentBuilder->build();
 		
