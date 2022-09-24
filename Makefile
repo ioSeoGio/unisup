@@ -1,8 +1,8 @@
 all:
 	echo hello, this is makefile 
 
-php:
-	docker exec -it $(shell basename $(CURDIR))_php bash
+bash:
+	docker-compose run --rm unisup_php bash
 
 build:
 	docker-compose build
@@ -39,7 +39,7 @@ up:
 
 restart: down up	
 
-init: rights build
+init: rights build up composer-install migrate
 
 rebuild: down db-rights build
 
@@ -50,3 +50,9 @@ unit-test:
 	vendor/bin/codecept run unit
 
 test: unit-test api-test
+
+composer-install:
+	docker-compose run --rm unisup_php composer install
+
+migrate:
+	docker-compose run --rm unisup_php php yii migrate --interactive=0
