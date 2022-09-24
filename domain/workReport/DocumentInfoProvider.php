@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace domain\workReport;
 
-use domain\workReport\WorkReportLevel;
 use models\base\WorkReport;
 use models\Teacher;
 

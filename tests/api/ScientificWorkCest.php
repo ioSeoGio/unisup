@@ -1,11 +1,13 @@
-<?php
+<?php declare(strict_types=1);
+
+namespace tests\api;
 
 use tests\api\common\Cest;
 use domain\workReport\WorkReportLevel;
 
 class ScientificWorkCest extends Cest
 {
-    public function _fixtures()
+    public function _fixtures(): array
     {
         return [
             'users' => \tests\fixtures\UserFixture::class,
@@ -16,7 +18,7 @@ class ScientificWorkCest extends Cest
         ];
     }
 
-    public function testIndexAction(ApiTester $I)
+    public function testIndexAction(ApiTester $I): void
     {
         $url = '/admin/scientific-work/index';
         // $this->testFailedIfUnauthorized($I, $url, 'GET');
@@ -29,13 +31,13 @@ class ScientificWorkCest extends Cest
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
-              'id' => 2,
-              'description' => 'Сендер, А.Н. Объектно-ориентированное программирование в PHP / Е.К. Пархоц, А.Н. Сендер // Математическое моделирование и новые образовательные технологии в математике: сб. тезисов. Респ. науч.-практ. конф., Брест, 23–24 апр. 2020 г. / Брест. гос. ун-т им. А. С. Пушкина; под общ. ред. А. И. Басика. – Брест: БрГУ, 2020. – С. 4.',
+                'id' => 2,
+                'description' => 'Сендер, А.Н. Объектно-ориентированное программирование в PHP / Е.К. Пархоц, А.Н. Сендер // Математическое моделирование и новые образовательные технологии в математике: сб. тезисов. Респ. науч.-практ. конф., Брест, 23–24 апр. 2020 г. / Брест. гос. ун-т им. А. С. Пушкина; под общ. ред. А. И. Басика. – Брест: БрГУ, 2020. – С. 4.',
             ],
         ]);
     }
 
-    public function testReadAction(ApiTester $I)
+    public function testReadAction(ApiTester $I): void
     {
         $url = '/admin/scientific-work/read?id=2';
         // $this->testFailedIfUnauthorized($I, $url, 'GET');
@@ -51,7 +53,7 @@ class ScientificWorkCest extends Cest
         ]);
     }
 
-    public function testCreateAction(ApiTester $I)
+    public function testCreateAction(ApiTester $I): void
     {
         $url = '/admin/scientific-work/create';
         // $this->testFailedIfUnauthorized($I, $url, 'POST');
@@ -74,7 +76,7 @@ class ScientificWorkCest extends Cest
         ]);
     }
 
-    public function testUpdateActionOneField(ApiTester $I)
+    public function testUpdateActionOneField(ApiTester $I): void
     {
         $url = '/admin/scientific-work/update?id=1';
         // $this->testFailedIfUnauthorized($I, $url, 'POST');
@@ -92,7 +94,7 @@ class ScientificWorkCest extends Cest
         ]);
     }
 
-    public function testDeleteAction(ApiTester $I)
+    public function testDeleteAction(ApiTester $I): void
     {
         $readUrl = '/admin/scientific-work/read?id=1';
         $I->sendGetAsJson($readUrl);

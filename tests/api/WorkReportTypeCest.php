@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use tests\api\common\Cest;
 
@@ -25,7 +25,7 @@ class WorkReportTypeCest extends Cest
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
-              'description' => 'Выкананне праграмы, па якой універсітэт з ’яўляецца галаўной арганізацыяй (на ўсіх выканаўцаў)',
+                'description' => 'Выкананне праграмы, па якой універсітэт з ’яўляецца галаўной арганізацыяй (на ўсіх выканаўцаў)',
             ],
         ]);
     }

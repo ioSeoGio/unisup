@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace domain\educationalWork;
 
-use seog\base\ModelAdapter;
 use validators\ValidatorInterface;
 
 class UpdateForm extends CreateForm implements ValidatorInterface

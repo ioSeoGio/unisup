@@ -1,8 +1,8 @@
-<?php 
+<?php declare(strict_types=1);
+
 
 namespace domain\workReport;
 
-use domain\workReport\WorkReportDto;
 
 class DocumentInfoFactory
 {

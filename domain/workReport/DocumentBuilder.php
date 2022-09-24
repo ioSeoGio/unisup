@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace domain\workReport;
 
@@ -7,10 +7,7 @@ use domain\documentBuilder\DocumentBuilderInterface;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Element\Table;
 use PhpOffice\PhpWord\Element\Section;
-use PhpOffice\PhpWord\SimpleType\Jc;
 use PhpOffice\PhpWord\SimpleType\JcTable;
-use PhpOffice\PhpWord\Style\Cell;
-use PhpOffice\PhpWord\Style\Tab;
 
 class DocumentBuilder implements DocumentBuilderInterface
 {
@@ -53,39 +50,39 @@ class DocumentBuilder implements DocumentBuilderInterface
 		$this->document->setDefaultFontSize(14);
 
 		$this->document->addParagraphStyle('alignCenter', [
-			'align' => 'center'
+		    'align' => 'center'
 		]); 
 		$this->document->addParagraphStyle('alignRight', [
-			'align' => 'right'
+		    'align' => 'right'
 		]); 
 
 		$this->styles = [
-			'headerStyles' => [
-			],
-			'font' => [
-			],
+		    'headerStyles' => [
+		    ],
+		    'font' => [
+		    ],
 
-			'tableStyleName' => 'Default Table',
-			'tableText' => [
-				'size' => 12,
-			],
-			'tableStyle' => [				
-				'borderSize' => 6, 
-				'cellMargin' => 70, 
-				'alignment' => JcTable::CENTER, 
-				'cellSpacing' => 50
-			],
-			'tableFirstRow' => [
-			],
-			'headerCell' => [
-				'valign' => 'center',
-			],
-			'cell' => [
-			],
-			'tableFooterText' => [
-				'size' => 12,
-				'bold' => true,
-			],
+		    'tableStyleName' => 'Default Table',
+		    'tableText' => [
+		        'size' => 12,
+		    ],
+		    'tableStyle' => [				
+		        'borderSize' => 6, 
+		        'cellMargin' => 70, 
+		        'alignment' => JcTable::CENTER, 
+		        'cellSpacing' => 50
+		    ],
+		    'tableFirstRow' => [
+		    ],
+		    'headerCell' => [
+		        'valign' => 'center',
+		    ],
+		    'cell' => [
+		    ],
+		    'tableFooterText' => [
+		        'size' => 12,
+		        'bold' => true,
+		    ],
 		];
 		$this->document->addTableStyle(
 			$this->styles['tableStyleName'], 

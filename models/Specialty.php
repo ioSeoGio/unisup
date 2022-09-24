@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace models;
 
-use Yii;
 use seog\db\ActiveRecordAdapter;
 use yii\db\ActiveQueryInterface;
 

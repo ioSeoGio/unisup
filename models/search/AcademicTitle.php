@@ -1,20 +1,19 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace app\models\search;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\AcademicTitle as AcademicTitleModel;
 
 /**
-* AcademicTitle represents the model behind the search form about `app\models\AcademicTitle`.
-*/
+ * AcademicTitle represents the model behind the search form about `app\models\AcademicTitle`.
+ */
 class AcademicTitle extends AcademicTitleModel
 {
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -24,8 +23,8 @@ class AcademicTitle extends AcademicTitleModel
     }
 
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
@@ -33,12 +32,12 @@ class AcademicTitle extends AcademicTitleModel
     }
 
     /**
-    * Creates data provider instance with search query applied
-    *
-    * @param array $params
-    *
-    * @return ActiveDataProvider
-    */
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
     public function search($params)
     {
         $query = AcademicTitleModel::find();

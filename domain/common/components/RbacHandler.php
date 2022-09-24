@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace components;
 
@@ -30,9 +30,9 @@ class RbacHandler implements RbacHandlerInterface
 	public function dump(): array
 	{
 		return [
-			'roles' => $this->roles,
-			'permissions' => $this->permissions,
-			'rules' => $this->rules,
+		    'roles' => $this->roles,
+		    'permissions' => $this->permissions,
+		    'rules' => $this->rules,
 		];
 	}
 }

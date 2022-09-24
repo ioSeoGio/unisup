@@ -1,20 +1,19 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace app\models\search;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\AuditoriumType as AuditoriumTypeModel;
 
 /**
-* AuditoriumType represents the model behind the search form about `app\models\AuditoriumType`.
-*/
+ * AuditoriumType represents the model behind the search form about `app\models\AuditoriumType`.
+ */
 class AuditoriumType extends AuditoriumTypeModel
 {
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -24,8 +23,8 @@ class AuditoriumType extends AuditoriumTypeModel
     }
 
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
@@ -33,12 +32,12 @@ class AuditoriumType extends AuditoriumTypeModel
     }
 
     /**
-    * Creates data provider instance with search query applied
-    *
-    * @param array $params
-    *
-    * @return ActiveDataProvider
-    */
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
     public function search($params)
     {
         $query = AuditoriumTypeModel::find();

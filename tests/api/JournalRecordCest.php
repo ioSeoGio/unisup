@@ -1,4 +1,6 @@
-<?php
+<?php declare(strict_types=1);
+
+namespace tests\api;
 
 use tests\api\common\Cest;
 
@@ -29,8 +31,8 @@ class JournalRecordCest extends Cest
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
-              'id' => 1,
-              'topic' => 'Линейные уравнения1',
+                'id' => 1,
+                'topic' => 'Линейные уравнения1',
             ],
         ]);
     }

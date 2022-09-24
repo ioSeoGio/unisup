@@ -1,9 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace app\migrations\init;
 
 /**
  * @link http://www.yiiframework.com/
+ *
  * @copyright Copyright (c) 2008 Yii Software LLC
  * @license http://www.yiiframework.com/license/
  */
@@ -19,12 +20,14 @@ use yii\rbac\DbManager;
  * @see https://github.com/yiisoft/yii2/pull/15548
  *
  * @author Sergey Gonimar <sergey.gonimar@gmail.com>
+ *
  * @since 2.0.16
  */
 class m180523_151638_rbac_updates_indexes_without_prefix extends Migration
 {
     /**
      * @throws yii\base\InvalidConfigException
+     *
      * @return DbManager
      */
     protected function getAuthManager()

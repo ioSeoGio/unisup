@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace domain\journalRecord;
 
@@ -6,7 +6,6 @@ use seog\base\ModelAdapter;
 use validators\ValidatorInterface;
 
 use models\Teacher;
-use models\Discipline;
 use models\ClassType;
 use models\Journal;
 use models\Group;

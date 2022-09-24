@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace components;
 
-use Yii;
 
 class MessageHandler implements MessageHandlerInterface
 {

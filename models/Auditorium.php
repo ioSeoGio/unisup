@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace models;
 
-use Yii;
 use seog\db\ActiveRecordAdapter;
 use yii\db\ActiveQueryInterface;
 
@@ -33,6 +32,7 @@ class Auditorium extends ActiveRecordAdapter
     
     /**
      * @inheritdoc
+     *
      * @return \models\query\AuditoriumQuery the active query used by this AR class.
      */
     public static function find()

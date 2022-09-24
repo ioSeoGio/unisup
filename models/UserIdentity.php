@@ -1,9 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace models;
 
 use Yii;
-use seog\db\ActiveRecordAdapter;
 use yii\web\IdentityInterface;
 use models\base\User as BaseUser;
 
@@ -34,6 +33,7 @@ class UserIdentity extends BaseUser implements IdentityInterface
      * Finds user by password reset token
      *
      * @param string $token password reset token
+     *
      * @return static|null
      */
     public static function findByPasswordResetToken($token)
@@ -50,6 +50,7 @@ class UserIdentity extends BaseUser implements IdentityInterface
      * Finds user by verification email token
      *
      * @param string $token verify email token
+     *
      * @return static|null
      */
     public static function findByVerificationToken($token) {
@@ -63,6 +64,7 @@ class UserIdentity extends BaseUser implements IdentityInterface
      * Finds out if password reset token is valid
      *
      * @param string $token password reset token
+     *
      * @return bool
      */
     public static function isPasswordResetTokenValid($token)

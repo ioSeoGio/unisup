@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 return [
     [
         'full_name' => 'Марзан Сергей Андреевич', 

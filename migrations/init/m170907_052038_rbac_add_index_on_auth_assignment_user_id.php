@@ -1,9 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace app\migrations\init;
 
 /**
  * @link http://www.yiiframework.com/
+ *
  * @copyright Copyright (c) 2008 Yii Software LLC
  * @license http://www.yiiframework.com/license/
  */
@@ -19,6 +20,7 @@ use yii\rbac\DbManager;
  * @see https://github.com/yiisoft/yii2/pull/14765
  *
  * @author Ivan Buttinoni <ivan.buttinoni@cibi.it>
+ *
  * @since 2.0.13
  */
 class m170907_052038_rbac_add_index_on_auth_assignment_user_id extends Migration
@@ -28,6 +30,7 @@ class m170907_052038_rbac_add_index_on_auth_assignment_user_id extends Migration
 
     /**
      * @throws yii\base\InvalidConfigException
+     *
      * @return DbManager
      */
     protected function getAuthManager()

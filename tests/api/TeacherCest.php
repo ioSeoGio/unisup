@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use tests\api\common\Cest;
 
@@ -25,7 +25,7 @@ class TeacherCest extends Cest
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
-              'full_name' => 'Марзан Сергей Андреевич',
+                'full_name' => 'Марзан Сергей Андреевич',
             ],
         ]);
     }

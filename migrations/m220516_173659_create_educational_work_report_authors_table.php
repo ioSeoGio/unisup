@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
 use yii\db\Migration;
 
-use domain\workReport\WorkReportLevel; 
 
 class m220516_173659_create_educational_work_report_authors_table extends Migration
 {

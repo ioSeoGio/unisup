@@ -1,20 +1,19 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace app\models\search;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\TeacherPreference as TeacherPreferenceModel;
 
 /**
-* TeacherPreference represents the model behind the search form about `app\models\TeacherPreference`.
-*/
+ * TeacherPreference represents the model behind the search form about `app\models\TeacherPreference`.
+ */
 class TeacherPreference extends TeacherPreferenceModel
 {
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -24,8 +23,8 @@ class TeacherPreference extends TeacherPreferenceModel
     }
 
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
@@ -33,12 +32,12 @@ class TeacherPreference extends TeacherPreferenceModel
     }
 
     /**
-    * Creates data provider instance with search query applied
-    *
-    * @param array $params
-    *
-    * @return ActiveDataProvider
-    */
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
     public function search($params)
     {
         $query = TeacherPreferenceModel::find();

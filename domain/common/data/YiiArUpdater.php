@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace data;
 
-use Yii;
 use yii\db\ActiveRecord;
 
 abstract class YiiArUpdater extends YiiDataHandler implements UpdaterInterface

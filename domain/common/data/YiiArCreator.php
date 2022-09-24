@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace data;
 
@@ -16,6 +16,7 @@ abstract class YiiArCreator extends YiiDataHandler implements CreatorInterface
 
     /**
      * @param $data array
+     *
      * @return array
      */
     public function createMany(array $data): array

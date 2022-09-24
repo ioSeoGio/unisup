@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace helpers;
 
@@ -7,14 +7,9 @@ use Yii;
 class FileHelper 
 {
 	/**
-	 * Gets the folder asias & create it if it doesnt exists
-	 *
-	 * @param $folderAlias str
-	 * @param $autoCreate bool To create dir if such doesnt exist
-	 *
-	 * @return str Alias of folder
+	 * Gets the folder alias & create it if it doesn't exist
 	 */
-	public static function getFolderPathByAlias(string $folderAlias, bool $autoCreate = true)
+	public static function getFolderPathByAlias(string $folderAlias, bool $autoCreate = true): string
 	{
         $path = Yii::getAlias($folderAlias);
         if (!is_dir($path) && $autoCreate) {
@@ -25,16 +20,9 @@ class FileHelper
 
 	/**
 	 * Delete file with checking
-	 *
-	 * @param $path str
-	 *
-	 * @return bool
 	 */
-	public static function deleteFile(string $path)
+	public static function deleteFile(string $path): bool
 	{
-    	if (file_exists($path)) {
-    	    return unlink($path);
-    	}
-    	return false;
+        return file_exists($path) && unlink($path);
 	}
 }

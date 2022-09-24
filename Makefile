@@ -56,3 +56,6 @@ composer-install:
 
 migrate:
 	docker-compose run --rm unisup_php php yii migrate --interactive=0
+
+cs-fix:
+	docker-compose run --rm unisup_php composer cs-fix

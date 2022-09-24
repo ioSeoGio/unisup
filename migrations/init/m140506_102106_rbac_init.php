@@ -1,9 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace app\migrations\init;
 
 /**
  * @link http://www.yiiframework.com/
+ *
  * @copyright Copyright (c) 2008 Yii Software LLC
  * @license http://www.yiiframework.com/license/
  */
@@ -16,12 +17,14 @@ use yii\rbac\DbManager;
  * Initializes RBAC tables.
  *
  * @author Alexander Kochetov <creocoder@gmail.com>
+ *
  * @since 2.0
  */
 class m140506_102106_rbac_init extends \yii\db\Migration
 {
     /**
      * @throws yii\base\InvalidConfigException
+     *
      * @return DbManager
      */
     protected function getAuthManager()
