@@ -45,3 +45,4 @@ tests/_support/_generated
 .phptidy-cache
 
 /docs/**
+.php-cs-fixer.cache
