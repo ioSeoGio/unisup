@@ -2,6 +2,7 @@
 
 namespace tests\api;
 
+use ApiTester;
 use tests\api\common\Cest;
 
 class ClassTypeCest extends Cest

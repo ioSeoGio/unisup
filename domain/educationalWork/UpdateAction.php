@@ -2,17 +2,14 @@
 
 namespace domain\educationalWork;
 
-use actions\ActionInterface;
-
-class UpdateAction implements ActionInterface
+class UpdateAction
 {
 	public function __construct(
 		private Updater $updater,
 	) {}
 
-	public function run(object $requestDto): object
+	public function run(int $id, object $requestDto): object
 	{
-		$dto = $this->updater->updateOneById($requestDto->id, $requestDto);
-    	return $dto;
+        return $this->updater->updateOneById($id, $requestDto);
 	}
 }

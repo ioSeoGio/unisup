@@ -2,6 +2,7 @@
 
 namespace tests\api;
 
+use ApiTester;
 use tests\api\common\Cest;
 use domain\workReport\WorkReportLevel;
 
@@ -76,20 +77,26 @@ class ScientificWorkCest extends Cest
         ]);
     }
 
-    public function testUpdateActionOneField(ApiTester $I): void
+    public function testUpdateAction(ApiTester $I): void
     {
         $url = '/admin/scientific-work/update?id=1';
         // $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
 
-        $I->sendPostAsJson($url, ['description' => 'test-description-updated']);
+        $I->sendPostAsJson($url, [
+            'description' => 'test-description',
+            'level' => WorkReportLevel::BREST,
+            'type_id' => 5,
+            'teachers' => [1],
+        ]);
         
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
-                'id' => 1,
-                'description' => 'test-description-updated',
+                'description' => 'test-description',
+                'level' => WorkReportLevel::BREST,
+                'type_id' => 5,
             ]
         ]);
     }

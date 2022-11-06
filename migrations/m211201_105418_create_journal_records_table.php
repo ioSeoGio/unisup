@@ -24,7 +24,6 @@ class m211201_105418_create_journal_records_table extends Migration
             'teacher_id' => $this->integer()->notNull()->comment('Преподаватель который сделал запись в журнал'),
             'group_id' => $this->integer()->notNull()->comment('Группа у которой было занятие'),
 
-
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             'updated_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
         ]);
@@ -57,11 +56,6 @@ class m211201_105418_create_journal_records_table extends Migration
             '{{%groups}}',
             'id'
         );
-        $this->batchInsert('{{%journal_records}}', ['topic', 'class_type', 'journal_id', 'teacher_id', 'group_id', 'lesson_at'], [
-            ['Линейные уравнения', 1, 1, 1, 1, '2021-12-12 09:48:44'],
-            ['Линейные уравнения', 1, 1, 1, 2, '2021-12-12 09:48:44'],
-            ['Линейные уравнения', 1, 1, 1, 3, '2021-12-12 09:48:44'],
-        ]);
     }
 
     /**
@@ -69,7 +63,7 @@ class m211201_105418_create_journal_records_table extends Migration
      */
     public function safeDown()
     {
-        $this->addForeignKey(
+        $this->dropForeignKey(
             'FK-journal_records-group_id',
             '{{%journal_records}}'
         );

@@ -2,9 +2,7 @@
 
 namespace domain\methodicalWork;
 
-use actions\ActionInterface;
-
-class CreateAction implements ActionInterface
+class CreateAction
 {
 	public function __construct(
 		private Creator $creator,

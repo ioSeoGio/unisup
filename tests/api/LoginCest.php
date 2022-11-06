@@ -2,6 +2,8 @@
 
 namespace tests\api;
 
+use ApiTester;
+
 class LoginCest
 {
     public function _fixtures(): array

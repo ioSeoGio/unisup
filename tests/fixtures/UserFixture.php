@@ -2,9 +2,9 @@
 
 namespace tests\fixtures;
  
-use yii\test\ActiveFixture;
+use seog\test\BaseActiveFixture;
  
-class UserFixture extends ActiveFixture
+class UserFixture extends BaseActiveFixture
 {
     public $modelClass = 'models\User';
     public $dataFile = 'tests/_data/users.php';

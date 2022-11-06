@@ -2,7 +2,7 @@
 
 namespace domain\workReport\scientificWork;
 
-class RequestFactory extends \factories\BaseRequestFactory
+class RequestFactory extends \factories\RequestFactory
 {
 	public function makeDto(): RequestDto
 	{

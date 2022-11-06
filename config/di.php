@@ -1,5 +1,8 @@
 <?php
 
+use domain\teacherPreference\TeacherPreferenceRepository;
+use models\query\TeacherPreferenceQuery;
+
 use seog\db\ActiveQueryAdapter;
 use seog\db\QueryInterface;
 use seog\web\RequestAdapter;
@@ -22,10 +25,10 @@ use domain\user\Repository as UserRepository;
 use domain\user\Updater as UserUpdater;
 use models\query\UserQuery;
 
-use domain\teacher\Creator as TeacherCreator;
-use domain\teacher\Deleter as TeacherDeleter;
-use domain\teacher\Repository as TeacherRepository;
-use domain\teacher\Updater as TeacherUpdater;
+use domain\teacher\TeacherCreator;
+use domain\teacher\TeacherDeleter;
+use domain\teacher\TeacherRepository;
+use domain\teacher\TeacherUpdater;
 use models\query\TeacherQuery;
 
 return [

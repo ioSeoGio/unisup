@@ -2,6 +2,7 @@
 
 namespace tests\api;
 
+use ApiTester;
 use tests\api\common\Cest;
 
 class JournalCest extends Cest
@@ -71,13 +72,17 @@ class JournalCest extends Cest
         ]);
     }
 
-    public function testUpdateActionOneField(ApiTester $I)
+    public function testUpdateAction(ApiTester $I)
     {
         $url = '/admin/journal/update?id=1';
         // $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
 
-        $I->sendPostAsJson($url, ['name' => 'test-name-updated']);
+        $I->sendPostAsJson($url, [
+            'name' => 'test-name-updated',
+            'teacher_id' => 1,
+            'discipline_id' => 1,
+        ]);
         
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();

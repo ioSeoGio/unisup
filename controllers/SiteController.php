@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+use domain\login\LoginCredentialsDto;
+use factories\RequestFactory;
+use models\WorkReportType;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -19,7 +22,7 @@ class SiteController extends BaseController
         $id, 
         $module, 
 
-        private LoginRequestFactory $loginRequestFactory,
+        private RequestFactory $requestFactory,
         private LoginForm $loginForm,
         private LoginAction $loginAction,
 
@@ -41,8 +44,8 @@ class SiteController extends BaseController
     protected function auth()
     {
         return array_merge_recursive(parent::auth(), [
-            'only' => ['test'],
-            'except' => ['login', 'index'],
+            'only' => [],
+            'except' => ['test', 'login', 'index'],
         ]);
     }
 
@@ -61,14 +64,22 @@ class SiteController extends BaseController
 
     public function actionTest()
     {
-        dd(Yii::$app->user->identity);
+//        $model = new WorkReportType();
+//        $model->serial_number = 1;
+//        $model->type = \domain\workReport\WorkReportType::SCIENTIFIC;
+//        $model->description = 'Выкананне праграмы;па якой універсітэт з ’яўляецца галаўной арганізацыяй (на ўсіх выканаўцаў)';
+//        $model->brest_points = 60;
+//        $model->belarus_points = 50;
+//        $model->foreign_points = 30;
+//        $model->save();
+//        dd($model->asArray());
         // Yii::$app->rbacHandler->addRule('canSTFU');
         // Yii::$app->messageHandler->add('error', 'Test');
     }
 
     public function actionLogin()
     {
-        $dto = $this->loginRequestFactory->makeDto();
+        $dto = $this->requestFactory->makeDto(LoginCredentialsDto::class);
         if ($this->loginForm->load($dto) && $this->loginForm->validate()) {
             $result = $this->loginAction->run($dto);
             return (new LoginTransformer($result))->makeResponse();

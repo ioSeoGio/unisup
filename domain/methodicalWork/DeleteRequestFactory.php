@@ -2,12 +2,12 @@
 
 namespace domain\methodicalWork;
 
-class DeleteRequestFactory extends \factories\BaseRequestFactory
+class DeleteRequestFactory extends \factories\RequestFactory
 {
 	public function makeDto(): DeleteRequestDto
 	{
 		$dto = new DeleteRequestDto();
-		$dto->id = $this->queryParams['id'] ?? null;
+		$dto->id = (int) $this->queryParams['id'] ?? null;
 		return $dto;
 	}
 }

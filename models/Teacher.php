@@ -2,23 +2,39 @@
 
 namespace models;
 
+use domain\teacherPreference\factory\TeacherPreferenceFactory;
 use seog\db\ActiveRecordAdapter;
 use yii\db\ActiveQueryInterface;
 
 class Teacher extends ActiveRecordAdapter
 {
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%teachers}}';
     }
 
-    public function rules()
+    public function afterSave($insert, $changedAttributes): void
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        TeacherPreferenceFactory::createManyFromTeacher($this);
+    }
+
+    public function beforeDelete(): bool
+    {
+        foreach ($this->getTeacherPreferences() as $preference) {
+            $preference->delete();
+        }
+
+        return parent::beforeDelete();
+    }
+
+    public function rules(): array
     {
         return [
             [['full_name', 'department_id'], 'required'],
             [['department_id', 'academic_degree_id', 'academic_title_id', 'teacher_post_id'], 'default', 'value' => null],
             [['department_id', 'academic_degree_id', 'academic_title_id', 'teacher_post_id'], 'integer'],
-            [['work_experience'], 'number'],
             [['full_name'], 'string', 'max' => 255],
             [['academic_degree_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicDegree::class, 'targetAttribute' => ['academic_degree_id' => 'id']],
             [['academic_title_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicTitle::class, 'targetAttribute' => ['academic_title_id' => 'id']],

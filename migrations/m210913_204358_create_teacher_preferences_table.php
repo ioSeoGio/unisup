@@ -14,10 +14,10 @@ class m210913_204358_create_teacher_preferences_table extends Migration
     {
         $this->createTable('{{%teacher_preferences}}', [
             'id' => $this->primaryKey(),
+
             'discipline_id' => $this->integer()->notNull()->comment('Желаемая дисциплина (выбор преподавателя)'),
-            'course_id' => $this->integer()->notNull()->comment('Желаемый курс (выбор преподавателя)'),
             'teacher_id' => $this->integer()->notNull()->comment('Преподаватель'),
-            'semester' => $this->integer()->notNull()->comment('Желаемый семестр данной дисциплины (выбор преподавателя)'),
+            'semester_id' => $this->integer()->notNull()->comment('Желаемый семестр (выбор преподавателя)'),
 
             'importance_coefficient' => $this->float()->notNull()->comment('Коэффициент важности предпочтения'),
 
@@ -33,10 +33,10 @@ class m210913_204358_create_teacher_preferences_table extends Migration
             'id'
         );
         $this->addForeignKey(
-            'FK-teacher_preferences_course_id-courses_id',
+            'FK-teacher_preferences_semester_id-semesters_id',
             'teacher_preferences',
-            'course_id',
-            'courses',
+            'semester_id',
+            'semesters',
             'id'
         );
         $this->addForeignKey(
@@ -58,7 +58,7 @@ class m210913_204358_create_teacher_preferences_table extends Migration
             'teacher_preferences'
         );
         $this->dropForeignKey(
-            'FK-teacher_preferences_course_id-courses_id',
+            'FK-teacher_preferences_semester_id-semesters_id',
             'teacher_preferences'
         );
         $this->dropForeignKey(

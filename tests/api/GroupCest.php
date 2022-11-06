@@ -2,6 +2,7 @@
 
 namespace tests\api;
 
+use ApiTester;
 use tests\api\common\Cest;
 
 class GroupCest extends Cest

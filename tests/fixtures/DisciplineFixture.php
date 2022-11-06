@@ -2,9 +2,9 @@
 
 namespace tests\fixtures;
  
-use yii\test\ActiveFixture;
- 
-class DisciplineFixture extends ActiveFixture
+use seog\test\BaseActiveFixture;
+
+class DisciplineFixture extends BaseActiveFixture
 {
     public $modelClass = 'models\Discipline';
     public $dataFile = 'tests/_data/disciplines.php';

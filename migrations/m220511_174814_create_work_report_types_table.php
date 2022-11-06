@@ -18,6 +18,9 @@ class m220511_174814_create_work_report_types_table extends Migration
             'foreign_points' => $this->integer(),
             'belarus_points' => $this->integer(),
             'brest_points' => $this->integer(),
+
+            'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
+            'updated_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
         ]);
         $this->batchInsert('{{%work_report_types}}', ['serial_number', 'type', 'description', 'foreign_points', 'belarus_points', 'brest_points'], [
 

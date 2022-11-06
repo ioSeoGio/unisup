@@ -30,16 +30,8 @@ $config = array_merge_recursive($common, [
     'params' => $params,
     'controllerMap' => [
         'fixture' => [
-            'class' => 'yii\faker\FixtureController',
-            
-            'templatePath' => '@tests/fixtures/templates',
-            'fixtureDataPath' => '@tests/_data',
-            'namespace' => 'tests/fixtures',
-
-            'language' => 'ru_RU',
-            'count' => 10,
-            'providers' => [
-            ],
+            'class' => 'yii\console\controllers\FixtureController',
+            'namespace' => 'tests\fixtures',
         ],
         'migrate' => [
             'class' => 'yii\console\controllers\MigrateController',

@@ -2,6 +2,7 @@
 
 namespace tests\api;
 
+use ApiTester;
 use tests\api\common\Cest;
 
 class JournalRecordCest extends Cest
@@ -75,21 +76,26 @@ class JournalRecordCest extends Cest
         ]);
     }
 
-    public function testUpdateActionOneField(ApiTester $I)
+    public function testUpdateAction(ApiTester $I)
     {
         $url = '/admin/journal-record/update?id=1';
         // $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
 
-        $I->sendPostAsJson($url, ['topic' => 'test-topic-updated']);
+        $data = [
+            'topic' => 'Линейные уравнения NEW',
+            'class_type' => 1,
+            'journal_id' => 1,
+            'teacher_id' => 1,
+            'group_id' => 1,
+            'lesson_at' => '2021-12-01 21:12:03',
+        ];
+        $I->sendPostAsJson($url, $data);
         
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
-            'data' => [
-                'id' => 1,
-                'topic' => 'test-topic-updated',
-            ]
+            'data' => $data,
         ]);
     }
 

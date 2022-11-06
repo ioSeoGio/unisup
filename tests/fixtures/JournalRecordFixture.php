@@ -2,9 +2,9 @@
 
 namespace tests\fixtures;
  
-use yii\test\ActiveFixture;
- 
-class JournalRecordFixture extends ActiveFixture
+use seog\test\BaseActiveFixture;
+
+class JournalRecordFixture extends BaseActiveFixture
 {
     public $modelClass = 'models\JournalRecord';
     public $dataFile = 'tests/_data/journal_records.php';

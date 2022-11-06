@@ -2,9 +2,9 @@
 
 namespace tests\fixtures;
  
-use yii\test\ActiveFixture;
- 
-class ScientificWorkReportAuthorFixture extends ActiveFixture
+use seog\test\BaseActiveFixture;
+
+class ScientificWorkReportAuthorFixture extends BaseActiveFixture
 {
     public $modelClass = 'models\ScientificWorkReportAuthor';
     public $dataFile = 'tests/_data/scientific_work_report_authors.php';

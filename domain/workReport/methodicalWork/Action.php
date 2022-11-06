@@ -2,11 +2,10 @@
 
 namespace domain\workReport\methodicalWork;
 
-use actions\ActionInterface;
 use domain\workReport\DocumentBuilder;
 use domain\workReport\DocumentInfoFactory;
 
-class Action implements ActionInterface
+class Action
 {
 	public function __construct(
 		private DocumentBuilder $documentBuilder,

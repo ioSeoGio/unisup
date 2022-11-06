@@ -1,6 +1,7 @@
 <?php
 namespace app\rbac;
 
+use yii\rbac\Item;
 use yii\rbac\Rule;
 use models\UserIdentity as User;
 

@@ -50,12 +50,6 @@ class m210913_204113_create_groups_table extends Migration
             'specialties',
             'id'
         );
-        $this->batchInsert('{{%groups}}', ['name', 'course_id', 'number_of_students', 'faculty_id', 'speciality_id'], [
-            ['ПМ', 3, 26, 5, 3],
-            ['ПМ', 1, 23, 5, 3],
-            ['ЭК', 3, 22, 5, 4],
-            ['ЭК', 1, 15, 5, 4],
-        ]);
     }
 
     /**

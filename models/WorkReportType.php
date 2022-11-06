@@ -2,17 +2,19 @@
 
 namespace models;
 
+use helpers\Formatter;
 use seog\db\ActiveRecordAdapter;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQueryInterface;
 
 class WorkReportType extends ActiveRecordAdapter
 {
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%work_report_types}}';
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['serial_number', 'type', 'description'], 'required'],

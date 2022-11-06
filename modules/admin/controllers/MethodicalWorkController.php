@@ -2,23 +2,20 @@
 
 namespace app\modules\admin\controllers;
 
+use domain\methodicalWork\Dto;
+use factories\RequestFactory;
 use models\search\MethodicalWorkFiltrator as Filtrator;
 
 use domain\methodicalWork\ReadAction;
-use domain\methodicalWork\ReadRequestFactory;
 
-use domain\methodicalWork\CreateRequestFactory;
 use domain\methodicalWork\CreateForm;
 use domain\methodicalWork\CreateAction;
 
-use domain\methodicalWork\UpdateRequestFactory;
-use domain\methodicalWork\UpdateForm;
 use domain\methodicalWork\UpdateAction;
 
 use domain\methodicalWork\DeleteAction;
-use domain\methodicalWork\DeleteRequestFactory;
 
-use domain\methodicalWork\Transformer;
+use yii\data\ActiveDataProvider;
 
 class MethodicalWorkController extends BaseModuleController
 {
@@ -28,18 +25,14 @@ class MethodicalWorkController extends BaseModuleController
 
         private Filtrator $filtrator,
         
-        private ReadRequestFactory $readRequestFactory,
+        private RequestFactory $requestFactory,
         private ReadAction $readAction,
 
-        private CreateRequestFactory $createRequestFactory,
         private CreateForm $createForm,
         private CreateAction $createAction,
 
-        private UpdateRequestFactory $updateRequestFactory,
-        private UpdateForm $updateForm,
         private UpdateAction $updateAction,
 
-        private DeleteRequestFactory $deleteRequestFactory,
         private DeleteAction $deleteAction,
 
         $config = [],
@@ -47,41 +40,36 @@ class MethodicalWorkController extends BaseModuleController
         parent::__construct($id, $module, $config);
     }
 
-    public function actionIndex()
+    public function actionIndex(): ActiveDataProvider
     {
         return $this->filtrator->search($this->request);
     }
 
-    public function actionRead()
+    public function actionRead(int $id): object
     {
-        $dto = $this->readRequestFactory->makeDto();
-        $result = $this->readAction->run($dto);
-        return (new Transformer($result))->makeResponse();
+        return $this->readAction->run($id);
     }
 
-    public function actionCreate()
+    public function actionCreate(): object|array
     {
-        $dto = $this->createRequestFactory->makeDto();
+        $dto = $this->requestFactory->makeDto(Dto::class);
         if ($this->createForm->load($dto) && $this->createForm->validate()) {
-            $result = $this->createAction->run($dto);
-            return (new Transformer($result))->makeResponse();
+            return $this->createAction->run($dto);
         }
-        return $this->createForm;
+        return $this->createForm->getErrors();
     }
 
-    public function actionUpdate()
+    public function actionUpdate(int $id): object|array
     {
-        $dto = $this->updateRequestFactory->makeDto();
-        if ($this->updateForm->load($dto) && $this->updateForm->validate()) {
-            $result = $this->updateAction->run($dto);
-            return (new Transformer($result))->makeResponse();
+        $dto = $this->requestFactory->makeDto(Dto::class);
+        if ($this->createForm->load($dto) && $this->createForm->validate()) {
+            return $this->updateAction->run($id, $dto);
         }
-        return $this->updateForm;
+        return $this->createForm->getErrors();
     }
 
-    public function actionDelete()
+    public function actionDelete(int $id): bool
     {
-        $dto = $this->deleteRequestFactory->makeDto();
-        return $this->deleteAction->run($dto);
+        return $this->deleteAction->run($id);
     }
 }

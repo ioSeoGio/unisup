@@ -1,21 +1,22 @@
 <?php declare(strict_types=1);
 
-namespace tests\unit\factories;
+namespace tests\unit\login;
 
+use Codeception\Stub;
 use domain\login\LoginCredentialsDto;
-use domain\login\LoginRequestFactory;
+use factories\RequestFactory;
 use seog\web\RequestAdapterInterface;
 
-class LoginRequestFactoryTest extends \Codeception\Test\Unit
+class RequestFactoryTest extends \Codeception\Test\Unit
 {
-    public function testmakeDto()
+    public function testMakeDto()
     {
         $data = [
             'username' => 'test-username',
             'password' => 'test-password',
         ];
 
-        $requestStub = \Codeception\Stub::makeEmpty(
+        $requestStub = Stub::makeEmpty(
             RequestAdapterInterface::class,
             [
                 'getQueryParams' => [],
@@ -23,10 +24,10 @@ class LoginRequestFactoryTest extends \Codeception\Test\Unit
             ],
         );
 
-        $factory = new LoginRequestFactory($requestStub);
-        $dto = $factory->makeDto();
+        $factory = new RequestFactory($requestStub);
+        $dto = $factory->makeDto(LoginCredentialsDto::class);
         $this->assertInstanceOf(LoginCredentialsDto::class, $dto, 'DTO must be instance LoginCredentialsDto');
-        $this->assertEquals($dto->username, $data['username'], 'Must be equals');
-        $this->assertEquals($dto->password, $data['password'], 'Must be equals');
+        $this->assertEquals($dto->username, $data['username']);
+        $this->assertEquals($dto->password, $data['password']);
     }
 }

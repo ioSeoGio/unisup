@@ -2,16 +2,14 @@
 
 namespace domain\scientificWork;
 
-use actions\ActionInterface;
-
-class DeleteAction implements ActionInterface
+class DeleteAction
 {
 	public function __construct(
 		private Deleter $deleter,
 	) {}
 
-	public function run(object $requestDto): bool
+	public function run(int $id): bool
 	{
-		return $this->deleter->deleteOneById($requestDto->id);
+		return $this->deleter->deleteOneById($id);
 	}
 }

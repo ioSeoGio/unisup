@@ -7,8 +7,8 @@ use domain\user\Repository as UserRepository;
 
 class UserDeleterTest extends \Codeception\Test\Unit
 {
-    private $repository;
-    private $deleter;
+    private UserRepository $repository;
+    private UserDeleter $deleter;
 
     public function _fixtures()
     {

@@ -2,17 +2,25 @@
 
 namespace models;
 
+use domain\semester\factory\SemesterFactory;
 use seog\db\ActiveRecordAdapter;
 use yii\db\ActiveQueryInterface;
 
 class Course extends ActiveRecordAdapter
 {
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%courses}}';
     }
 
-    public function rules()
+    public function afterSave($insert, $changedAttributes): void
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        SemesterFactory::createFromCourse($this);
+    }
+
+    public function rules(): array
     {
         return [
             [['name'], 'required'],

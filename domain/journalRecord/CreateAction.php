@@ -2,9 +2,7 @@
 
 namespace domain\journalRecord;
 
-use actions\ActionInterface;
-
-class CreateAction implements ActionInterface
+class CreateAction
 {
 	public function __construct(
 		private Creator $creator,
@@ -12,7 +10,6 @@ class CreateAction implements ActionInterface
 
 	public function run(object $requestDto): object
 	{
-		$dto = $this->creator->create($requestDto);
-    	return $dto;
+        return $this->creator->create($requestDto);
 	}
 }

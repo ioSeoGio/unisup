@@ -2,7 +2,7 @@
 
 namespace domain\educationalWorkAuthor;
 
-class CreateRequestFactory extends \factories\BaseRequestFactory
+class CreateRequestFactory extends \factories\RequestFactory
 {
 	public function makeDto(): Dto
 	{

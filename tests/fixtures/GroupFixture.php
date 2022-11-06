@@ -2,9 +2,9 @@
 
 namespace tests\fixtures;
  
-use yii\test\ActiveFixture;
- 
-class GroupFixture extends ActiveFixture
+use seog\test\BaseActiveFixture;
+
+class GroupFixture extends BaseActiveFixture
 {
     public $modelClass = 'models\Group';
     public $dataFile = 'tests/_data/groups.php';

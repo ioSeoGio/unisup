@@ -2,9 +2,9 @@
 
 namespace tests\fixtures;
  
-use yii\test\ActiveFixture;
- 
-class WorkReportTypeFixture extends ActiveFixture
+use seog\test\BaseActiveFixture;
+
+class WorkReportTypeFixture extends BaseActiveFixture
 {
     public $modelClass = 'models\WorkReportType';
     public $dataFile = 'tests/_data/work_report_types.php';

@@ -2,9 +2,9 @@
 
 namespace tests\fixtures;
  
-use yii\test\ActiveFixture;
- 
-class MethodicalWorkReportFixture extends ActiveFixture
+use seog\test\BaseActiveFixture;
+
+class MethodicalWorkReportFixture extends BaseActiveFixture
 {
     public $modelClass = 'models\MethodicalWorkReport';
     public $dataFile = 'tests/_data/methodical_work_reports.php';

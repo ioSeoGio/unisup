@@ -7,22 +7,22 @@ use yii\db\ActiveQueryInterface;
 
 class Group extends ActiveRecordAdapter
 {
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%groups}}';
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
-            [['name', 'course_id', 'faculty_id', 'specialization_id'], 'required'],
-            [['course_id', 'number_of_students', 'faculty_id', 'specialization_id'], 'default', 'value' => null],
-            [['course_id', 'number_of_students', 'faculty_id', 'specialization_id'], 'integer'],
+            [['name', 'course_id', 'faculty_id', 'speciality_id'], 'required'],
+            [['course_id', 'number_of_students', 'faculty_id', 'speciality_id'], 'default', 'value' => null],
+            [['course_id', 'number_of_students', 'faculty_id', 'speciality_id'], 'integer'],
             [['start_of_study', 'end_of_study'], 'safe'],
             [['name', 'form_of_study'], 'string', 'max' => 255],
             [['course_id'], 'exist', 'skipOnError' => true, 'targetClass' => Course::class, 'targetAttribute' => ['course_id' => 'id']],
             [['faculty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::class, 'targetAttribute' => ['faculty_id' => 'id']],
-            [['specialization_id'], 'exist', 'skipOnError' => true, 'targetClass' => Specialty::class, 'targetAttribute' => ['specialization_id' => 'id']]
+            [['speciality_id'], 'exist', 'skipOnError' => true, 'targetClass' => Specialty::class, 'targetAttribute' => ['speciality_id' => 'id']]
         ];
     }
 
@@ -38,7 +38,7 @@ class Group extends ActiveRecordAdapter
 
     public function getSpecialization(): ActiveQueryInterface
     {
-        return $this->hasOne(Specialty::class, ['id' => 'specialization_id']);
+        return $this->hasOne(Specialty::class, ['id' => 'speciality_id']);
     }
 
     public function getJournalRecords(): ActiveQueryInterface

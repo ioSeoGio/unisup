@@ -2,16 +2,14 @@
 
 namespace domain\journalRecord;
 
-use actions\ActionInterface;
-
-class UpdateAction implements ActionInterface
+class UpdateAction
 {
 	public function __construct(
 		private Updater $updater,
 	) {}
 
-	public function run(object $requestDto): object
+	public function run(int $id, object $requestDto): object
 	{
-		return $this->updater->updateOneById($requestDto->id, $requestDto);
+		return $this->updater->updateOneById($id, $requestDto);
 	}
 }

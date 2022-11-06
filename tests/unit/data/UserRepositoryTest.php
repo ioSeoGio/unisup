@@ -2,8 +2,9 @@
 
 namespace tests\unit\data;
 
-use models\User;
+use models\base\User;
 use domain\user\Repository as UserRepository;
+use tests\fixtures\UserFixture;
 
 class UserRepositoryTest extends \Codeception\Test\Unit
 {
@@ -13,7 +14,7 @@ class UserRepositoryTest extends \Codeception\Test\Unit
     {
         return [
             'users' => [
-                'class' => \tests\fixtures\UserFixture::class,
+                'class' => UserFixture::class,
             ],
         ];
     }

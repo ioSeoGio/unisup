@@ -2,8 +2,8 @@
 
 namespace models\query;
 
-use seog\db\ActiveQueryAdapter;
 use models\TeacherPreference;
+use seog\db\ActiveQueryAdapter;
 
 class TeacherPreferenceQuery extends ActiveQueryAdapter
 {

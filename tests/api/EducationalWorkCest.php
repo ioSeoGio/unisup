@@ -2,6 +2,8 @@
 
 namespace tests\api;
 
+use ApiTester;
+use models\EducationalWorkReport;
 use tests\api\common\Cest;
 use domain\workReport\WorkReportLevel;
 
@@ -76,13 +78,18 @@ class EducationalWorkCest extends Cest
         ]);
     }
 
-    public function testUpdateActionOneField(ApiTester $I)
+    public function testUpdateAction(ApiTester $I)
     {
         $url = '/admin/educational-work/update?id=1';
         // $this->testFailedIfUnauthorized($I, $url, 'POST');
         $this->asAdmin($I);
 
-        $I->sendPostAsJson($url, ['description' => 'test-description-updated']);
+        $I->sendPostAsJson($url, [
+            'description' => 'test-description-updated',
+            'level' => WorkReportLevel::BREST,
+            'type_id' => 1,
+            'teachers' => [1],
+        ]);
         
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
@@ -90,6 +97,8 @@ class EducationalWorkCest extends Cest
             'data' => [
                 'id' => 1,
                 'description' => 'test-description-updated',
+                'level' => WorkReportLevel::BREST,
+                'type_id' => 1,
             ]
         ]);
     }

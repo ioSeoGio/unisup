@@ -39,7 +39,7 @@ abstract class YiiDataHandler
         throw new \yii\web\NotFoundHttpException();
     }
 
-    protected function findOne(array|int $criteria): ActiveRecordAdapter
+    protected function findOne(array|int $criteria): ?ActiveRecordAdapter
     {
         return $this->query
             ->modelClass::findOne($criteria);

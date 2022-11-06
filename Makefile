@@ -29,7 +29,6 @@ rights: db-rights vendor-rights migrations-rights
 	sudo chmod 777 -R web/
 	sudo chmod 777 -R runtime/
 
-	sudo chmod 777 -R message/
 	sudo chmod 777 -R tests/
 
 down:
@@ -44,10 +43,10 @@ init: rights build up composer-install migrate
 rebuild: down db-rights build
 
 api-test:
-	vendor/bin/codecept run api
+	docker-compose run --rm unisup_php vendor/bin/codecept run api
 
 unit-test:
-	vendor/bin/codecept run unit
+	docker-compose run --rm unisup_php vendor/bin/codecept run unit
 
 test: unit-test api-test
 
@@ -57,5 +56,17 @@ composer-install:
 migrate:
 	docker-compose run --rm unisup_php php yii migrate --interactive=0
 
+load-fixtures:
+	docker-compose run --rm unisup_php php yii fixture/load '*' --interactive=0
+
+reload-fixtures:
+	docker-compose run --rm unisup_php php yii migrate/fresh --interactive=0
+	docker-compose run --rm unisup_php php yii fixture/load '*' --interactive=0
+
+db-refresh:
+	docker-compose run --rm unisup_php php yii migrate/fresh --interactive=0
+
 cs-fix:
 	docker-compose run --rm unisup_php composer cs-fix
+
+pre-push: cs-fix test
