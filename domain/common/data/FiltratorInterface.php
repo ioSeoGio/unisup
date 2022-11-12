@@ -7,5 +7,5 @@ use yii\data\ActiveDataProvider;
 
 interface FiltratorInterface
 {
-	public function search(RequestAdapterInterface $request): ActiveDataProvider;	
+	public function search(): ActiveDataProvider;
 }

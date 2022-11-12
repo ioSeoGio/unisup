@@ -11,14 +11,27 @@ class TeacherPreferenceFactory
 {
     public static function createManyFromTeacher(Teacher $teacher): void
     {
+        foreach (self::getDataFromTeacher($teacher) as $datum) {
+            $preference = new TeacherPreference();
+            $preference->teacher_id = $datum['teacherId'];
+            $preference->discipline_id = $datum['disciplineId'];
+            $preference->semester_id = $datum['semesterId'];
+            $preference->save();
+        }
+    }
+
+    public static function getDataFromTeacher(Teacher $teacher): array
+    {
+        $data = [];
         foreach (Semester::find()->each() as $semester) {
             foreach (Discipline::find()->each() as $discipline) {
-                $preference = new TeacherPreference();
-                $preference->teacher_id = $teacher->id;
-                $preference->discipline_id = $discipline->id;
-                $preference->semester_id = $semester->id;
-                $preference->save();
+                $data[] = [
+                    'teacherId' => $teacher->id,
+                    'disciplineId' => $discipline->id,
+                    'semesterId' => $semester->id,
+                ];
             }
         }
+        return $data;
     }
 }

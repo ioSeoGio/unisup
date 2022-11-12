@@ -3,6 +3,7 @@
 namespace models;
 
 use Yii;
+use yii\base\Exception;
 use yii\web\UnprocessableEntityHttpException;
 use models\base\User as BaseUser;
 use yii\db\ActiveQueryInterface;
@@ -18,13 +19,6 @@ class User extends BaseUser
     {
         return array_merge_recursive(parent::behaviors(), [
         ]);
-    }
-
-    public function beforeDelete()
-    {
-        $this->guardIsNotAdmin();
-
-        return parent::beforeDelete();
     }
 
     public function rules()
@@ -49,6 +43,7 @@ class User extends BaseUser
      * Makes an access token.
      *
      * @return string
+     * @throws Exception
      */
     public static function makeAccessToken()
     {

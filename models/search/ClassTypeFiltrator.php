@@ -8,12 +8,12 @@ use data\FiltratorInterface;
 use seog\base\ModelAdapter;
 use seog\web\RequestAdapterInterface;
 
-class ClassTypeFiltrator extends ModelAdapter implements FiltratorInterface
+class ClassTypeFiltrator extends AbstractFiltrator
 {
     public $id;
     public $name;
     public $time_coefficient;
-    
+
     public $created_at;
     public $updated_at;
 
@@ -26,23 +26,20 @@ class ClassTypeFiltrator extends ModelAdapter implements FiltratorInterface
         ];
     }
 
-    public function search(RequestAdapterInterface $request): ActiveDataProvider
+    public function search(): ActiveDataProvider
     {
         $query = new Query();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        $this->load($request->getQueryParams());
+        $this->load($this->request->getQueryParams());
         if (!$this->validate()) {
             return $dataProvider;
         }
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'time_coefficient' => $this->time_coefficient,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['ilike', 'name', $this->name]);

@@ -8,7 +8,7 @@ use seog\base\ModelAdapter;
 use seog\web\RequestAdapterInterface;
 use yii\data\ActiveDataProvider;
 
-class JournalRecordFiltrator extends ModelAdapter implements FiltratorInterface
+class JournalRecordFiltrator extends AbstractFiltrator
 {
     public $id;
     public $topic;
@@ -30,14 +30,14 @@ class JournalRecordFiltrator extends ModelAdapter implements FiltratorInterface
         ];
     }
 
-    public function search(RequestAdapterInterface $request): ActiveDataProvider
+    public function search(): ActiveDataProvider
     {
         $query = new Query();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        $this->load($request->getQueryParams());
+        $this->load($this->request->getQueryParams());
         if (!$this->validate()) {
             return $dataProvider;
         }

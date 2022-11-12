@@ -20,6 +20,15 @@ class Course extends ActiveRecordAdapter
         SemesterFactory::createFromCourse($this);
     }
 
+    public function beforeDelete(): bool
+    {
+        foreach ($this->getSemesters()->each() as $semester) {
+            $semester->delete();
+        }
+
+        return parent::beforeDelete();
+    }
+
     public function rules(): array
     {
         return [
@@ -41,5 +50,10 @@ class Course extends ActiveRecordAdapter
     public function getTeacherPreferences(): ActiveQueryInterface
     {
         return $this->hasMany(TeacherPreference::class, ['course_id' => 'id']);
+    }
+
+    public function getSemesters(): ActiveQueryInterface
+    {
+        return $this->hasMany(Semester::class, ['course_name' => 'name']);
     }
 }

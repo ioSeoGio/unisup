@@ -17,12 +17,14 @@ class Teacher extends ActiveRecordAdapter
     {
         parent::afterSave($insert, $changedAttributes);
 
-        TeacherPreferenceFactory::createManyFromTeacher($this);
+        if ($insert) {
+            TeacherPreferenceFactory::createManyFromTeacher($this);
+        }
     }
 
     public function beforeDelete(): bool
     {
-        foreach ($this->getTeacherPreferences() as $preference) {
+        foreach ($this->getTeacherPreferences()->each() as $preference) {
             $preference->delete();
         }
 

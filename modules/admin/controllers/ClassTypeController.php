@@ -17,8 +17,8 @@ class ClassTypeController extends BaseModuleController
         parent::__construct($id, $module, $config);
     }
 
-    public function actionIndex()
+    public function actionIndex(): array
     {
-        return $this->filtrator->search($this->request);
+        return $this->filtrator->search()->getModels();
     }
 }

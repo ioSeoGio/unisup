@@ -2,8 +2,11 @@
 
 namespace app\modules\admin\controllers;
 
+use domain\teacherPreference\writeAll\Action as WriteAllAction;
+use domain\teacherPreference\writeAll\Dto;
+use factories\RequestFactory;
 use models\search\TeacherPreferenceFiltrator;
-use yii\data\ActiveDataProvider;
+use domain\teacherPreference\getAll\Formatter;
 
 class TeacherPreferenceController extends BaseModuleController
 {
@@ -12,14 +15,26 @@ class TeacherPreferenceController extends BaseModuleController
         $module,
 
         private TeacherPreferenceFiltrator $filtrator,
+        private Formatter $formatter,
+        private RequestFactory $requestFactory,
+
+        private WriteAllAction $writeAllAction,
 
         $config = [],
     ) {
         parent::__construct($id, $module, $config);
     }
 
-    public function actionGetAll(): ActiveDataProvider
+    public function actionGetAll(): array
     {
-        return $this->filtrator->search($this->request);
+        $raw = $this->filtrator->search();
+
+        return $this->formatter->makeResponse($raw);
+    }
+
+    public function actionWriteAll(): void
+    {
+        $dtos = $this->requestFactory->makeDtos(Dto::class);
+        $this->writeAllAction->run(...$dtos);
     }
 }

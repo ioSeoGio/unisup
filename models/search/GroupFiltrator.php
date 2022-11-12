@@ -8,7 +8,7 @@ use data\FiltratorInterface;
 use seog\base\ModelAdapter;
 use seog\web\RequestAdapterInterface;
 
-class GroupFiltrator extends ModelAdapter implements FiltratorInterface
+class GroupFiltrator extends AbstractFiltrator
 {
     public $id;
     public $name;
@@ -31,14 +31,14 @@ class GroupFiltrator extends ModelAdapter implements FiltratorInterface
         ];
     }
 
-    public function search(RequestAdapterInterface $request): ActiveDataProvider
+    public function search(): ActiveDataProvider
     {
         $query = new Query();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        $this->load($request->getQueryParams());
+        $this->load($this->request->getQueryParams());
         if (!$this->validate()) {
             return $dataProvider;
         }

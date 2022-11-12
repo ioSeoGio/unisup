@@ -7,7 +7,7 @@ use tests\api\common\Cest;
 
 class GroupCest extends Cest
 {
-    public function _fixtures()
+    public function _fixtures(): array
     {
         return [
             'users' => \tests\fixtures\UserFixture::class,
@@ -18,7 +18,7 @@ class GroupCest extends Cest
         ];
     }
 
-    public function testIndexAction(ApiTester $I)
+    public function testIndexAction(ApiTester $I): void
     {
         $url = '/admin/group/index';
         // $this->testFailedIfUnauthorized($I, $url, 'GET');

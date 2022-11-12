@@ -13,12 +13,10 @@ abstract class ActiveRecordAdapter extends BaseActiveRecord implements Arrayable
 {
     public function asArray(): array
     {
-        dd(123);
         $relations = [];
         foreach ($this->getRelationList() as $relation) {
             $relations[$relation] = $this->$relation;
         }
-        dd($relations);
         return $this->attributes;
     }
 
@@ -57,12 +55,18 @@ abstract class ActiveRecordAdapter extends BaseActiveRecord implements Arrayable
         $reflection = new \ReflectionClass($this);
         $relations = [];
         foreach ($reflection->getMethods() as $method) {
-            if ($method->getReturnType()?->getName() !== ActiveQueryInterface::class) {
-                continue;
+            if ($method->getReturnType()?->getName() === ActiveQueryInterface::class) {
+                $relations[] = lcfirst(str_replace('get', '', $method->name));
             }
-            $relations[] = lcfirst(str_replace('get', '', $method->name));
         }
 
         return $relations;
+    }
+
+    public static function deleteAllAndResetSequence(): void
+    {
+        $model = new static();
+        $model::deleteAll();
+        $model::getDb()->createCommand()->resetSequence($model->tableName())->execute();
     }
 }

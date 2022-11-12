@@ -9,11 +9,23 @@ class SemesterFactory
 {
     public static function createFromCourse(Course $course): void
     {
-        foreach (Semester::SEMESTERS as $semesterName) {
+        foreach (self::getDataFromCourse($course) as $datum) {
             $semester = new Semester();
-            $semester->name = $semesterName;
-            $semester->course_name = $course->name;
+            $semester->name = $datum['semesterName'];
+            $semester->course_name = $datum['courseName'];
             $semester->save();
         }
+    }
+
+    public static function getDataFromCourse(Course $course): array
+    {
+        $data = [];
+        foreach (Semester::SEMESTERS as $semesterName) {
+            $data[] = [
+                'semesterName' => $semesterName,
+                'courseName' => $course->name,
+            ];
+        }
+        return $data;
     }
 }

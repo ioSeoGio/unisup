@@ -10,7 +10,7 @@ $config = array_merge_recursive($common, [
     'basePath' => dirname(__DIR__),
 
     'bootstrap' => [
-        'log', 
+        'log',
     ],
     'aliases' => [
     ],

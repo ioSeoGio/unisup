@@ -42,9 +42,9 @@ class EducationalWorkController extends BaseModuleController
         parent::__construct($id, $module, $config);
     }
 
-    public function actionIndex(): ActiveDataProvider
+    public function actionIndex(): array
     {
-        return $this->filtrator->search($this->request);
+        return $this->filtrator->search()->getModels();
     }
 
     public function actionRead(int $id): object

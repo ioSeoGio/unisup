@@ -1,7 +1,4 @@
-<?php
-
-use domain\teacherPreference\TeacherPreferenceRepository;
-use models\query\TeacherPreferenceQuery;
+<?php declare(strict_types=1);
 
 use seog\db\ActiveQueryAdapter;
 use seog\db\QueryInterface;
@@ -27,46 +24,45 @@ use models\query\UserQuery;
 
 use domain\teacher\TeacherCreator;
 use domain\teacher\TeacherDeleter;
-use domain\teacher\TeacherRepository;
 use domain\teacher\TeacherUpdater;
 use models\query\TeacherQuery;
 
 return [
     'singletons' => [
-	    RequestAdapterInterface::class => RequestAdapter::class,
-	    QueryInterface::class => ActiveQueryAdapter::class,
+        RequestAdapterInterface::class => RequestAdapter::class,
+        QueryInterface::class => ActiveQueryAdapter::class,
 
-	    MessageHandlerInterface::class => MessageHandler::class,
-	    RbacHandlerInterface::class => RbacHandler::class,
+        MessageHandlerInterface::class => MessageHandler::class,
+        RbacHandlerInterface::class => RbacHandler::class,
 
-	    EventDispatcherInterface::class => function () {
-	        return new SimpleEventDispatcher([
-	            LoginSuccessEvent::class => [LoginSuccessEventListener::class],
-	        ]);
-	    },
+        EventDispatcherInterface::class => function () {
+            return new SimpleEventDispatcher([
+                LoginSuccessEvent::class => [LoginSuccessEventListener::class],
+            ]);
+        },
 
 
-	    UserCreator::class => function () {
-	        return new UserCreator(new UserQuery);
-	    },
-	    UserDeleter::class => function () {
-	        return new UserDeleter(new UserQuery);
-	    },
-	    UserRepository::class => function () {
-	        return new UserRepository(new UserQuery);
-	    },
-	    UserUpdater::class => function () {
-	        return new UserUpdater(new UserQuery);
-	    },
+        UserCreator::class => function () {
+            return new UserCreator(new UserQuery);
+        },
+        UserDeleter::class => function () {
+            return new UserDeleter(new UserQuery);
+        },
+        UserRepository::class => function () {
+            return new UserRepository(new UserQuery);
+        },
+        UserUpdater::class => function () {
+            return new UserUpdater(new UserQuery);
+        },
 
-	    TeacherCreator::class => function () {
-	        return new TeacherCreator(new TeacherQuery);
-	    },
-	    TeacherDeleter::class => function () {
-	        return new TeacherDeleter(new TeacherQuery);
-	    },
-	    TeacherUpdater::class => function () {
-	        return new TeacherUpdater(new TeacherQuery);
-	    },
-	],
+        TeacherCreator::class => function () {
+            return new TeacherCreator(new TeacherQuery);
+        },
+        TeacherDeleter::class => function () {
+            return new TeacherDeleter(new TeacherQuery);
+        },
+        TeacherUpdater::class => function () {
+            return new TeacherUpdater(new TeacherQuery);
+        },
+    ],
 ];

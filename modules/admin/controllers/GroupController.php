@@ -3,6 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use models\search\GroupFiltrator;
+use yii\data\ActiveDataProvider;
 
 class GroupController extends BaseModuleController
 {
@@ -17,8 +18,8 @@ class GroupController extends BaseModuleController
         parent::__construct($id, $module, $config);
     }
 
-    public function actionIndex()
+    public function actionIndex(): ActiveDataProvider
     {
-        return $this->filtrator->search($this->request);
+        return $this->filtrator->search();
     }
 }

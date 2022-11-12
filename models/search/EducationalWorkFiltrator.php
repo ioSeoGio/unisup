@@ -8,7 +8,7 @@ use seog\base\ModelAdapter;
 use seog\web\RequestAdapterInterface;
 use yii\data\ActiveDataProvider;
 
-class EducationalWorkFiltrator extends ModelAdapter implements FiltratorInterface
+class EducationalWorkFiltrator extends AbstractFiltrator
 {
     public $id;
     public $description;
@@ -27,14 +27,14 @@ class EducationalWorkFiltrator extends ModelAdapter implements FiltratorInterfac
         ];
     }
 
-    public function search(RequestAdapterInterface $request): ActiveDataProvider
+    public function search(): ActiveDataProvider
     {
         $query = new Query();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        $this->load($request->getQueryParams());
+        $this->load($this->request->getQueryParams());
         if (!$this->validate()) {
             return $dataProvider;
         }

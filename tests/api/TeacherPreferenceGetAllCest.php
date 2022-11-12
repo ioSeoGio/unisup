@@ -3,6 +3,8 @@
 namespace tests\api;
 
 use ApiTester;
+use models\Teacher;
+use models\TeacherPreference;
 use tests\api\common\Cest;
 use tests\fixtures\MethodicalWorkReportAuthorFixture;
 use tests\fixtures\MethodicalWorkReportFixture;
@@ -12,7 +14,7 @@ use tests\fixtures\WorkReportTypeFixture;
 
 class TeacherPreferenceGetAllCest extends Cest
 {
-    public function _fixtures()
+    public function _fixtures(): array
     {
         return [
             'users' => UserFixture::class,
@@ -33,8 +35,18 @@ class TeacherPreferenceGetAllCest extends Cest
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
-                'id' => 1,
-                'description' => 'Математический анализ (2014): учеб. пособие: в 4 ч. / Н.П. Семенчук, Н.Н. Сендер, С.А. Марзан, А. Н. Сендер, под общ. ред. Н.Н. Сендера ; Брест. гос. ун-т им. А. С. Пушкина. – Брест: БрГУ, 2020. – Ч. 3: Дифференциальное и интегральное исчисление функций многих переменных: в 2 кн. – кн. 1. – 226 с. (гриф Министерства образования Республики Беларусь)',
+                'teacher' => [
+                    'id' => 1,
+                    'full_name' => 'Марзан Сергей Андреевич',
+                    'sex' => true,
+                    'department_id' => 2,
+                    'academic_degree_id' => 1,
+                    'academic_title_id' => 1,
+                    'teacher_post_id' => 4,
+                    'working_since' => '2022-05-06 11:12:15',
+                ],
+                'discipline' => null,
+                'importance_coefficient' => 0
             ],
         ]);
     }
