@@ -21,10 +21,11 @@ final class RequestFactory
             throw new BadRequestHttpException('Body params should not be empty.');
         }
 
-        $firstValue = $this->request->getBodyParams()[0];
-        if (!is_array($firstValue)) {
-            $firstValueType = gettype($firstValue);
-            throw new BadRequestHttpException("Array of array expected, got array of '{$firstValueType}'.");
+        if (!isset($this->request->getBodyParams()[0])) {
+            throw new BadRequestHttpException("Array of array expected, got array of scalar values.");
+        }
+        if (!is_array($this->request->getBodyParams()[0])) {
+            throw new BadRequestHttpException("Array of array expected, got array of scalar values.");
         }
 
         $dtos = [];

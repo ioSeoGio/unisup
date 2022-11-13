@@ -8,6 +8,7 @@ use yii\db\ActiveRecord as BaseActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQueryInterface;
 use yii\db\BaseActiveRecord as BaseActiveRecordAlias;
+use yii\web\NotFoundHttpException;
 
 abstract class ActiveRecordAdapter extends BaseActiveRecord implements ArrayableInterface
 {
@@ -63,10 +64,13 @@ abstract class ActiveRecordAdapter extends BaseActiveRecord implements Arrayable
         return $relations;
     }
 
-    public static function deleteAllAndResetSequence(): void
+    public static function getOne(array $criteria): static
     {
-        $model = new static();
-        $model::deleteAll();
-        $model::getDb()->createCommand()->resetSequence($model->tableName())->execute();
+        $record = self::findOne($criteria);
+        if (null === $record) {
+            throw new NotFoundHttpException();
+        }
+
+        return $record;
     }
 }

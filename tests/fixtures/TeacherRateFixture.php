@@ -3,27 +3,27 @@
 namespace tests\fixtures;
 
 use domain\teacherPreference\factory\TeacherPreferenceFactory;
+use domain\teacherRate\factory\TeacherRateFactory;
+use models\Discipline;
 use models\Semester;
 use models\Teacher;
-use models\TeacherPreference;
+use models\TeacherRate;
 use seog\test\BaseActiveFixture;
 
-class TeacherPreferenceFixture extends BaseActiveFixture
+class TeacherRateFixture extends BaseActiveFixture
 {
-    public $modelClass = TeacherPreference::class;
+    public $modelClass = TeacherRate::class;
 
     public $depends = [
-        SemesterFixture::class,
-        DisciplineFixture::class,
         TeacherFixture::class,
     ];
 
     public function getData(): array
     {
-        $preferences = [];
+        $rates = [];
         foreach (Teacher::find()->each() as $teacher) {
-            $preferences = array_merge($preferences, TeacherPreferenceFactory::getDataFromTeacher($teacher));
+            $rates[] = TeacherRateFactory::getDataFromTeacher($teacher);
         }
-        return $preferences;
+        return $rates;
     }
 }

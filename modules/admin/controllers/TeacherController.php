@@ -17,8 +17,8 @@ class TeacherController extends BaseModuleController
         parent::__construct($id, $module, $config);
     }
 
-    public function actionIndex()
+    public function actionIndex(): array
     {
-        return $this->teacherFiltrator->search($this->request);
+        return $this->teacherFiltrator->search()->getModels();
     }
 }

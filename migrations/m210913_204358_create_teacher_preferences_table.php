@@ -19,7 +19,7 @@ class m210913_204358_create_teacher_preferences_table extends Migration
             'teacher_id' => $this->integer()->notNull()->comment('Преподаватель'),
             'semester_id' => $this->integer()->notNull()->comment('Желаемый семестр (выбор преподавателя)'),
 
-            'importance_coefficient' => $this->float()->notNull()->comment('Коэффициент важности предпочтения'),
+            'importance_coefficient' => $this->float()->notNull()->comment('Коэффициент важности предпочтения')->defaultValue(0),
 
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             'updated_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),

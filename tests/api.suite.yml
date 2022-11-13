@@ -6,6 +6,7 @@
 class_name: ApiTester
 modules:
    enabled:
+       - Asserts
        - REST:
            depends: PhpBrowser
            url: 'http://unisup_web:8443'

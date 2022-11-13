@@ -2,28 +2,29 @@
 
 namespace app\modules\admin\controllers;
 
-use domain\teacherPreference\writeAll\Action as WriteAllAction;
-use domain\teacherPreference\writeAll\Dto;
+use domain\teacherRate\Dto;
+use domain\teacherRate\getAll\Formatter;
 use factories\RequestFactory;
-use models\search\TeacherPreferenceFiltrator;
-use domain\teacherPreference\getAll\Formatter;
+use models\search\TeacherRateFiltrator;
+use domain\teacherRate\setAll\Action as SetRatesAction;
 
-class TeacherPreferenceController extends BaseModuleController
+class TeacherRatesController extends BaseModuleController
 {
     public function __construct(
         $id,
         $module,
 
-        private TeacherPreferenceFiltrator $filtrator,
-        private Formatter $formatter,
         private RequestFactory $requestFactory,
+        private TeacherRateFiltrator $filtrator,
+        private Formatter $formatter,
 
-        private WriteAllAction $writeAllAction,
+        private SetRatesAction $setRatesAction,
 
         $config = [],
     ) {
         parent::__construct($id, $module, $config);
     }
+
 
     public function actionGetAll(): array
     {
@@ -35,6 +36,6 @@ class TeacherPreferenceController extends BaseModuleController
     public function actionSetAll(): void
     {
         $dtos = $this->requestFactory->makeDtos(Dto::class);
-        $this->writeAllAction->run(...$dtos);
+        $this->setRatesAction->run(...$dtos);
     }
 }

@@ -18,8 +18,8 @@ class SemesterFixture extends BaseActiveFixture
     public function getData(): array
     {
         $semesters = [];
-        foreach (Course::findAll([]) as $course) {
-            $semesters[] = SemesterFactory::getDataFromCourse($course);
+        foreach (Course::find()->each() as $course) {
+            $semesters = array_merge($semesters, SemesterFactory::getDataFromCourse($course));
         }
         return $semesters;
     }

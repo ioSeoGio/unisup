@@ -11,8 +11,8 @@ class SemesterFactory
     {
         foreach (self::getDataFromCourse($course) as $datum) {
             $semester = new Semester();
-            $semester->name = $datum['semesterName'];
-            $semester->course_name = $datum['courseName'];
+            $semester->name = $datum['name'];
+            $semester->course_name = $datum['course_name'];
             $semester->save();
         }
     }
@@ -22,8 +22,8 @@ class SemesterFactory
         $data = [];
         foreach (Semester::SEMESTERS as $semesterName) {
             $data[] = [
-                'semesterName' => $semesterName,
-                'courseName' => $course->name,
+                'name' => $semesterName,
+                'course_name' => $course->name,
             ];
         }
         return $data;

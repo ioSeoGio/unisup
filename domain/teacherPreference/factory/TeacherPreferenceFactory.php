@@ -13,9 +13,9 @@ class TeacherPreferenceFactory
     {
         foreach (self::getDataFromTeacher($teacher) as $datum) {
             $preference = new TeacherPreference();
-            $preference->teacher_id = $datum['teacherId'];
-            $preference->discipline_id = $datum['disciplineId'];
-            $preference->semester_id = $datum['semesterId'];
+            $preference->teacher_id = $datum['teacher_id'];
+            $preference->discipline_id = $datum['discipline_id'];
+            $preference->semester_id = $datum['semester_id'];
             $preference->save();
         }
     }
@@ -26,9 +26,9 @@ class TeacherPreferenceFactory
         foreach (Semester::find()->each() as $semester) {
             foreach (Discipline::find()->each() as $discipline) {
                 $data[] = [
-                    'teacherId' => $teacher->id,
-                    'disciplineId' => $discipline->id,
-                    'semesterId' => $semester->id,
+                    'teacher_id' => $teacher->id,
+                    'discipline_id' => $discipline->id,
+                    'semester_id' => $semester->id,
                 ];
             }
         }

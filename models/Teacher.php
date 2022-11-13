@@ -3,6 +3,7 @@
 namespace models;
 
 use domain\teacherPreference\factory\TeacherPreferenceFactory;
+use domain\teacherRate\factory\TeacherRateFactory;
 use seog\db\ActiveRecordAdapter;
 use yii\db\ActiveQueryInterface;
 
@@ -19,6 +20,7 @@ class Teacher extends ActiveRecordAdapter
 
         if ($insert) {
             TeacherPreferenceFactory::createManyFromTeacher($this);
+            TeacherRateFactory::createOneFromTeacher($this);
         }
     }
 
