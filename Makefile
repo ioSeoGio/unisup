@@ -56,6 +56,9 @@ composer-install:
 migrate:
 	docker-compose run --rm unisup_php php yii_test migrate --interactive=0
 	docker-compose run --rm unisup_php php yii migrate --interactive=0
+migrate-prev:
+	docker-compose run --rm unisup_php php yii_test migrate/down --interactive=0
+	docker-compose run --rm unisup_php php yii migrate/down --interactive=0
 
 load-fixtures:
 	docker-compose run --rm unisup_php php yii fixture/load '*' --interactive=0
