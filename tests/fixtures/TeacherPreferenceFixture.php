@@ -3,7 +3,6 @@
 namespace tests\fixtures;
 
 use domain\teacherPreference\factory\TeacherPreferenceFactory;
-use models\Semester;
 use models\Teacher;
 use models\TeacherPreference;
 use seog\test\BaseActiveFixture;

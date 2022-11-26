@@ -2,10 +2,7 @@
 
 namespace tests\fixtures;
 
-use domain\teacherPreference\factory\TeacherPreferenceFactory;
 use domain\teacherRate\factory\TeacherRateFactory;
-use models\Discipline;
-use models\Semester;
 use models\Teacher;
 use models\TeacherRate;
 use seog\test\BaseActiveFixture;

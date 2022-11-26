@@ -2,7 +2,6 @@
 
 namespace data;
 
-use seog\web\RequestAdapterInterface;
 use yii\data\ActiveDataProvider;
 
 interface FiltratorInterface

@@ -4,9 +4,6 @@ namespace models\search;
 
 use yii\data\ActiveDataProvider;
 use models\query\GroupQuery as Query;
-use data\FiltratorInterface;
-use seog\base\ModelAdapter;
-use seog\web\RequestAdapterInterface;
 
 class GroupFiltrator extends AbstractFiltrator
 {

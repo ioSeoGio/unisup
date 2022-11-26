@@ -2,9 +2,7 @@
 
 namespace models;
 
-use helpers\Formatter;
 use seog\db\ActiveRecordAdapter;
-use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQueryInterface;
 
 class WorkReportType extends ActiveRecordAdapter

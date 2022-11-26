@@ -2,11 +2,8 @@
 
 namespace models\search;
 
-use data\FiltratorInterface;
 use models\query\TeacherPreferenceQuery;
-use seog\base\ModelAdapter;
 use yii\data\ActiveDataProvider;
-use seog\web\RequestAdapterInterface;
 
 class TeacherPreferenceFiltrator extends AbstractFiltrator
 {

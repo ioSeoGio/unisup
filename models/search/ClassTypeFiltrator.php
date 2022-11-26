@@ -4,9 +4,6 @@ namespace models\search;
 
 use yii\data\ActiveDataProvider;
 use models\query\ClassTypeQuery as Query;
-use data\FiltratorInterface;
-use seog\base\ModelAdapter;
-use seog\web\RequestAdapterInterface;
 
 class ClassTypeFiltrator extends AbstractFiltrator
 {

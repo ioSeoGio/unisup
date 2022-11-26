@@ -42,8 +42,9 @@ class User extends BaseUser
     /**
      * Makes an access token.
      *
-     * @return string
      * @throws Exception
+     *
+     * @return string
      */
     public static function makeAccessToken()
     {

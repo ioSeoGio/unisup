@@ -3,7 +3,6 @@
 namespace tests\api;
 
 use ApiTester;
-use models\EducationalWorkReport;
 use tests\api\common\Cest;
 use domain\workReport\WorkReportLevel;
 

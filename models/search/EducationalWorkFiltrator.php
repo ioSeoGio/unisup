@@ -2,10 +2,7 @@
 
 namespace models\search;
 
-use data\FiltratorInterface;
 use models\query\EducationalWorkReportQuery as Query;
-use seog\base\ModelAdapter;
-use seog\web\RequestAdapterInterface;
 use yii\data\ActiveDataProvider;
 
 class EducationalWorkFiltrator extends AbstractFiltrator

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace domain\teacherRate\getAll;
+namespace domain\teacherTimeManagement\getAll;
 
-use models\TeacherRate;
+use models\TeacherTimeManagement;
 use yii\data\ActiveDataProvider;
 
 class Formatter
@@ -11,11 +11,13 @@ class Formatter
     {
         $result = [];
 
-        /** @var TeacherRate $model */
+        /** @var TeacherTimeManagement $model */
         foreach ($dataProvider->getModels() as $model) {
             $result[] = [
                 'teacher' => $model->getTeacher()->one(),
-                'hours' => $model->hours,
+                'discipline' => $model->getDiscipline()->one(),
+                'semester' => $model->getSemester()->one(),
+                'hours' => $model->getHours(),
             ];
         }
 

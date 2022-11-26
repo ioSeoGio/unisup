@@ -3,10 +3,8 @@
 namespace factories;
 
 use ReflectionNamedType;
-use seog\web\RequestAdapter;
 use seog\web\RequestAdapterInterface;
 use yii\web\BadRequestHttpException;
-use yii\web\Request;
 
 final class RequestFactory
 {

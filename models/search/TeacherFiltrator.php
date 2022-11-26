@@ -2,10 +2,7 @@
 
 namespace models\search;
 
-use data\FiltratorInterface;
 use models\query\TeacherQuery as Query;
-use seog\base\ModelAdapter;
-use seog\web\RequestAdapterInterface;
 use yii\data\ActiveDataProvider;
 
 class TeacherFiltrator extends AbstractFiltrator

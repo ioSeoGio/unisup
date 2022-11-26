@@ -2,25 +2,27 @@
 
 namespace models\search;
 
-use models\query\TeacherRateQuery;
+use models\query\TeacherTimeManagementQuery;
 use yii\data\ActiveDataProvider;
 
-class TeacherRateFiltrator extends AbstractFiltrator
+class TeacherTimeManagementFiltrator extends AbstractFiltrator
 {
+    public $semesterId;
+    public $disciplineId;
     public $teacherId;
     public $hours;
 
-    public function rules()
+    public function rules(): array
     {
         return [
-            [['teacherId'], 'integer'],
+            [['semesterId', 'disciplineId', 'teacherId'], 'integer'],
             [['hours'], 'double'],
         ];
     }
 
     public function search(): ActiveDataProvider
     {
-        $query = new TeacherRateQuery();
+        $query = new TeacherTimeManagementQuery();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -31,6 +33,8 @@ class TeacherRateFiltrator extends AbstractFiltrator
         }
 
         $query->andFilterWhere([
+            'semester_id' => $this->semesterId,
+            'discipline_id' => $this->disciplineId,
             'teacher_id' => $this->teacherId,
             'hours' => $this->hours,
         ]);

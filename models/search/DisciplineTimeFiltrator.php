@@ -2,12 +2,8 @@
 
 namespace models\search;
 
-use data\FiltratorInterface;
 use models\query\DisciplineTimeQuery;
-use models\query\TeacherPreferenceQuery;
-use seog\base\ModelAdapter;
 use yii\data\ActiveDataProvider;
-use seog\web\RequestAdapterInterface;
 
 class DisciplineTimeFiltrator extends AbstractFiltrator
 {
