@@ -1,0 +1,39 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "University Supervisor API",
+        "version": "0.7"
+    },
+    "paths": {
+        "/site/login": {
+            "post": {
+                "operationId": "0e6ee86b2507b85475c45d4fe785210a",
+                "responses": {
+                    "200": {
+                        "description": "Login1"
+                    }
+                }
+            }
+        },
+        "/teacher-rates/get-all": {
+            "get": {
+                "operationId": "1a35c067bed96bec6a48112a8dea7f99",
+                "responses": {
+                    "200": {
+                        "description": "Все ставки преподавателей"
+                    }
+                }
+            }
+        },
+        "/document-builder/site/educational-work": {
+            "post": {
+                "operationId": "5dab04af5a072a1f8ff2a01e9ec8f7c7",
+                "responses": {
+                    "200": {
+                        "description": "Документ по образовательной работе"
+                    }
+                }
+            }
+        }
+    }
+}

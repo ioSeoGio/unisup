@@ -7,6 +7,7 @@ use domain\teacherRate\getAll\Formatter;
 use factories\RequestFactory;
 use models\search\TeacherRateFiltrator;
 use domain\teacherRate\setAll\Action as SetRatesAction;
+use OpenApi\Annotations as OA;
 
 class TeacherRatesController extends BaseModuleController
 {
@@ -25,7 +26,12 @@ class TeacherRatesController extends BaseModuleController
         parent::__construct($id, $module, $config);
     }
 
-
+    /**
+     * @OA\Get(
+     *     path="/teacher-rates/get-all",
+     *     @OA\Response(response="200", description="Все ставки преподавателей")
+     * )
+     */
     public function actionGetAll(): array
     {
         $raw = $this->filtrator->search();

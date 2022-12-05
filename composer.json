@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "symfony/var-dumper": "5.4.x-dev",
         "phpoffice/phpword": "0.19.x-dev",
-        "friendsofphp/php-cs-fixer": "^3.0"
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "zircote/swagger-php": "3.x"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -58,6 +59,9 @@
         ],
         "cs-fix": [
             "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php -- domain helpers models tests migrations"
+        ],
+        "swagger-generate": [
+            "php yii swagger/generate"
         ]
     },
     "extra": {
