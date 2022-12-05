@@ -1,21 +1,20 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace seog\rest;
 
-use Yii;
-use yii\web\Request;
-use yii\web\Response;
+use yii\filters\auth\HttpBearerAuth;
+use yii\filters\VerbFilter;
 use yii\rest\Controller as BaseController;
 
 abstract class Controller extends BaseController
 {
     /**
-     * Configuring authenticator and set cosr pre-flight filter in order to deal with api requests right
+     * Configuring authenticator and set cors pre-flight filter in order to deal with api requests right
      * Chrome asking for OPTIONS pre-flight requests, so corsFilter must be set
      *
      * @return array
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         $behaviors = parent::behaviors();
 
@@ -39,7 +38,7 @@ abstract class Controller extends BaseController
         return $behaviors;
     }
 
-    public function actions()
+    public function actions(): array
     {
         return [
             'options' => [
@@ -53,9 +52,9 @@ abstract class Controller extends BaseController
      *
      * @return string
      */
-    protected function getAuthenticatorClass()
+    protected function getAuthenticatorClass(): string
     {
-    	return \yii\filters\auth\HttpBearerAuth::className();
+    	return HttpBearerAuth::class;
     }
 
     /**
@@ -68,7 +67,7 @@ abstract class Controller extends BaseController
      *
      * @return array
      */
-   	protected function access()
+   	protected function access(): array
     {
         return [
             'class' => \yii\filters\AccessControl::class,
@@ -76,30 +75,30 @@ abstract class Controller extends BaseController
         ];
     }
 
-    abstract protected function rules();
+    abstract protected function rules(): array;
    	
    	/**
    	 * Auth configuration of only and except blocks
    	 *
    	 * @return array
    	 */
-   	protected function auth()
-   	{
+   	protected function auth(): array
+    {
    		return [
-   			'only' => [],
-            'except' => ['options', 'index', 'read', 'create', 'update', 'delete'],
-        ];
+   		    'only' => [],
+   		    'except' => ['options', 'index', 'read', 'create', 'update', 'delete'],
+   		];
    	}
 
-    protected function verbs()
+    protected function verbs(): array
     {
         return [
-            'class' => \yii\filters\VerbFilter::class,
+            'class' => VerbFilter::class,
             'actions' => $this->verbActions(),
         ];
     }
 
-    protected function verbActions()
+    protected function verbActions(): array
     {
         return [
             'index' => ['get', 'options'],

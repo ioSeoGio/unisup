@@ -75,3 +75,10 @@ cs-fix:
 	docker-compose run --rm unisup_php composer cs-fix
 
 pre-push: cs-fix test
+
+swagger:
+	docker-compose run --rm unisup_php composer swagger-generate
+
+git-pull:
+	git pull
+	docker-compose run --rm unisup_php composer swagger-generate

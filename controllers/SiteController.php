@@ -1,17 +1,13 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace app\controllers;
 
 use domain\login\LoginCredentialsDto;
 use factories\RequestFactory;
-use models\WorkReportType;
-use Yii;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
 
+use OpenApi\Annotations as OA;
 use seog\rest\Controller as BaseController;
 
-use domain\login\LoginRequestFactory;
 use domain\login\LoginForm;
 use domain\login\LoginAction;
 use domain\login\LoginTransformer;
@@ -31,7 +27,7 @@ class SiteController extends BaseController
         parent::__construct($id, $module, $config);
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [
@@ -41,7 +37,7 @@ class SiteController extends BaseController
         ];
     }
 
-    protected function auth()
+    protected function auth(): array
     {
         return array_merge_recursive(parent::auth(), [
             'only' => [],
@@ -49,7 +45,7 @@ class SiteController extends BaseController
         ]);
     }
 
-    public function verbActions()
+    public function verbActions(): array
     {
         return [
             'index' => ['get'],
@@ -77,6 +73,12 @@ class SiteController extends BaseController
         // Yii::$app->messageHandler->add('error', 'Test');
     }
 
+    /**
+     * @OA\Post(
+     *     path="/site/login",
+     *     @OA\Response(response="200", description="Login")
+     * )
+     */
     public function actionLogin()
     {
         $dto = $this->requestFactory->makeDto(LoginCredentialsDto::class);

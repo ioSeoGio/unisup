@@ -2,6 +2,7 @@
 
 namespace app\modules\documentBuilder\controllers;
 
+use OpenApi\Annotations as OA;
 use yii\filters\VerbFilter;
 
 use domain\workReport\educationalWork\RequestFactory as EducationalWorkRequestFactory;
@@ -52,7 +53,7 @@ class SiteController extends BaseModuleController
         ]);
     }
 
-    protected function auth()
+    protected function auth(): array
     {
         return array_merge_recursive(parent::auth(), [
             'only' => [],
@@ -60,7 +61,7 @@ class SiteController extends BaseModuleController
         ]);
     }
 
-    public function verbActions()
+    public function verbActions(): array
     {
         return array_merge(parent::verbActions(), [
             'educational-work' => ['post', 'options'],
@@ -69,6 +70,12 @@ class SiteController extends BaseModuleController
         ]);
     }
 
+    /**
+     * @OA\Post(
+     *     path="/document-builder/site/educational-work",
+     *     @OA\Response(response="200", description="Документ по образовательной работе")
+     * )
+     */
     public function actionEducationalWork()
     {
         $dto = $this->educationalWorkRequestFactory->makeDto();
