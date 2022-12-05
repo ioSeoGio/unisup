@@ -10,7 +10,7 @@
                 "operationId": "0e6ee86b2507b85475c45d4fe785210a",
                 "responses": {
                     "200": {
-                        "description": "Login1"
+                        "description": "Login"
                     }
                 }
             }

@@ -81,4 +81,5 @@ swagger:
 
 git-pull:
 	git pull
+	make composer-install
 	docker-compose run --rm unisup_php composer swagger-generate
