@@ -86,7 +86,8 @@ abstract class Controller extends BaseController
     {
    		return [
    		    'only' => [],
-   		    'except' => ['options', 'index', 'read', 'create', 'update', 'delete'],
+   		    // 'except' => ['options', 'index', 'read', 'create', 'update', 'delete'],
+   		    'except' => ['*'],
    		];
    	}
 

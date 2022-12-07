@@ -6,6 +6,11 @@ use yii\db\ActiveQuery as BaseActiveQuery;
 
 class ActiveQueryAdapter extends BaseActiveQuery implements QueryInterface
 {
+    public function __construct(string $modelClass)
+    {
+        parent::__construct($modelClass, ['orderBy' => ['updated_at' => SORT_DESC, 'created_at' => SORT_DESC]]);
+    }
+
     public function one($db = null):  ? object
     {
         return parent::one();

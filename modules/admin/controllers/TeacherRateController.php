@@ -9,7 +9,7 @@ use models\search\TeacherRateFiltrator;
 use domain\teacherRate\setAll\Action as SetRatesAction;
 use OpenApi\Annotations as OA;
 
-class TeacherRatesController extends BaseModuleController
+class TeacherRateController extends BaseModuleController
 {
     public function __construct(
         $id,
@@ -28,7 +28,7 @@ class TeacherRatesController extends BaseModuleController
 
     /**
      * @OA\Get(
-     *     path="/teacher-rates/get-all",
+     *     path="/admin/teacher-rate/get-all",
      *     @OA\Response(response="200", description="Все ставки преподавателей")
      * )
      */
@@ -39,6 +39,21 @@ class TeacherRatesController extends BaseModuleController
         return $this->formatter->makeResponse($raw);
     }
 
+    /**
+     * @OA\Post(
+     *     path="/admin/teacher-rate/set-all",
+     *     @OA\Response(response="200", description="Изменение ставок преподавателей"),
+     *     @OA\RequestBody(@OA\MediaType(
+     *         mediaType="application/json",
+     *         @OA\Schema(example={
+     *             {
+     *                 "teacherId": 1,
+     *                 "hours": 99.9
+     *             }
+     *         })
+     *     ))
+     * )
+     */
     public function actionSetAll(): void
     {
         $dtos = $this->requestFactory->makeDtos(Dto::class);

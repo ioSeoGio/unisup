@@ -38,7 +38,9 @@ up:
 
 restart: down up	
 
-init: rights build up composer-install migrate
+init: rights build up composer-install migrate swagger
+
+init-w-f: init load-fixtures
 
 rebuild: down db-rights build
 
