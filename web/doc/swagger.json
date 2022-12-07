@@ -15,12 +15,143 @@
                 }
             }
         },
-        "/teacher-rates/get-all": {
+        "/admin/discipline-time/get-all": {
             "get": {
-                "operationId": "1a35c067bed96bec6a48112a8dea7f99",
+                "operationId": "381243101bd03618f3faf3ddc9c85644",
+                "responses": {
+                    "200": {
+                        "description": "Все часы по всем дисциплинам"
+                    }
+                }
+            }
+        },
+        "/admin/discipline-time/set-all": {
+            "post": {
+                "operationId": "5e9f82c683e1c716ecf079a0cfd3e579",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": [
+                                    {
+                                        "disciplineId": 1,
+                                        "semesterId": 1,
+                                        "hours": 99.9
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Изменение часов дисциплин"
+                    }
+                }
+            }
+        },
+        "/admin/teacher-preference/get-all": {
+            "get": {
+                "operationId": "fe94d0a95d1d6a784b330c64850ec509",
+                "responses": {
+                    "200": {
+                        "description": "Список предпочтений преподавателей"
+                    }
+                }
+            }
+        },
+        "/admin/teacher-preference/set-all": {
+            "post": {
+                "operationId": "ece6ddee83b28af82038f2fd072c30a8",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": [
+                                    {
+                                        "teacherId": 1,
+                                        "disciplineId": 1,
+                                        "semesterId": 1,
+                                        "importanceCoefficient": 99.9
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Изменение предпочтений преподавателей"
+                    }
+                }
+            }
+        },
+        "/admin/teacher-rate/get-all": {
+            "get": {
+                "operationId": "ab06fc548a6b65961cf0b1318a53a1fc",
                 "responses": {
                     "200": {
                         "description": "Все ставки преподавателей"
+                    }
+                }
+            }
+        },
+        "/admin/teacher-rate/set-all": {
+            "post": {
+                "operationId": "d89e1a5cc5981aad3de1a2290e4c792c",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": [
+                                    {
+                                        "teacherId": 1,
+                                        "hours": 99.9
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Изменение ставок преподавателей"
+                    }
+                }
+            }
+        },
+        "/admin/teacher-time-management/get-all": {
+            "get": {
+                "operationId": "2c0497c2ad75d86dfad0af257b100547",
+                "responses": {
+                    "200": {
+                        "description": "Список отданных преподавателям часов по дисциплинам и семестрам"
+                    }
+                }
+            }
+        },
+        "/admin/teacher-time-management/set-all": {
+            "post": {
+                "operationId": "ed2aa41b4201b77c2690d39925b5f406",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": [
+                                    {
+                                        "teacherId": 1,
+                                        "disciplineId": 1,
+                                        "semesterId": 1,
+                                        "hours": 99.9
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Изменение часов преподавателей по дисциплинам и семестрам"
                     }
                 }
             }

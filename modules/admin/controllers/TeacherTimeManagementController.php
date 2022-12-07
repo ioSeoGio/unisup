@@ -7,6 +7,7 @@ use domain\teacherTimeManagement\Dto;
 use factories\RequestFactory;
 use domain\teacherTimeManagement\getAll\Formatter;
 use models\search\TeacherTimeManagementFiltrator;
+use OpenApi\Annotations as OA;
 
 class TeacherTimeManagementController extends BaseModuleController
 {
@@ -25,6 +26,15 @@ class TeacherTimeManagementController extends BaseModuleController
         parent::__construct($id, $module, $config);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/admin/teacher-time-management/get-all",
+     *     @OA\Response(
+     *         response="200",
+     *         description="Список отданных преподавателям часов по дисциплинам и семестрам"
+     *     )
+     * )
+     */
     public function actionGetAll(): array
     {
         $raw = $this->filtrator->search();
@@ -32,6 +42,26 @@ class TeacherTimeManagementController extends BaseModuleController
         return $this->formatter->makeResponse($raw);
     }
 
+    /**
+     * @OA\Post(
+     *     path="/admin/teacher-time-management/set-all",
+     *     @OA\Response(
+     *         response="200",
+     *         description="Изменение часов преподавателей по дисциплинам и семестрам"
+     *     ),
+     *     @OA\RequestBody(@OA\MediaType(
+     *         mediaType="application/json",
+     *         @OA\Schema(example={
+     *             {
+     *                 "teacherId": 1,
+     *                 "disciplineId": 1,
+     *                 "semesterId": 1,
+     *                 "hours": 99.9
+     *             }
+     *         })
+     *     ))
+     * )
+     */
     public function actionSetAll(): void
     {
         $dtos = $this->requestFactory->makeDtos(Dto::class);

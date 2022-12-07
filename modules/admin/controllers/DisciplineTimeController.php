@@ -7,6 +7,7 @@ use domain\disciplineTime\writeAll\Dto;
 use factories\RequestFactory;
 use domain\disciplineTime\getAll\Formatter;
 use models\search\DisciplineTimeFiltrator;
+use OpenApi\Annotations as OA;
 
 class DisciplineTimeController extends BaseModuleController
 {
@@ -25,6 +26,12 @@ class DisciplineTimeController extends BaseModuleController
         parent::__construct($id, $module, $config);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/admin/discipline-time/get-all",
+     *     @OA\Response(response="200", description="Все часы по всем дисциплинам")
+     * )
+     */
     public function actionGetAll(): array
     {
         $raw = $this->filtrator->search();
@@ -32,6 +39,22 @@ class DisciplineTimeController extends BaseModuleController
         return $this->formatter->makeResponse($raw);
     }
 
+    /**
+     * @OA\Post(
+     *     path="/admin/discipline-time/set-all",
+     *     @OA\Response(response="200", description="Изменение часов дисциплин"),
+     *     @OA\RequestBody(@OA\MediaType(
+     *         mediaType="application/json",
+     *         @OA\Schema(example={
+     *             {
+     *                 "disciplineId": 1,
+     *                 "semesterId": 1,
+     *                 "hours": 99.9
+     *             }
+     *         })
+     *     ))
+     * )
+     */
     public function actionSetAll(): void
     {
         $dtos = $this->requestFactory->makeDtos(Dto::class);
