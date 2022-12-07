@@ -56,6 +56,7 @@ composer-install:
 	docker-compose run --rm unisup_php composer install
 
 migrate:
+	docker-compose run --rm unisup_php php database/safe-create unisup_test_db
 	docker-compose run --rm unisup_php php yii_test migrate --interactive=0
 	docker-compose run --rm unisup_php php yii migrate --interactive=0
 migrate-prev:
