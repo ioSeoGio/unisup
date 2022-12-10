@@ -49,4 +49,19 @@ class TeacherPreference extends ActiveRecordAdapter
     {
         return $this->hasOne(Teacher::class, ['id' => 'teacher_id']);
     }
+
+    public function getTeacherRate(): ActiveQueryInterface
+    {
+        return $this->hasOne(TeacherRate::class, ['teacher_id' => 'id'])
+            ->viaTable(Teacher::tableName(), ['id' => 'teacher_id']);
+    }
+
+    public static function getByDisciplineTimeAndOrderedByImportance(DisciplineTime $disciplineTime): ActiveQueryInterface
+    {
+        return self::find()
+            ->with(['teacher.teacherRate'])
+            ->andWhere(['teacher_preferences.discipline_id' => $disciplineTime->discipline_id])
+            ->andWhere(['teacher_preferences.semester_id' => $disciplineTime->semester_id])
+            ->orderBy(['teacher_preferences.importance_coefficient' => SORT_DESC]);
+    }
 }

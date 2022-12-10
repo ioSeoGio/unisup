@@ -17,7 +17,7 @@ class DisciplineTime extends ActiveRecordAdapter
         return [
             [['discipline_id', 'semester_id'], 'default', 'value' => null],
             [['discipline_id', 'semester_id'], 'integer'],
-            [['hours'], 'double'],
+            [['hours'], 'double', 'min' => 0],
             [['hours'], 'default', 'value' => 0],
 
             ['discipline_id', 'unique', 'targetAttribute' => ['discipline_id', 'semester_id']],

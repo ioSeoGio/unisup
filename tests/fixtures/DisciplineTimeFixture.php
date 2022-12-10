@@ -20,7 +20,10 @@ class DisciplineTimeFixture extends BaseActiveFixture
     {
         $models = [];
         foreach (Discipline::find()->each() as $discipline) {
-            $models = array_merge($models, DisciplineTimeFactory::getDataFromDiscipline($discipline));
+            $models = array_merge(
+                $models,
+                DisciplineTimeFactory::getDataFromDiscipline($discipline, true)
+            );
         }
         return $models;
     }

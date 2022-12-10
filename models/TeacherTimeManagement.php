@@ -29,6 +29,19 @@ class TeacherTimeManagement extends ActiveRecordAdapter
         ];
     }
 
+    public static function updateWithGivenPreferenceAndHours(
+        TeacherPreference $teacherPreference,
+        float $hours,
+    ): void {
+        $record = self::findOne([
+            'discipline_id' => $teacherPreference->discipline_id,
+            'semester_id' => $teacherPreference->semester_id,
+            'teacher_id' => $teacherPreference->teacher_id,
+        ]);
+        $record->hours = $hours;
+        $record->save();
+    }
+
     public function getCourse(): ActiveQueryInterface
     {
         return $this->hasOne(Course::class, ['name' => 'course_name'])

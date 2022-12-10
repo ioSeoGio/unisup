@@ -47,6 +47,11 @@ class Teacher extends ActiveRecordAdapter
         ];
     }
 
+    public function getTeacherRate(): ActiveQueryInterface
+    {
+        return $this->hasOne(TeacherRate::class, ['teacher_id' => 'id']);
+    }
+
     public function getJournalRecords(): ActiveQueryInterface
     {
         return $this->hasMany(JournalRecord::class, ['teacher_id' => 'id']);
@@ -65,6 +70,13 @@ class Teacher extends ActiveRecordAdapter
     public function getTeacherPreferences(): ActiveQueryInterface
     {
         return $this->hasMany(TeacherPreference::class, ['teacher_id' => 'id']);
+    }
+
+    public function getTeacherPreferencesOrderedByImportance(): ActiveQueryInterface
+    {
+        return $this->hasMany(TeacherPreference::class, ['teacher_id' => 'id'])
+            ->with(['discipline.disciplineTime', 'semester'])
+            ->orderBy(['importance_coefficient' => SORT_DESC]);
     }
 
     public function getAcademicDegree(): ActiveQueryInterface

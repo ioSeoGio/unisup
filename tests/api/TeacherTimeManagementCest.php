@@ -24,30 +24,34 @@ class TeacherTimeManagementCest extends Cest
     {
         $url = '/admin/teacher-time-management/get-all';
         $this->asAdmin($I);
-        $I->sendGet($url);
+        $I->sendGet($url, [
+            'teacherName' => 'Марзан Сергей Андреевич',
+            'disciplineName' => 'Математический анализ',
+        ]);
 
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
-                'teacher' => [
-                    'id' => 1,
-                    'full_name' => 'Марзан Сергей Андреевич',
-                    'sex' => true,
-                    'department_id' => 2,
-                    'academic_degree_id' => 1,
-                    'academic_title_id' => 1,
-                    'teacher_post_id' => 4,
-                    'working_since' => '2022-05-06 11:12:15',
-                ],
-                'discipline' => [
-                    'id' => 1,
-                    'name' => 'Математический анализ',
-                ],
-                'semester' => [
-                    'name' => 'I',
-                ],
-                'hours' => 0,
+                [
+                    'teacher' => [
+                        'id' => 1,
+                        'full_name' => 'Марзан Сергей Андреевич',
+                        'sex' => true,
+                        'department_id' => 2,
+                        'academic_degree_id' => 1,
+                        'academic_title_id' => 1,
+                        'teacher_post_id' => 4,
+                        'working_since' => '2022-05-06 11:12:15',
+                    ],
+                    'discipline' => [
+                        'id' => 1,
+                        'name' => 'Математический анализ',
+                    ],
+                    'semester' => [
+                        'name' => 'I',
+                    ],
+                ]
             ],
         ]);
     }
@@ -63,7 +67,7 @@ class TeacherTimeManagementCest extends Cest
 
         $url = '/admin/teacher-time-management/set-all';
         $this->asAdmin($I);
-        $I->sendPost($url, [
+        $I->sendPatch($url, [
             [
                 'teacherId' => 1,
                 'semesterId' => 1,
@@ -79,5 +83,14 @@ class TeacherTimeManagementCest extends Cest
             'discipline_id' => 1,
         ]);
         $I->assertEquals(102, $record->hours);
+    }
+
+    public function generateNew(ApiTester $I): void
+    {
+        $url = '/admin/teacher-time-management/generate-new';
+        $this->asAdmin($I);
+        $I->sendPut($url);
+
+        $I->seeResponseCodeIsSuccessful();
     }
 }

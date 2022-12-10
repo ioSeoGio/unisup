@@ -20,7 +20,7 @@ class TeacherPreferenceFactory
         }
     }
 
-    public static function getDataFromTeacher(Teacher $teacher): array
+    public static function getDataFromTeacher(Teacher $teacher, bool $generateRandomImportance = false): array
     {
         $data = [];
         foreach (Semester::find()->each() as $semester) {
@@ -29,6 +29,7 @@ class TeacherPreferenceFactory
                     'teacher_id' => $teacher->id,
                     'discipline_id' => $discipline->id,
                     'semester_id' => $semester->id,
+                    'importance_coefficient' => $generateRandomImportance ? rand(0, 100) : 0,
                 ];
             }
         }

@@ -24,40 +24,36 @@ class TeacherPreferenceCest extends Cest
     {
         $url = '/admin/teacher-preference/get-all';
         $this->asAdmin($I);
-        $I->sendGet($url);
+        $I->sendGet($url, [
+            'teacher_name' => 'Марзан Сергей Андреевич',
+        ]);
 
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseContainsJson([
             'data' => [
-                'teacher' => [
-                    'id' => 1,
-                    'full_name' => 'Марзан Сергей Андреевич',
-                    'sex' => true,
-                    'department_id' => 2,
-                    'academic_degree_id' => 1,
-                    'academic_title_id' => 1,
-                    'teacher_post_id' => 4,
-                    'working_since' => '2022-05-06 11:12:15',
-                ],
-                'discipline' => [
-                    'id' => 1,
-                    'name' => 'Математический анализ',
-                ],
-                'importance_coefficient' => 0
+                [
+                    'teacher' => [
+                        'id' => 1,
+                        'full_name' => 'Марзан Сергей Андреевич',
+                        'sex' => true,
+                        'department_id' => 2,
+                        'academic_degree_id' => 1,
+                        'academic_title_id' => 1,
+                        'teacher_post_id' => 4,
+                        'working_since' => '2022-05-06 11:12:15',
+                    ],
+                    'discipline' => [
+                        'id' => 1,
+                        'name' => 'Математический анализ',
+                    ],
+                ]
             ],
         ]);
     }
 
     public function setAll(ApiTester $I): void
     {
-        $record = TeacherPreference::findOne([
-            'teacher_id' => 1,
-            'semester_id' => 1,
-            'discipline_id' => 1,
-        ]);
-        $I->assertEquals(0, $record->importance_coefficient);
-
         $url = '/admin/teacher-preference/set-all';
         $this->asAdmin($I);
         $I->sendPost($url, [

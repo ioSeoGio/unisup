@@ -40,7 +40,7 @@ class TeacherRateController extends BaseModuleController
     }
 
     /**
-     * @OA\Post(
+     * @OA\Patch(
      *     path="/admin/teacher-rate/set-all",
      *     @OA\Response(response="200", description="Изменение ставок преподавателей"),
      *     @OA\RequestBody(@OA\MediaType(

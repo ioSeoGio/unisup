@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use domain\teacherTimeManagement\service\AbstractTimeManagementCalculator;
 use domain\teacherTimeManagement\setAll\Action as SetAllAction;
 use domain\teacherTimeManagement\Dto;
 use factories\RequestFactory;
@@ -20,6 +21,7 @@ class TeacherTimeManagementController extends BaseModuleController
         private RequestFactory $requestFactory,
 
         private SetAllAction $setAllAction,
+        private AbstractTimeManagementCalculator $timeManagementCalculator,
 
         $config = [],
     ) {
@@ -43,7 +45,7 @@ class TeacherTimeManagementController extends BaseModuleController
     }
 
     /**
-     * @OA\Post(
+     * @OA\Patch(
      *     path="/admin/teacher-time-management/set-all",
      *     @OA\Response(
      *         response="200",
@@ -66,5 +68,22 @@ class TeacherTimeManagementController extends BaseModuleController
     {
         $dtos = $this->requestFactory->makeDtos(Dto::class);
         $this->setAllAction->run(...$dtos);
+    }
+
+    /**
+     * @OA\Put(
+     *     path="/admin/teacher-time-management/generate-new",
+     *     @OA\Response(
+     *         response="200",
+     *         description="Авто-генерация новых часов преподавателей по дисциплинам и семестрам"
+     *     ),
+     * )
+     */
+    public function actionGenerateNew(): array
+    {
+        $this->timeManagementCalculator->calculate();
+        $raw = $this->filtrator->search();
+
+        return $this->formatter->makeResponse($raw);
     }
 }

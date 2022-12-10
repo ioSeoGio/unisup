@@ -24,7 +24,9 @@ class DisciplineTimeCest extends Cest
     {
         $url = '/admin/discipline-time/get-all';
         $this->asAdmin($I);
-        $I->sendGet($url);
+        $I->sendGet($url, [
+            'discipline_name' => 'Математический анализ',
+        ]);
 
         $I->seeResponseIsJson();
         $I->seeResponseCodeIsSuccessful();
@@ -37,7 +39,6 @@ class DisciplineTimeCest extends Cest
                     'discipline' => [
                         'name' => 'Математический анализ',
                     ],
-                    'hours' => 0,
                 ],
             ],
         ]);
@@ -45,12 +46,6 @@ class DisciplineTimeCest extends Cest
 
     public function setAll(ApiTester $I): void
     {
-        $record = DisciplineTime::findOne([
-            'semester_id' => 1,
-            'discipline_id' => 1,
-        ]);
-        $I->assertEquals(0, $record->hours);
-
         $url = '/admin/discipline-time/set-all';
         $this->asAdmin($I);
         $I->sendPost($url, [

@@ -40,7 +40,7 @@ class DisciplineTimeController extends BaseModuleController
     }
 
     /**
-     * @OA\Post(
+     * @OA\Patch(
      *     path="/admin/discipline-time/set-all",
      *     @OA\Response(response="200", description="Изменение часов дисциплин"),
      *     @OA\RequestBody(@OA\MediaType(

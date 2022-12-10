@@ -21,7 +21,10 @@ class TeacherPreferenceFixture extends BaseActiveFixture
     {
         $preferences = [];
         foreach (Teacher::find()->each() as $teacher) {
-            $preferences = array_merge($preferences, TeacherPreferenceFactory::getDataFromTeacher($teacher));
+            $preferences = array_merge(
+                $preferences,
+                TeacherPreferenceFactory::getDataFromTeacher($teacher, true)
+            );
         }
         return $preferences;
     }

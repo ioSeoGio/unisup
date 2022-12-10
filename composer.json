@@ -100,6 +100,7 @@
             "dispatchers\\": "domain/common/dispatchers/",
             "dto\\": "domain/common/dto/",
             "events\\": "domain/common/events/",
+            "exceptions\\": "domain/common/exceptions/",
             "factories\\": "domain/common/factories/",
             "helpers\\": "helpers/",
             "listeners\\": "domain/common/listeners/",

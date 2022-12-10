@@ -18,13 +18,14 @@ class DisciplineTimeFactory
         }
     }
 
-    public static function getDataFromDiscipline(Discipline $discipline): array
+    public static function getDataFromDiscipline(Discipline $discipline, bool $generateRandomHours = false): array
     {
         $data = [];
         foreach (Semester::find()->each() as $semester) {
             $data[] = [
                 'discipline_id' => $discipline->id,
                 'semester_id' => $semester->id,
+                'hours' => $generateRandomHours ? rand(1, 50) * 10 : 0,
             ];
         }
         return $data;

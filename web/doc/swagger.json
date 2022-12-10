@@ -26,8 +26,8 @@
             }
         },
         "/admin/discipline-time/set-all": {
-            "post": {
-                "operationId": "5e9f82c683e1c716ecf079a0cfd3e579",
+            "patch": {
+                "operationId": "7af1591fbd9563864d012c1ceae64b11",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -61,8 +61,8 @@
             }
         },
         "/admin/teacher-preference/set-all": {
-            "post": {
-                "operationId": "ece6ddee83b28af82038f2fd072c30a8",
+            "patch": {
+                "operationId": "1f0733ee5adee921d6879710c5008d61",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -97,8 +97,8 @@
             }
         },
         "/admin/teacher-rate/set-all": {
-            "post": {
-                "operationId": "d89e1a5cc5981aad3de1a2290e4c792c",
+            "patch": {
+                "operationId": "1d5ed30dc28fbb6b75598e08da582a06",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -131,8 +131,8 @@
             }
         },
         "/admin/teacher-time-management/set-all": {
-            "post": {
-                "operationId": "ed2aa41b4201b77c2690d39925b5f406",
+            "patch": {
+                "operationId": "9f9aa6fe8c65ac3e3bc1843a405f43e1",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -152,6 +152,16 @@
                 "responses": {
                     "200": {
                         "description": "Изменение часов преподавателей по дисциплинам и семестрам"
+                    }
+                }
+            }
+        },
+        "/admin/teacher-time-management/generate-new": {
+            "put": {
+                "operationId": "f273d3b4b597e50bcc03723770705488",
+                "responses": {
+                    "200": {
+                        "description": "Авто-генерация новых часов преподавателей по дисциплинам и семестрам"
                     }
                 }
             }

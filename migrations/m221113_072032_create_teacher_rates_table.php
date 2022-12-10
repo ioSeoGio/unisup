@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m221113_072032_add_teacher_rates_table extends Migration
+class m221113_072032_create_teacher_rates_table extends Migration
 {
     public function safeUp()
     {
@@ -11,6 +11,7 @@ class m221113_072032_add_teacher_rates_table extends Migration
 
             'teacher_id' => $this->integer()->notNull(),
             'hours' => $this->float()->notNull()->defaultValue(0),
+            'hours_left' => $this->float()->notNull()->defaultValue(0),
 
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             'updated_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),

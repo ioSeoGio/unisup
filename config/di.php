@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+use domain\teacherTimeManagement\service\AbstractTimeManagementCalculator;
+use domain\teacherTimeManagement\service\SimpleTimeManagementCalculator;
 use seog\db\ActiveQueryAdapter;
 use seog\db\QueryInterface;
 use seog\web\RequestAdapter;
@@ -64,5 +66,7 @@ return [
         TeacherUpdater::class => function () {
             return new TeacherUpdater(new TeacherQuery);
         },
+
+        AbstractTimeManagementCalculator::class => SimpleTimeManagementCalculator::class,
     ],
 ];

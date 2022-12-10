@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace tests\api\teacher;
+namespace tests\api;
 
 use ApiTester;
 use models\TeacherRate;
@@ -23,7 +23,7 @@ class TeacherRateCest extends Cest
     public function getAll(ApiTester $I): void
     {
         $this->asAdmin($I);
-        $I->sendGet('/admin/teacher-rates/get-all', [
+        $I->sendGet('/admin/teacher-rate/get-all', [
             'teacherId' => 1,
         ]);
         $I->seeResponseCodeIsSuccessful();
@@ -33,7 +33,6 @@ class TeacherRateCest extends Cest
                     'teacher' => [
                         'id' => 1,
                     ],
-                    'hours' => 0,
                 ]
             ]
         ]);
@@ -41,11 +40,8 @@ class TeacherRateCest extends Cest
 
     public function setAll(ApiTester $I): void
     {
-        $record = TeacherRate::getOne(['teacher_id' => 1]);
-        $I->assertEquals(0, $record->hours);
-
         $this->asAdmin($I);
-        $I->sendPost('/admin/teacher-rates/set-all', [
+        $I->sendPost('/admin/teacher-rate/set-all', [
             [
                 'teacherId' => 1,
                 'hours' => 999

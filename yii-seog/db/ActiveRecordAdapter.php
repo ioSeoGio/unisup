@@ -3,6 +3,7 @@
 namespace seog\db;
 
 use domain\common\ArrayableInterface;
+use exceptions\ValidationException;
 use helpers\Formatter;
 use yii\db\ActiveRecord as BaseActiveRecord;
 use yii\behaviors\TimestampBehavior;
@@ -12,6 +13,14 @@ use yii\web\NotFoundHttpException;
 
 abstract class ActiveRecordAdapter extends BaseActiveRecord implements ArrayableInterface
 {
+    public function saveAndThrowOnError(): void
+    {
+        $result = $this->save();
+        if (false === $result) {
+            throw new ValidationException($this->getErrors());
+        }
+    }
+
     public function asArray(): array
     {
         $relations = [];

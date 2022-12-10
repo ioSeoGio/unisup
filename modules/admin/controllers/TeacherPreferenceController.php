@@ -40,7 +40,7 @@ class TeacherPreferenceController extends BaseModuleController
     }
 
     /**
-     * @OA\Post(
+     * @OA\Patch(
      *     path="/admin/teacher-preference/set-all",
      *     @OA\Response(response="200", description="Изменение предпочтений преподавателей"),
      *     @OA\RequestBody(@OA\MediaType(

@@ -34,4 +34,9 @@ class Discipline extends ActiveRecordAdapter
     {
         return $this->hasMany(TeacherPreference::class, ['discipline_id' => 'id']);
     }
+
+    public function getDisciplineTime(): ActiveQueryInterface
+    {
+        return $this->hasMany(DisciplineTime::class, ['discipline_id' => 'id']);
+    }
 }

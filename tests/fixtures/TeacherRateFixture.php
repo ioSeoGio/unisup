@@ -19,7 +19,7 @@ class TeacherRateFixture extends BaseActiveFixture
     {
         $rates = [];
         foreach (Teacher::find()->each() as $teacher) {
-            $rates[] = TeacherRateFactory::getDataFromTeacher($teacher);
+            $rates[] = TeacherRateFactory::getDataFromTeacher($teacher, true);
         }
         return $rates;
     }
