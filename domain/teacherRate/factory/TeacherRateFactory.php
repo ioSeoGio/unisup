@@ -19,10 +19,11 @@ class TeacherRateFactory
 
     public static function getDataFromTeacher(Teacher $teacher, bool $generateRandomHours = false): array
     {
+        $hours = $generateRandomHours ? rand(1, 50) * 10 : 0;
         return [
             'teacher_id' => $teacher->id,
-            'hours' => $generateRandomHours ? rand(1, 50) * 10 : 0,
-            'hours_left' => $generateRandomHours ? rand(1, 50) * 10 : 0,
+            'hours' => $hours,
+            'hours_left' => $hours,
         ];
     }
 }

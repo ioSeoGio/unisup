@@ -47,6 +47,11 @@ class Teacher extends ActiveRecordAdapter
         ];
     }
 
+    public function getTeacherTimeManagements(): ActiveQueryInterface
+    {
+        return $this->hasMany(TeacherTimeManagement::class, ['teacher_id' => 'id']);
+    }
+
     public function getTeacherRate(): ActiveQueryInterface
     {
         return $this->hasOne(TeacherRate::class, ['teacher_id' => 'id']);

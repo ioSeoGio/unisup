@@ -15,6 +15,9 @@ class TeacherTimeManagementFixture extends BaseActiveFixture
         SemesterFixture::class,
         DisciplineFixture::class,
         TeacherFixture::class,
+        DisciplineTimeFixture::class,
+        TeacherRateFixture::class,
+        TeacherPreferenceFixture::class,
     ];
 
     public function getData(): array

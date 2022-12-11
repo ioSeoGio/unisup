@@ -51,7 +51,7 @@ class SimpleTimeManagementCalculator extends AbstractTimeManagementCalculator
         float $disciplineHoursLeft
     ): float {
         $teacherRate = $teacherPreference->teacherRate;
-        $teacherHoursLeft = $teacherRate->hours;
+        $teacherHoursLeft = $teacherRate->hours_left;
 
         if ($disciplineHoursLeft >= $teacherHoursLeft) {
             $hoursTaken = $teacherHoursLeft;
@@ -66,7 +66,7 @@ class SimpleTimeManagementCalculator extends AbstractTimeManagementCalculator
         }
 
         $teacherRate->hours_left = $teacherHoursLeft;
-        $teacherRate->saveAndThrowOnError();
+        $teacherRate->save();
         TeacherTimeManagement::updateWithGivenPreferenceAndHours($teacherPreference, $hoursTaken);
 
         return $disciplineHoursLeft;

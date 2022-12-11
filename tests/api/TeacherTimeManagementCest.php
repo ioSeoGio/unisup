@@ -3,6 +3,7 @@
 namespace tests\api;
 
 use ApiTester;
+use models\TeacherRate;
 use models\TeacherTimeManagement;
 use tests\api\common\Cest;
 use tests\fixtures\TeacherFixture;
@@ -16,7 +17,7 @@ class TeacherTimeManagementCest extends Cest
         return [
             'users' => UserFixture::class,
             'teachers' => TeacherFixture::class,
-            'teacher_preferences' => TeacherTimeManagementFixture::class,
+            'teacher_time_management' => TeacherTimeManagementFixture::class,
         ];
     }
 
@@ -92,5 +93,17 @@ class TeacherTimeManagementCest extends Cest
         $I->sendPut($url);
 
         $I->seeResponseCodeIsSuccessful();
+
+        $teacherRates = TeacherRate::find()
+            ->with(['teacher.teacherTimeManagements'])
+            ->each();
+
+        foreach ($teacherRates as $teacherRate) {
+            $hoursFromManagements = 0;
+            foreach ($teacherRate->teacher->teacherTimeManagements as $timeManagement) {
+                $hoursFromManagements += $timeManagement->hours;
+            }
+            $I->assertEquals($teacherRate->hours - $teacherRate->hours_left, $hoursFromManagements);
+        }
     }
 }
