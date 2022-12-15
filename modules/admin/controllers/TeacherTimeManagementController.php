@@ -28,6 +28,13 @@ class TeacherTimeManagementController extends BaseModuleController
         parent::__construct($id, $module, $config);
     }
 
+    public function verbs(): array
+    {
+        return array_merge_recursive(parent::verbs(), [
+            'generate-new' => ['put', 'options']
+        ]);
+    }
+
     /**
      * @OA\Get(
      *     path="/admin/teacher-time-management/get-all",
