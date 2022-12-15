@@ -101,6 +101,7 @@ abstract class Controller extends BaseController
     protected function verbActions(): array
     {
         return [
+            '*' => ['options'],
             'index' => ['get', 'options'],
             'read' => ['get', 'options'],
             'create' => ['post', 'options'],

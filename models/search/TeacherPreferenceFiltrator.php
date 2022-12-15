@@ -29,7 +29,7 @@ class TeacherPreferenceFiltrator extends AbstractFiltrator
     public function search(): ActiveDataProvider
     {
         $query = (new TeacherPreferenceQuery())
-            ->joinWith(['teacher', 'discipline']);
+            ->joinWith(['teacher', 'discipline', 'semester']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

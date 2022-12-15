@@ -15,6 +15,7 @@ class Formatter
         foreach ($dataProvider->getModels() as $model) {
             $result[] = [
                 'teacher' => $model->getTeacher()->one(),
+                'semester' => $model->getSemester()->one(),
                 'discipline' => $model->getDiscipline()->one(),
                 'importance_coefficient' => $model->importance_coefficient,
             ];
