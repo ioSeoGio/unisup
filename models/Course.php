@@ -49,7 +49,8 @@ class Course extends ActiveRecordAdapter
 
     public function getTeacherPreferences(): ActiveQueryInterface
     {
-        return $this->hasMany(TeacherPreference::class, ['course_id' => 'id']);
+        return $this->hasMany(TeacherPreference::class, ['semester_id' => 'id'])
+            ->viaTable(Semester::tableName(), ['course_name' => 'name']);
     }
 
     public function getSemesters(): ActiveQueryInterface

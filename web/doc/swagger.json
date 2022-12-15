@@ -15,6 +15,16 @@
                 }
             }
         },
+        "/admin/course/get-all": {
+            "get": {
+                "operationId": "5af467b333f33aa849b4d55b928cd1cc",
+                "responses": {
+                    "200": {
+                        "description": "Список курсов и семестров"
+                    }
+                }
+            }
+        },
         "/admin/discipline-time/get-all": {
             "get": {
                 "operationId": "381243101bd03618f3faf3ddc9c85644",
