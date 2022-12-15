@@ -28,9 +28,9 @@ class TeacherTimeManagementController extends BaseModuleController
         parent::__construct($id, $module, $config);
     }
 
-    public function verbs(): array
+    public function verbActions(): array
     {
-        return array_merge_recursive(parent::verbs(), [
+        return array_merge_recursive(parent::verbActions(), [
             'generate-new' => ['put', 'options']
         ]);
     }
