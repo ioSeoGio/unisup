@@ -106,8 +106,8 @@ abstract class Controller extends BaseController
             'create' => ['post', 'options'],
             'update' => ['post', 'options'],
             'delete' => ['post', 'options'],
-            'getAll' => ['get', 'options'],
-            'setAll' => ['patch', 'options'],
+            'get-all' => ['get', 'options'],
+            'set-all' => ['patch', 'options'],
         ];
     }
 }
