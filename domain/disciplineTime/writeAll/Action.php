@@ -12,12 +12,12 @@ class Action
 	public function run(Dto ...$dtos): void
 	{
         foreach ($dtos as $dto) {
-            $record = DisciplineTime::findOne([
+            $record = DisciplineTime::getOne([
                 'discipline_id' => $dto->disciplineId,
                 'semester_id' => $dto->semesterId,
             ]);
             $record->hours = $dto->hours;
-            $record->save();
+            $record->saveAndThrowOnError();
         }
 	}
 }
