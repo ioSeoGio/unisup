@@ -26,7 +26,11 @@ class TeacherTimeManagementFiltrator extends AbstractFiltrator
     public function search(): ActiveDataProvider
     {
         $query = (new TeacherTimeManagementQuery())
-            ->joinWith(['teacher', 'discipline']);
+            ->joinWith([
+                'teacher',
+                'discipline.disciplineTimes',
+                'semester',
+            ]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

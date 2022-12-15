@@ -6,9 +6,6 @@ use models\DisciplineTime;
 
 class Action
 {
-	public function __construct(
-	) {}
-
 	public function run(Dto ...$dtos): void
 	{
         foreach ($dtos as $dto) {
