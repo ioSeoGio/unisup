@@ -13,7 +13,7 @@ class Action
 	public function run(Dto ...$dtos): void
 	{
         foreach ($dtos as $dto) {
-            $record = TeacherTimeManagement::getOne([
+            $record = TeacherTimeManagement::getOrCreateOne([
                 'semester_id' => $dto->semesterId,
                 'discipline_id' => $dto->disciplineId,
                 'teacher_id' => $dto->teacherId,

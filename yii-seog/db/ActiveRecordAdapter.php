@@ -82,4 +82,15 @@ abstract class ActiveRecordAdapter extends BaseActiveRecord implements Arrayable
 
         return $record;
     }
+
+    public static function getOrCreateOne(array $criteria): static
+    {
+        $record = self::findOne($criteria);
+
+        if (null === $record) {
+            $record = new static($criteria);
+        }
+
+        return $record;
+    }
 }
