@@ -12,7 +12,9 @@ class TeacherPreferenceFiltrator extends AbstractFiltrator
     public $course_id;
     public $semester_id;
     public $teacher_id;
-    public $teacher_name;
+    public $teacherName;
+    public $disciplineName;
+    public $courseAndSemesterName;
     public $created_at;
     public $updated_at;
 
@@ -21,7 +23,7 @@ class TeacherPreferenceFiltrator extends AbstractFiltrator
     {
         return [
             [['id', 'discipline_id', 'course_id', 'semester_id', 'teacher_id'], 'integer'],
-            [['teacher_name'], 'string'],
+            [['teacherName', 'disciplineName', 'courseAndSemesterName'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -29,7 +31,7 @@ class TeacherPreferenceFiltrator extends AbstractFiltrator
     public function search(): ActiveDataProvider
     {
         $query = (new TeacherPreferenceQuery())
-            ->joinWith(['teacher', 'discipline', 'semester']);
+            ->joinWith(['teacher', 'discipline', 'semester', 'semester.course']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -50,7 +52,9 @@ class TeacherPreferenceFiltrator extends AbstractFiltrator
             'semester_id' => $this->semester_id,
             'teacher_id' => $this->teacher_id,
         ]);
-        $query->andFilterWhere(['ilike', 'teachers.full_name', $this->teacher_name]);
+        $query->andFilterWhere(['ilike', 'teachers.full_name', $this->teacherName]);
+        $query->andFilterWhere(['ilike', 'disciplines.name', $this->disciplineName]);
+        $query->andFilterWhere(['ilike', 'concat(courses.name, semesters.name)', $this->courseAndSemesterName]);
 
         return $dataProvider;
     }

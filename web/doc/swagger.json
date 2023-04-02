@@ -46,6 +46,14 @@
                     {
                         "name": "per-page",
                         "in": "query"
+                    },
+                    {
+                        "name": "disciplineName",
+                        "in": "query"
+                    },
+                    {
+                        "name": "courseAndSemesterName",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -90,6 +98,18 @@
                     },
                     {
                         "name": "per-page",
+                        "in": "query"
+                    },
+                    {
+                        "name": "teacherName",
+                        "in": "query"
+                    },
+                    {
+                        "name": "disciplineName",
+                        "in": "query"
+                    },
+                    {
+                        "name": "courseAndSemesterName",
                         "in": "query"
                     }
                 ],
@@ -136,6 +156,10 @@
                     },
                     {
                         "name": "per-page",
+                        "in": "query"
+                    },
+                    {
+                        "name": "teacherName",
                         "in": "query"
                     }
                 ],
@@ -209,7 +233,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "11Список отданных преподавателям часов по дисциплинам и семестрам"
+                        "description": "Список отданных преподавателям часов по дисциплинам и семестрам"
                     }
                 }
             }

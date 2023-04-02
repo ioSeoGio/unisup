@@ -32,7 +32,8 @@ class TeacherRateController extends BaseModuleController
      *     path="/admin/teacher-rate/get-all",
      *     @OA\Response(response="200", description="Все ставки преподавателей"),
      *     @OA\Parameter(name="page", in="query"),
-     *     @OA\Parameter(name="per-page", in="query")
+     *     @OA\Parameter(name="per-page", in="query"),
+     *     @OA\Parameter(name="teacherName", in="query"),
      * )
      */
     public function actionGetAll(): PaginatedResponse

@@ -32,7 +32,9 @@ class DisciplineTimeController extends BaseModuleController
      *     path="/admin/discipline-time/get-all",
      *     @OA\Response(response="200", description="Все часы по всем дисциплинам"),
      *     @OA\Parameter(name="page", in="query"),
-     *     @OA\Parameter(name="per-page", in="query")
+     *     @OA\Parameter(name="per-page", in="query"),
+     *     @OA\Parameter(name="disciplineName", in="query"),
+     *     @OA\Parameter(name="courseAndSemesterName", in="query"),
      * )
      */
     public function actionGetAll(): PaginatedResponse

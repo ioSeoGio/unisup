@@ -25,7 +25,7 @@ class DisciplineTimeCest extends Cest
         $url = '/admin/discipline-time/get-all';
         $this->asAdmin($I);
         $I->sendGet($url, [
-            'discipline_name' => 'Математический анализ',
+            'disciplineName' => 'Математический анализ',
         ]);
 
         $I->seeResponseIsJson();

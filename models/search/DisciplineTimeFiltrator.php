@@ -9,7 +9,8 @@ class DisciplineTimeFiltrator extends AbstractFiltrator
 {
     public $id;
     public $discipline_id;
-    public $discipline_name;
+    public $disciplineName;
+    public $courseAndSemesterName;
     public $course_id;
     public $semester_id;
     public $hours;
@@ -22,7 +23,7 @@ class DisciplineTimeFiltrator extends AbstractFiltrator
         return [
             [['id', 'discipline_id', 'course_id', 'semester_id'], 'integer'],
             [['hours'], 'double'],
-            [['discipline_name'], 'string'],
+            [['disciplineName', 'courseAndSemesterName'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -48,7 +49,8 @@ class DisciplineTimeFiltrator extends AbstractFiltrator
             'semester_id' => $this->semester_id,
             'hours' => $this->hours,
         ]);
-        $query->andFilterWhere(['like', 'disciplines.name', $this->discipline_name]);
+        $query->andFilterWhere(['ilike', 'disciplines.name', $this->disciplineName]);
+        $query->andFilterWhere(['ilike', 'concat(courses.name, semesters.name)', $this->courseAndSemesterName]);
 
         return $dataProvider;
     }

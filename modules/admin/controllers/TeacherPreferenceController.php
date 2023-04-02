@@ -32,7 +32,10 @@ class TeacherPreferenceController extends BaseModuleController
      *     path="/admin/teacher-preference/get-all",
      *     @OA\Response(response="200", description="Список предпочтений преподавателей"),
      *     @OA\Parameter(name="page", in="query"),
-     *     @OA\Parameter(name="per-page", in="query")
+     *     @OA\Parameter(name="per-page", in="query"),
+     *     @OA\Parameter(name="teacherName", in="query"),
+     *     @OA\Parameter(name="disciplineName", in="query"),
+     *     @OA\Parameter(name="courseAndSemesterName", in="query"),
      * )
      */
     public function actionGetAll(): PaginatedResponse

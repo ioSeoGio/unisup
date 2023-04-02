@@ -8,19 +8,22 @@ use yii\data\ActiveDataProvider;
 class TeacherRateFiltrator extends AbstractFiltrator
 {
     public $teacherId;
+    public $teacherName;
     public $hours;
 
     public function rules()
     {
         return [
             [['teacherId'], 'integer'],
+            [['teacherName'], 'string'],
             [['hours'], 'double'],
         ];
     }
 
     public function search(): ActiveDataProvider
     {
-        $query = new TeacherRateQuery();
+        $query = (new TeacherRateQuery())
+            ->joinWith(['teacher']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -34,6 +37,7 @@ class TeacherRateFiltrator extends AbstractFiltrator
             'teacher_id' => $this->teacherId,
             'hours' => $this->hours,
         ]);
+        $query->andFilterWhere(['ilike', 'teachers.full_name', $this->teacherName]);
 
         return $dataProvider;
     }
