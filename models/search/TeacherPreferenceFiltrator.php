@@ -35,9 +35,6 @@ class TeacherPreferenceFiltrator extends AbstractFiltrator
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => 500,
-            ]
         ]);
 
         $this->load($this->request->getQueryParams());
