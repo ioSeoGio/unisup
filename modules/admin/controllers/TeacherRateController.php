@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use domain\common\responses\PaginatedResponse;
 use domain\teacherRate\Dto;
 use domain\teacherRate\getAll\Formatter;
 use factories\RequestFactory;
@@ -29,10 +30,12 @@ class TeacherRateController extends BaseModuleController
     /**
      * @OA\Get(
      *     path="/admin/teacher-rate/get-all",
-     *     @OA\Response(response="200", description="Все ставки преподавателей")
+     *     @OA\Response(response="200", description="Все ставки преподавателей"),
+     *     @OA\Parameter(name="page", in="query"),
+     *     @OA\Parameter(name="per-page", in="query")
      * )
      */
-    public function actionGetAll(): array
+    public function actionGetAll(): PaginatedResponse
     {
         $raw = $this->filtrator->search();
 

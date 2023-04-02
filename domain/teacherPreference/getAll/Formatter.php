@@ -2,12 +2,13 @@
 
 namespace domain\teacherPreference\getAll;
 
+use domain\common\responses\PaginatedResponse;
 use models\TeacherPreference;
 use yii\data\ActiveDataProvider;
 
 class Formatter
 {
-    public function makeResponse(ActiveDataProvider $dataProvider): array
+    public function makeResponse(ActiveDataProvider $dataProvider): PaginatedResponse
     {
         $result = [];
 
@@ -21,6 +22,6 @@ class Formatter
             ];
         }
 
-        return $result;
+        return new PaginatedResponse($result, $dataProvider);
     }
 }

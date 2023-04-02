@@ -18,6 +18,16 @@
         "/admin/course/get-all": {
             "get": {
                 "operationId": "5af467b333f33aa849b4d55b928cd1cc",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "name": "per-page",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Список курсов и семестров"
@@ -28,6 +38,16 @@
         "/admin/discipline-time/get-all": {
             "get": {
                 "operationId": "381243101bd03618f3faf3ddc9c85644",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "name": "per-page",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Все часы по всем дисциплинам"
@@ -63,6 +83,16 @@
         "/admin/teacher-preference/get-all": {
             "get": {
                 "operationId": "fe94d0a95d1d6a784b330c64850ec509",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "name": "per-page",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Список предпочтений преподавателей"
@@ -99,6 +129,16 @@
         "/admin/teacher-rate/get-all": {
             "get": {
                 "operationId": "ab06fc548a6b65961cf0b1318a53a1fc",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "name": "per-page",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Все ставки преподавателей"
@@ -133,9 +173,43 @@
         "/admin/teacher-time-management/get-all": {
             "get": {
                 "operationId": "2c0497c2ad75d86dfad0af257b100547",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "name": "per-page",
+                        "in": "query"
+                    },
+                    {
+                        "name": "disciplineName",
+                        "in": "query"
+                    },
+                    {
+                        "name": "teacherName",
+                        "in": "query"
+                    },
+                    {
+                        "name": "semesterName",
+                        "in": "query"
+                    },
+                    {
+                        "name": "disciplineId",
+                        "in": "query"
+                    },
+                    {
+                        "name": "teacherId",
+                        "in": "query"
+                    },
+                    {
+                        "name": "semesterId",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Список отданных преподавателям часов по дисциплинам и семестрам"
+                        "description": "11Список отданных преподавателям часов по дисциплинам и семестрам"
                     }
                 }
             }

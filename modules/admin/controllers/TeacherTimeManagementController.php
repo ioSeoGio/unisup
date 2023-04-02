@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use domain\common\responses\PaginatedResponse;
 use domain\teacherTimeManagement\service\AbstractTimeManagementCalculator;
 use domain\teacherTimeManagement\setAll\Action as SetAllAction;
 use domain\teacherTimeManagement\Dto;
@@ -41,10 +42,18 @@ class TeacherTimeManagementController extends BaseModuleController
      *     @OA\Response(
      *         response="200",
      *         description="Список отданных преподавателям часов по дисциплинам и семестрам"
-     *     )
+     *     ),
+     *     @OA\Parameter(name="page", in="query"),
+     *     @OA\Parameter(name="per-page", in="query"),
+     *     @OA\Parameter(name="disciplineName", in="query"),
+     *     @OA\Parameter(name="teacherName", in="query"),
+     *     @OA\Parameter(name="semesterName", in="query"),
+     *     @OA\Parameter(name="disciplineId", in="query"),
+     *     @OA\Parameter(name="teacherId", in="query"),
+     *     @OA\Parameter(name="semesterId", in="query")
      * )
      */
-    public function actionGetAll(): array
+    public function actionGetAll(): PaginatedResponse
     {
         $raw = $this->filtrator->search();
 

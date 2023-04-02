@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 class TeacherTimeManagementFiltrator extends AbstractFiltrator
 {
     public $semesterId;
+    public $semesterName;
     public $disciplineId;
     public $disciplineName;
     public $teacherId;
@@ -18,7 +19,7 @@ class TeacherTimeManagementFiltrator extends AbstractFiltrator
     {
         return [
             [['semesterId', 'disciplineId', 'teacherId'], 'integer'],
-            [['disciplineName', 'teacherName'], 'string'],
+            [['disciplineName', 'teacherName', 'semesterName'], 'string'],
             [['hours'], 'double'],
         ];
     }
@@ -28,9 +29,10 @@ class TeacherTimeManagementFiltrator extends AbstractFiltrator
         $query = (new TeacherTimeManagementQuery())
             ->joinWith([
                 'teacher',
-                'discipline.disciplineTimes',
+                'discipline',
                 'semester',
-            ]);
+            ])
+            ->with('discipline.disciplineTimes');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -49,6 +51,7 @@ class TeacherTimeManagementFiltrator extends AbstractFiltrator
         ]);
         $query->andFilterWhere(['ilike', 'teachers.full_name', $this->teacherName]);
         $query->andFilterWhere(['ilike', 'disciplines.name', $this->disciplineName]);
+        $query->andFilterWhere(['ilike', 'semesters.name', $this->semesterName]);
 
         return $dataProvider;
     }

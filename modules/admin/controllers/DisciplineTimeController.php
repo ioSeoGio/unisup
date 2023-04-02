@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use domain\common\responses\PaginatedResponse;
 use domain\disciplineTime\writeAll\Action as SetAllAction;
 use domain\disciplineTime\writeAll\Dto;
 use factories\RequestFactory;
@@ -29,10 +30,12 @@ class DisciplineTimeController extends BaseModuleController
     /**
      * @OA\Get(
      *     path="/admin/discipline-time/get-all",
-     *     @OA\Response(response="200", description="Все часы по всем дисциплинам")
+     *     @OA\Response(response="200", description="Все часы по всем дисциплинам"),
+     *     @OA\Parameter(name="page", in="query"),
+     *     @OA\Parameter(name="per-page", in="query")
      * )
      */
-    public function actionGetAll(): array
+    public function actionGetAll(): PaginatedResponse
     {
         $raw = $this->filtrator->search();
 
