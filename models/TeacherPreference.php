@@ -59,7 +59,6 @@ class TeacherPreference extends ActiveRecordAdapter
     public static function getByDisciplineTimeAndOrderedByImportance(DisciplineTime $disciplineTime): ActiveQueryInterface
     {
         return self::find()
-            ->with(['teacher.teacherRate'])
             ->andWhere(['teacher_preferences.discipline_id' => $disciplineTime->discipline_id])
             ->andWhere(['teacher_preferences.semester_id' => $disciplineTime->semester_id])
             ->orderBy(['teacher_preferences.importance_coefficient' => SORT_DESC]);

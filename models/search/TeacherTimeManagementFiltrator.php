@@ -32,7 +32,9 @@ class TeacherTimeManagementFiltrator extends AbstractFiltrator
                 'discipline',
                 'semester',
             ])
-            ->with('discipline.disciplineTimes');
+            ->with('discipline.disciplineTimes')
+            ->with('discipline.disciplineTimes')
+            ->orderBy(['hours' => SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

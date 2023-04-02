@@ -26,6 +26,7 @@ class TeacherPreferenceCest extends Cest
         $this->asAdmin($I);
         $I->sendGet($url, [
             'teacher_name' => 'Марзан Сергей Андреевич',
+            'discipline_name' => 'Математический анализ',
         ]);
 
         $I->seeResponseIsJson();

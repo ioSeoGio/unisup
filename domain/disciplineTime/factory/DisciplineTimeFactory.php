@@ -25,7 +25,7 @@ class DisciplineTimeFactory
             $data[] = [
                 'discipline_id' => $discipline->id,
                 'semester_id' => $semester->id,
-                'hours' => $generateRandomHours ? rand(1, 50) * 10 : 0,
+                'hours' => $generateRandomHours ? rand(2, 50) * 10 : 0,
             ];
         }
         return $data;

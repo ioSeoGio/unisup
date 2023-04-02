@@ -41,11 +41,19 @@ $config = array_merge_recursive($common, [
                 $messageHandler = Yii::$app->messageHandler;
                 
                 if ($response->data !== null && $response->isSuccessful) {
-                    $response->data = [
+                    $newResponse = [
                         'data' => $response->data,
                         'rbac' => $rbacHandler->dump(),
                         'messages' => $messageHandler->dump(),
                     ];
+
+                    // Если пагинационный ответ
+                    if (isset($response->data['totalPages'])) {
+                        $newResponse['totalPages'] = $response->data['totalPages'];
+                        unset($newResponse['data']['totalPages']);
+                    }
+
+                    $response->data = $newResponse;
                 }
             },
         ],

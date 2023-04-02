@@ -95,7 +95,7 @@ class TeacherTimeManagementController extends BaseModuleController
      *     ),
      * )
      */
-    public function actionGenerateNew(): array
+    public function actionGenerateNew(): PaginatedResponse
     {
         $this->timeManagementCalculator->calculate();
         $raw = $this->filtrator->search();

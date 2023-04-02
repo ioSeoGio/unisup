@@ -22,7 +22,6 @@ class SimpleTimeManagementCalculator extends AbstractTimeManagementCalculator
         $this->initCalculatorData();
 
         $disciplineTimes = DisciplineTime::find()->each();
-
         foreach ($disciplineTimes as $disciplineTime) {
             $this->assignDisciplineHoursToTeachers($disciplineTime);
         }
@@ -32,6 +31,8 @@ class SimpleTimeManagementCalculator extends AbstractTimeManagementCalculator
     {
         $disciplineHoursLeft = $disciplineTime->hours;
         $teacherPreferences = TeacherPreference::getByDisciplineTimeAndOrderedByImportance($disciplineTime)->each();
+//        var_dump($disciplineTime->discipline->name);
+//        var_dump($disciplineHoursLeft);
 
         /** @var TeacherPreference $teacherPreference */
         foreach ($teacherPreferences as $teacherPreference) {
@@ -52,6 +53,7 @@ class SimpleTimeManagementCalculator extends AbstractTimeManagementCalculator
     ): float {
         $teacherRate = $teacherPreference->teacherRate;
         $teacherHoursLeft = $teacherRate->hours_left;
+//        var_dump('У преподавателя ' . $teacherRate->teacher->full_name . ' осталось ' . $teacherHoursLeft . ' часов');
 
         if ($disciplineHoursLeft >= $teacherHoursLeft) {
             $hoursTaken = $teacherHoursLeft;
@@ -67,6 +69,7 @@ class SimpleTimeManagementCalculator extends AbstractTimeManagementCalculator
 
         $teacherRate->hours_left = $teacherHoursLeft;
         $teacherRate->save();
+//        var_dump('Преподаватель ' . $teacherRate->teacher->full_name . ' забрал ' . $hoursTaken . ' часов');
         TeacherTimeManagement::updateWithGivenPreferenceAndHours($teacherPreference, $hoursTaken);
 
         return $disciplineHoursLeft;
