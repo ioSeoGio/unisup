@@ -46,3 +46,5 @@ tests/_support/_generated
 
 /docs/**
 .php-cs-fixer.cache
+
+/web/doc/swagger.json
