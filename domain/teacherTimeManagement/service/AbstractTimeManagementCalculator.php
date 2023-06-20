@@ -8,7 +8,7 @@ use yii\db\Expression;
 
 abstract class AbstractTimeManagementCalculator
 {
-    public const HOURS_ACCURACY = 10;
+    public const ALLOWED_INACCURACY_IN_HOURS = 10;
 
     abstract public function calculate(): void;
 

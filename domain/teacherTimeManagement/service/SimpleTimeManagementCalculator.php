@@ -21,8 +21,7 @@ class SimpleTimeManagementCalculator extends AbstractTimeManagementCalculator
     {
         $this->initCalculatorData();
 
-        $disciplineTimes = DisciplineTime::find()->each();
-        foreach ($disciplineTimes as $disciplineTime) {
+        foreach (DisciplineTime::find()->each() as $disciplineTime) {
             $this->assignDisciplineHoursToTeachers($disciplineTime);
         }
     }
@@ -41,7 +40,7 @@ class SimpleTimeManagementCalculator extends AbstractTimeManagementCalculator
                 $disciplineHoursLeft
             );
 
-            if ($disciplineHoursLeft <= self::HOURS_ACCURACY) {
+            if ($disciplineHoursLeft <= self::ALLOWED_INACCURACY_IN_HOURS) {
                 break;
             }
         }

@@ -2,20 +2,22 @@
 
 namespace app\modules\documentBuilder\controllers;
 
+use factories\RequestFactory;
 use OpenApi\Annotations as OA;
+use Yii;
 use yii\filters\VerbFilter;
 
-use domain\workReport\educationalWork\RequestFactory as EducationalWorkRequestFactory;
+use domain\workReport\educationalWork\RequestDto as EducationalWorkRequestDto;
 use domain\workReport\educationalWork\Form as EducationalWorkForm;
 use domain\workReport\educationalWork\Action as EducationalWorkAction;
 use domain\workReport\educationalWork\Transformer as EducationalWorkTransformer;
 
-use domain\workReport\scientificWork\RequestFactory as ScientificWorkRequestFactory;
+use domain\workReport\scientificWork\RequestDto as ScientificWorkFormRequestDto;
 use domain\workReport\scientificWork\Form as ScientificWorkForm;
 use domain\workReport\scientificWork\Action as ScientificWorkAction;
 use domain\workReport\scientificWork\Transformer as ScientificWorkTransformer;
 
-use domain\workReport\methodicalWork\RequestFactory as MethodicalWorkRequestFactory;
+use domain\workReport\methodicalWork\RequestDto as MethodicalWorkRequestDto;
 use domain\workReport\methodicalWork\Form as MethodicalWorkForm;
 use domain\workReport\methodicalWork\Action as MethodicalWorkAction;
 use domain\workReport\methodicalWork\Transformer as MethodicalWorkTransformer;
@@ -26,15 +28,14 @@ class SiteController extends BaseModuleController
         $id, 
         $module, 
 
-        private EducationalWorkRequestFactory $educationalWorkRequestFactory,
+        private RequestFactory $requestFactory,
+
         private EducationalWorkForm $educationalWorkForm,
         private EducationalWorkAction $educationalWorkAction,
 
-        private ScientificWorkRequestFactory $scientificWorkRequestFactory,
         private ScientificWorkForm $scientificWorkForm,
         private ScientificWorkAction $scientificWorkAction,
 
-        private MethodicalWorkRequestFactory $methodicalWorkRequestFactory,
         private MethodicalWorkForm $methodicalWorkForm,
         private MethodicalWorkAction $methodicalWorkAction,
 
@@ -43,7 +44,7 @@ class SiteController extends BaseModuleController
         parent::__construct($id, $module, $config);
     }
 
-    public function rules()
+    public function rules(): array
     {
         return array_merge_recursive(parent::rules(), [
             [
@@ -78,31 +79,31 @@ class SiteController extends BaseModuleController
      */
     public function actionEducationalWork()
     {
-        $dto = $this->educationalWorkRequestFactory->makeDto();
-        if ($this->educationalWorkForm->load($dto) && $this->educationalWorkForm->validate()) {
-            $result = $this->educationalWorkAction->run($dto);
-            return (new EducationalWorkTransformer($result))->makeResponse();
-        }
-        return $this->educationalWorkForm;
+        $dto = new EducationalWorkRequestDto();
+        $dto->documentHeaderString = Yii::$app->request->get('document_header');
+        $dto->teacherId = Yii::$app->request->get('teacher_id');
+
+        $result = $this->educationalWorkAction->run($dto);
+        return (new EducationalWorkTransformer($result))->makeResponse();
     }
 
     public function actionScientificWork()
     {
-        $dto = $this->scientificWorkRequestFactory->makeDto();
-        if ($this->scientificWorkForm->load($dto) && $this->scientificWorkForm->validate()) {
-            $result = $this->scientificWorkAction->run($dto);
-            return (new ScientificWorkTransformer($result))->makeResponse();
-        }
-        return $this->methodicalWorkForm;
+        $dto = new ScientificWorkFormRequestDto();
+        $dto->documentHeaderString = Yii::$app->request->get('document_header');
+        $dto->teacherId = Yii::$app->request->get('teacher_id');
+
+        $result = $this->scientificWorkAction->run($dto);
+        return (new ScientificWorkTransformer($result))->makeResponse();
     }
 
     public function actionMethodicalWork()
     {
-        $dto = $this->methodicalWorkRequestFactory->makeDto();
-        if ($this->methodicalWorkForm->load($dto) && $this->methodicalWorkForm->validate()) {
-            $result = $this->methodicalWorkAction->run($dto);
-            return (new MethodicalWorkTransformer($result))->makeResponse();
-        }
-        return $this->methodicalWorkForm;
+        $dto = new MethodicalWorkRequestDto();
+        $dto->documentHeaderString = Yii::$app->request->get('document_header');
+        $dto->teacherId = Yii::$app->request->get('teacher_id');
+
+        $result = $this->methodicalWorkAction->run($dto);
+        return (new MethodicalWorkTransformer($result))->makeResponse();
     }
 }

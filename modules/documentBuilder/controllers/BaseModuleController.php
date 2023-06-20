@@ -6,7 +6,7 @@ use seog\rest\Controller;
 
 abstract class BaseModuleController extends Controller
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             [

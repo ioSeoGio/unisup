@@ -11,7 +11,7 @@ abstract class DocumentInfoProvider
 
 	public function countTextBreaks(string $description): int
 	{
-		return strlen($description) / self::SYMBOLS_AMOUNT_PER_TEXT_BREAK;
+		return (int) (strlen($description) / self::SYMBOLS_AMOUNT_PER_TEXT_BREAK);
 	}
 
 	public function getAmountOfPoints(WorkReport $dto): array
@@ -20,7 +20,7 @@ abstract class DocumentInfoProvider
 		$points = $dto->type->$pointsTypeVarName;
 
 		$rawPoints = $points / $dto->authorsAmount;
-		$roundedPoints = ceil($rawPoints * 10) / 10;
+		$roundedPoints = (int) ($rawPoints * 10) / 10;
 		return [$rawPoints, $roundedPoints];
 	}
 

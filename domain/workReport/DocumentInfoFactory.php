@@ -61,7 +61,7 @@ class DocumentInfoFactory
 
 			$workReportsGrouppedByTypeId[$workReport->type_id][] = $workReportDto;
 		}
-		$this->dto->totalPoints = floor($this->dto->totalPoints);
+		$this->dto->totalPoints = (int) ($this->dto->totalPoints);
 		$this->dto->workReportsGrouppedByTypeId = $workReportsGrouppedByTypeId;
 	}
 }
